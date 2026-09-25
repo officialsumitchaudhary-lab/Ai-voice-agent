@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Highvance Private Limited — AI Voice Agent Development Agreement — Cureka</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14171B; --ink2:#4A5261; --ink3:#8A93A3;
+  --blue:#1E5EFF; --navy:#0A2A66; --soft:#7DA0FF;
+  --bg:#F7F8FA; --line:#E4E8EF; --dark:#0E1116;
+  --mono:'IBM Plex Mono',monospace; --disp:'Sora','Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#D9DDE4;font-family:'Inter',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{size:A4;margin:0}
+.page{width:210mm;height:297mm;background:var(--bg);position:relative;overflow:hidden;margin:0 auto 26px;box-shadow:0 4px 28px rgba(20,23,27,.18)}
+@media print{
+  body{background:none}.page{margin:0;box-shadow:none;page-break-after:always;page-break-inside:avoid}
+  .page:last-child{page-break-after:auto}
+}
+.page.light::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:5;
+  background:linear-gradient(90deg,var(--navy),var(--blue) 55%,rgba(30,94,255,.25))}
+.page.dark::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:5;
+  background:linear-gradient(90deg,var(--navy),var(--blue))}
+.light{padding:50px 56px 78px}
+/* ---------- header ---------- */
+.eyebrow{font:500 9.5px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.trow{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.title{font:700 30px/1.12 var(--disp);letter-spacing:-.02em;color:var(--ink)}
+.title .sect-mark{color:var(--blue);margin-right:6px;font-weight:500}
+.tmeta{font:500 8.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);padding-bottom:5px;white-space:nowrap}
+.tmeta i,.pfoot i,.dmd{font-style:normal;color:var(--blue)}
+.lead-intro{font:400 12px/1.7 'Inter';color:var(--ink2);margin-top:16px;max-width:560px}
+/* ---------- footer ---------- */
+.pfoot{position:absolute;left:56px;right:56px;bottom:24px;display:flex;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--line);padding-top:10px;font:500 8px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.pfoot.on-dark{border-color:rgba(255,255,255,.14);color:#7C8AA5}
+/* ---------- shared components ---------- */
+.ph{font-family:var(--mono);font-size:.94em;color:var(--blue);background:rgba(30,94,255,.07);border-bottom:1px dashed rgba(30,94,255,.55);padding:0 4px;border-radius:3px;white-space:nowrap}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 1px 2px rgba(20,23,27,.04);position:relative}
+.fic{width:34px;height:34px;border-radius:9px;background:#EDF2FF;color:var(--blue);display:flex;align-items:center;justify-content:center;flex:none}
+.fic svg{width:18px;height:18px}
+.fnum{position:absolute;top:14px;right:16px;font:500 9px var(--mono);letter-spacing:.12em;color:#C9D6FF}
+.ftitle{font:600 13.5px/1.3 var(--disp);color:var(--ink);margin:11px 0 6px}
+.fdesc{font:400 10.8px/1.62 'Inter';color:var(--ink2)}
+.sechead{display:flex;align-items:center;gap:10px;margin:26px 0 12px}
+.sechead .sm{color:var(--blue);font-size:14px}
+.sechead h3{font:600 15px var(--disp);letter-spacing:-.01em}
+.sechead .sl{flex:1;height:1px;background:var(--line)}
+.prow{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.prow:last-child{border-bottom:none}
+.prow .ftitle{margin:0 0 5px}
+.ic{stroke:currentColor;fill:none}
+/* ---------- logo handling ---------- */
+.lgimg{display:block;mix-blend-mode:screen} /* screen blend makes black PNG background vanish on dark pages */
+.lam{color:#5E9BFF;font-style:normal}
+/* ---------- flow rail ---------- */
+.rail{display:flex;align-items:flex-start;margin:4px 0 8px}
+.rnode{width:74px;display:flex;flex-direction:column;align-items:center;gap:7px;position:relative;z-index:1;flex:none}
+.rdot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 8.5px var(--mono);border:1.4px solid #D8DFF2;color:#98A1B3;background:#fff}
+.rnode.active .rdot{background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;border-color:transparent}
+.rnode.done .rdot{background:#E9EEFF;color:var(--blue);border-color:#C9D6FF}
+.rlab{font:500 7.2px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.03em;text-align:center;color:var(--ink3)}
+.rnode.active .rlab{color:var(--ink);font-weight:600}
+.rnode.done .rlab{color:var(--blue)}
+.rlink{flex:1;height:1.4px;background:var(--line);margin-top:13px;min-width:6px}
+.rlink.dash{background:repeating-linear-gradient(90deg,var(--blue) 0 4px,transparent 4px 8px);opacity:.45;height:1.4px}
+/* ---------- journey ---------- */
+.journey{display:flex;align-items:flex-start;margin-top:10px}
+.jnode{width:96px;display:flex;flex-direction:column;align-items:center;gap:9px;flex:none;position:relative;z-index:1}
+.jdot{width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px solid var(--blue);color:var(--blue);display:flex;align-items:center;justify-content:center;font:600 9px var(--mono)}
+.jnode.final .jdot{background:linear-gradient(135deg,var(--blue),var(--navy));border-color:transparent;color:#fff}
+.jlab{font:600 8.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:center;color:var(--ink2)}
+.jnode.final .jlab{color:var(--ink)}
+.jlink{flex:1;height:1.4px;background:linear-gradient(90deg,#C9D6FF,rgba(201,214,255,.4));margin-top:15px;position:relative;min-width:8px}
+.jlink::after{content:'';position:absolute;right:0;top:-2.6px;border-left:5px solid #C9D6FF;border-top:3.4px solid transparent;border-bottom:3.4px solid transparent}
+/* ---------- brand ---------- */
+.brand{display:flex;align-items:center;gap:11px}
+.bw b{display:block;font:700 12.5px var(--disp);letter-spacing:.2em;color:#fff}
+.bw em{display:block;font:500 6.3px var(--mono);letter-spacing:.4em;font-style:normal;opacity:.65;margin-top:2px}
+/* ================= COVER ================= */
+.cover{background:var(--dark);color:#fff;padding:54px 60px}
+.cover .glow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(620px 420px at 86% 10%,rgba(30,94,255,.20),transparent 62%),
+             radial-gradient(700px 480px at 8% 96%,rgba(10,42,102,.38),transparent 65%)}
+.cover .dots{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(circle,rgba(122,158,255,.12) 1px,transparent 1.3px);background-size:24px 24px}
+.cover-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.conf-tag{font:500 7.8px var(--mono);letter-spacing:.26em;text-transform:uppercase;color:#9FB4E8;border:1px solid rgba(159,180,232,.35);padding:7px 12px;border-radius:999px}
+.cover-mid{position:relative;z-index:2;margin-top:104px}
+.cover-eyebrow{font:500 9.5px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-bottom:22px}
+.cover-title{font:700 56px/1.06 var(--disp);letter-spacing:-.02em}
+.cover-title .l3{color:var(--soft)}
+.cover-rule{width:64px;height:3px;background:linear-gradient(90deg,var(--blue),var(--soft));border-radius:2px;margin:26px 0 20px}
+.bars{display:flex;align-items:center;gap:5px;height:58px}
+.bars span{width:3px;border-radius:2px;background:linear-gradient(180deg,var(--blue),rgba(30,94,255,.12))}
+.prep{position:relative;z-index:2;display:flex;gap:0;margin-top:74px}
+.prep>div{flex:1;border-top:1px solid rgba(255,255,255,.18);padding:16px 24px 0 0}
+.prep>div+div{padding-left:28px;border-left:1px solid rgba(255,255,255,.12);border-top:none}
+.prep-lab{font:500 8px var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.prep-val{font:600 17px var(--disp)}
+.prep-sub{font:500 8.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#7C8AA5;margin-top:8px;line-height:1.8}
+.prep-sub i{color:var(--soft);font-style:normal}
+.cover-tag{position:relative;z-index:2;margin-top:56px;font:500 10px var(--mono);letter-spacing:.32em;text-transform:uppercase;color:#B9C6E2}
+.cover-foot{position:absolute;left:60px;right:60px;bottom:26px;display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.14);padding-top:11px;font:500 8px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#7C8AA5;z-index:2}
+.cover-foot i{color:var(--soft);font-style:normal}
+.cover-wave{position:absolute;left:0;right:0;bottom:64px;width:100%;height:190px;z-index:1;opacity:.9}
+.cover-net{position:absolute;top:96px;right:44px;width:230px;height:230px;z-index:1;opacity:.8}
+/* ================= LETTER / ABOUT / SCOPE ================= */
+.two-col{display:grid;grid-template-columns:1fr 218px;gap:44px;margin-top:30px}
+.letter-dear{font:600 20px var(--disp);margin-bottom:16px}
+.letter-body{font:400 15px/1.95 'Inter';color:var(--ink2)}
+.letter-body b{color:var(--ink);font-weight:600}
+.letter-body .cl{color:var(--ink);font-weight:600}
+.letter-body .fill{color:var(--ink);font-weight:600;border-bottom:2px solid rgba(30,94,255,.55);padding-bottom:2px}
+.meta-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 16px;align-self:start}
+.meta-row{padding:11px 0;border-bottom:1px solid var(--line)}
+.meta-row:last-child{border-bottom:none;padding-bottom:2px}
+.meta-lab{font:500 7.5px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.meta-val{font:600 11.5px/1.45 var(--disp);color:var(--ink)}
+.meta-val small{display:block;font:400 9.5px 'Inter';color:var(--ink2);margin-top:3px}
+.deco-wave{margin-top:44px;opacity:.5}
+.deco-wave svg{width:100%;height:70px}
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 316px;gap:44px;margin-top:34px;align-items:center}
+.about-lead{font:500 17.5px/1.85 var(--disp);color:var(--ink);letter-spacing:-.01em}
+.about-lead .hl{color:var(--blue)}
+.hub{position:relative;width:316px;height:250px}
+.hub svg.hub-lines{position:absolute;inset:0;width:100%;height:100%}
+.hub-core{position:absolute;left:0;top:50%;transform:translateY(-50%);width:104px;height:104px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;
+  box-shadow:0 10px 26px rgba(30,94,255,.28);z-index:2}
+.hub-core svg{width:22px;height:22px}
+.hub-core span{font:600 7px var(--mono);letter-spacing:.1em;text-transform:uppercase;line-height:1.5;padding:0 8px}
+.hub-chip{position:absolute;left:158px;width:158px;background:#fff;border:1px solid var(--line);border-radius:9px;
+  padding:9px 12px;font:600 10.5px/1.4 var(--disp);box-shadow:0 1px 2px rgba(20,23,27,.05);z-index:2}
+.chips-row{display:flex;gap:10px;margin-top:26px}
+.chip{font:500 8.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px}
+.chip i{color:var(--blue);font-style:normal}
+/* scope */
+.scope-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.scope-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(20,23,27,.04)}
+.scope-lab{display:flex;align-items:center;gap:10px;font:500 8.5px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+.scope-val{margin-top:4px}
+.scope-fill{display:inline-flex;align-items:baseline;gap:10px;font:600 19px var(--disp);color:var(--ink);background:#FDFEFF;border:1.5px solid rgba(30,94,255,.55);border-radius:10px;padding:9px 16px;box-shadow:0 1px 2px rgba(20,23,27,.04)}
+.scope-fill .n{color:var(--blue);font-weight:700}
+.scope-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 26px 30px;margin-top:30px;box-shadow:0 1px 2px rgba(20,23,27,.04)}
+.panel-cap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.panel-cap .sm{color:var(--blue)}
+.panel-cap h4{font:600 12px var(--disp);letter-spacing:.02em}
+.panel-cap .sl{flex:1;height:1px;background:var(--line)}
+/* inbound rows */
+.in-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:40px;margin-top:26px}
+.in-row{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:19px 0;border-bottom:1px solid var(--line)}
+.in-row .fic{background:none;border:1px solid #DCE4F5;width:36px;height:36px}
+.in-top{display:flex;justify-content:space-between;align-items:baseline}
+.in-top .n{font:500 9px var(--mono);color:#C9D6FF;letter-spacing:.12em}
+.in-row .ftitle{margin:0 0 5px}
+/* pipeline */
+.pipe{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:12px 0 6px}
+.pipe .pc{font:600 8.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 13px;white-space:nowrap}
+.pipe .pc.end{background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;border-color:transparent}
+.pipe .pa{color:var(--blue);font-size:12px;flex:1;text-align:center}
+/* pricing */
+.vdbar{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,#0A2A66,#1E5EFF);color:#fff;border-radius:10px;padding:13px 18px;margin-top:22px}
+.vdbar .vt{font:600 9px var(--mono);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.vdbar .vt i{color:var(--soft);font-style:normal}
+.vdbar .vd{font:400 10.5px/1.5 'Inter';color:#DCE6FF;border-left:1px solid rgba(255,255,255,.25);padding-left:14px}
+.phead-strip{display:flex;justify-content:space-between;font:500 8px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin:22px 2px 10px}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 15px 16px;position:relative;box-shadow:0 1px 2px rgba(20,23,27,.04);display:flex;flex-direction:column;min-height:258px}
+.pcard .pn{font:500 8.5px var(--mono);letter-spacing:.16em;color:#C9D6FF}
+.pcard .pname{font:600 12.5px/1.3 var(--disp);margin:9px 0 14px;min-height:33px}
+.pcard .prate{font:700 25px 'Inter';letter-spacing:-.02em;color:var(--ink)}
+.pcard .prate small{font:600 10px var(--mono);color:var(--blue);letter-spacing:.06em;margin-left:3px}
+.pcard .prate-lab{font:500 7px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin:4px 0 12px}
+.pcard .pdiv{height:1px;background:var(--line);margin:2px 0 11px}
+.pcard .pdetail{font:400 10px/1.6 'Inter';color:var(--ink2);margin-top:auto}
+.pbadge{position:absolute;top:13px;right:12px;font:600 6.6px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:rgba(30,94,255,.08);border:1px solid rgba(30,94,255,.28);padding:4px 8px;border-radius:999px}
+.pcard.tier{border-color:rgba(30,94,255,.45);background:linear-gradient(180deg,#FDFEFF,#F5F8FF)}
+.pcard.tier .prate{color:var(--navy)}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.note-panel{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:10px;padding:16px 18px}
+.note-panel.gst{border-left-color:var(--navy);background:#F4F7FF}
+.note-lab{font:600 8.5px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.note-panel.gst .note-lab{color:var(--navy)}
+.note-panel p{font:400 10.8px/1.68 'Inter';color:var(--ink2)}
+/* security */
+.sec-grid{display:grid;grid-template-columns:312px 1fr;gap:40px;margin-top:30px;align-items:start}
+.perim{position:relative;border:1px solid #D8DFF2;border-radius:16px;background:#fff;padding:26px 20px 24px;box-shadow:0 1px 3px rgba(20,23,27,.05)}
+.perim .cnr{position:absolute;width:15px;height:15px;border-color:var(--blue);border-style:solid;border-width:0}
+.perim .c1{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px;border-top-left-radius:16px}
+.perim .c2{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px;border-top-right-radius:16px}
+.perim .c3{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px;border-bottom-left-radius:16px}
+.perim .c4{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px;border-bottom-right-radius:16px}
+.perim-cap{font:500 7.8px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);text-align:center;margin-bottom:18px}
+.hub-shield{width:86px;height:86px;border-radius:50%;margin:0 auto;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(30,94,255,.28)}
+.hub-shield svg{width:34px;height:34px}
+.hub-name{font:600 8px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink);text-align:center;margin:12px 0 4px}
+.stack{display:flex;flex-direction:column;align-items:center}
+.stack .vln{width:1.4px;height:20px;background:#C9D6FF}
+.stack .sn{width:36px;height:36px;border-radius:50%;background:#fff;border:1.4px solid #C9D6FF;color:var(--blue);display:flex;align-items:center;justify-content:center}
+.stack .sn svg{width:16px;height:16px}
+.sec-note{font:400 9.5px/1.6 'Inter';color:var(--ink3);text-align:center;margin-top:14px;padding:0 6px}
+.srow{display:grid;grid-template-columns:42px 1fr;gap:15px;padding:17px 0;border-bottom:1px solid var(--line)}
+.srow:first-child{padding-top:4px}
+.srow:last-child{border-bottom:none}
+.srow .ftitle{margin:2px 0 5px}
+/* outcomes */
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.ocard{background:#fff;border:1px solid var(--line);border-radius:15px;padding:24px;min-height:212px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(20,23,27,.04)}
+.ocard .big-n{position:absolute;top:14px;right:18px;font:800 44px var(--disp);color:rgba(30,94,255,.08)}
+.otile{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center}
+.otile svg{width:22px;height:22px}
+.ocard .ftitle{font-size:17.5px;margin:20px 0 8px}
+.ocard .fdesc{font-size:12.3px;max-width:88%}
+.ocard .owave{position:absolute;right:-6px;bottom:2px;width:170px;height:56px;opacity:.12}
+.ocard .owave path{stroke:var(--blue);stroke-width:2;fill:none}
+/* closing */
+.closing-letter{font:500 17px/1.95 var(--disp);color:var(--ink);margin-top:34px;max-width:640px;letter-spacing:-.005em}
+.warm{font:400 13px 'Inter';color:var(--ink2);margin-top:34px}
+.close-bottom{display:flex;gap:44px;align-items:stretch;margin-top:44px}
+.sigblock{flex:1}
+.sigline{width:216px;height:46px;border-bottom:1.4px solid var(--ink)}
+.signame{font:700 16px var(--disp);margin-top:12px}
+.sigorg{font:500 9px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:5px}
+.contact-card{width:300px;background:linear-gradient(150deg,#11151C,#0A2A66 130%);border-radius:15px;color:#fff;padding:24px 24px 22px;position:relative;overflow:hidden}
+.contact-card .glow2{position:absolute;inset:0;background:radial-gradient(300px 180px at 90% 0%,rgba(30,94,255,.3),transparent 65%)}
+.contact-card .gic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;position:relative}
+.contact-card .gic svg{width:20px;height:18px}
+.csite{font:700 17px var(--disp);margin:14px 0 5px;position:relative}
+.csub{font:500 7.8px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:#9FB4E8;position:relative}
+.cdiv{height:1px;background:rgba(255,255,255,.15);margin:16px 0 12px;position:relative}
+.ctag{font:500 8.5px var(--mono);letter-spacing:.26em;text-transform:uppercase;color:#CFE0FF;position:relative}
+.ctag i{color:var(--soft);font-style:normal}
+/* back cover */
+.back{background:var(--dark);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px}
+.back .glow{position:absolute;inset:0;background:radial-gradient(600px 400px at 50% 30%,rgba(30,94,255,.14),transparent 65%),radial-gradient(500px 400px at 50% 100%,rgba(10,42,102,.4),transparent 70%);pointer-events:none}
+.back h2{font:700 21px var(--disp);letter-spacing:.24em;position:relative;margin-top:6px}
+.back .bsub{font:500 8.5px var(--mono);letter-spacing:.42em;text-transform:uppercase;color:#9FB4E8;margin-top:10px;position:relative}
+.back .bsite{font:600 15px var(--disp);color:#CFE0FF;margin-top:34px;position:relative}
+.back .bconf{font:500 7.5px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:#5E6B85;margin-top:56px;position:relative}
+.back .bwave{width:420px;height:80px;margin-top:44px;position:relative;opacity:.85}
+.back .btag{font:500 9px var(--mono);letter-spacing:.34em;text-transform:uppercase;color:#B9C6E2;margin-top:36px;position:relative}
+.back .btag i{color:var(--soft);font-style:normal}
+</style>
+</head>
+<body>
+
+<!-- ============ HIGHVANCE VECTOR MARK (fallback for light pages / missing PNG) ============ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="hvL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4D9BFF"/><stop offset="1" stop-color="#1B4FC9"/></linearGradient>
+  <linearGradient id="hvR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D5BBF"/><stop offset="1" stop-color="#0C2A5E"/></linearGradient>
+  <linearGradient id="hvC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D8BFF"/><stop offset="1" stop-color="#1E56D6"/></linearGradient>
+  <symbol id="hv-mark" viewBox="0 0 120 104">
+    <path d="M26 6 L42 15 L42 98 L26 98 Z" fill="url(#hvL)"/>
+    <path d="M78 15 L94 6 L94 98 L78 98 Z" fill="url(#hvR)"/>
+    <path d="M24 100 L60 46 L96 100 L79 100 L60 70 L41 100 Z" fill="url(#hvC)"/>
+    <path d="M60 46 L51.5 56.5 L60 67 L68.5 56.5 Z" fill="#0A2B5E"/>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ============ SVG ICON LIBRARY ============ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<symbol id="i-wave" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c1.7-5.5 3.3-5.5 5 0s3.3-5.5 5 0 3.3-5.5 5 0 3.3 5.5 5 0"/></g></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></g></symbol>
+<symbol id="i-capture" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="m8 8 4 4 4-4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></g></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l1.6-3.2A8 8 0 1 1 21 12z"/></g></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></g></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></g></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></g></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.5 4.7-5.2"/></g></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></g></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></g></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></g></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g></symbol>
+<symbol id="i-timer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="8"/><path d="M12 10v4l2.5 2"/><path d="M9 2h6M12 2v4"/></g></symbol>
+<symbol id="i-signal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19v-4M9 19v-8M14 19V8M19 19V4"/></g></symbol>
+<symbol id="i-retry" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></g></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 14 9 5 9-5"/></g></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></g></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></g></symbol>
+<symbol id="i-transfer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m17 3 4 4-4 4"/><path d="M21 7H8"/><path d="m7 21-4-4 4-4"/><path d="M3 17h13"/></g></symbol>
+<symbol id="i-calplus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M12 13.5v4M10 15.5h4"/></g></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16V8"/></g></symbol>
+<symbol id="i-smile" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4.5 4.5 0 0 0 7 0"/><path d="M9 9.5h.01M15 9.5h.01"/></g></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2z"/></g></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.66 3.58 3 8 3s8-1.34 8-3v-13"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></g></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 2.5 2.5"/><circle cx="7.5" cy="15.5" r="4.5"/></g></symbol>
+<symbol id="i-ban" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></g></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5.5L12 2.5 4 5.5V12c0 6.4 8 10 8 10z"/><path d="m9 11.5 2 2 4-4"/></g></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01"/></g></symbol>
+<symbol id="i-archive" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></g></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2.5"/><path d="M12 8V4M8.5 4h7"/><path d="M9 13h.01M15 13h.01M9.5 17h5"/></g></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></g></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a2 2 0 0 0 2 4h1M17 5h3a2 2 0 0 1-2 4h-1"/></g></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h.01M12 7h.01M15 7h.01M9 11h.01M12 11h.01M15 11h.01M9 15h.01M12 15h.01M15 15h.01"/><path d="M10 21v-3h4v3"/></g></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13.5 13.5 0 0 1 3.5 9 13.5 13.5 0 0 1-3.5 9 13.5 13.5 0 0 1-3.5-9A13.5 13.5 0 0 1 12 3z"/></g></symbol>
+</svg>
+
+<!-- ================= PAGE 01 · COVER ================= -->
+<div class="page dark cover">
+  <div class="glow"></div><div class="dots"></div>
+  <svg class="cover-net" viewBox="0 0 220 220">
+    <g fill="none" stroke="rgba(122,158,255,.3)" stroke-width="1">
+      <circle cx="30" cy="40" r="3" fill="rgba(122,158,255,.3)"/><circle cx="110" cy="20" r="3" fill="rgba(122,158,255,.3)"/>
+      <circle cx="190" cy="60" r="3" fill="rgba(122,158,255,.3)"/><circle cx="70" cy="110" r="3" fill="rgba(122,158,255,.3)"/>
+      <circle cx="160" cy="130" r="3" fill="rgba(122,158,255,.3)"/><circle cx="110" cy="190" r="3" fill="rgba(122,158,255,.3)"/>
+      <path d="M30 40 110 20 190 60M110 20 70 110M70 110 160 130M190 60 160 130M70 110 110 190M160 130 110 190M30 40 70 110"/>
+    </g>
+  </svg>
+  <svg class="cover-wave" viewBox="0 0 800 190" preserveAspectRatio="none">
+    <path d="M0 95 Q 50 25 100 95 T 200 95 T 300 95 T 400 95 T 500 95 T 600 95 T 700 95 T 800 95" fill="none" stroke="rgba(30,94,255,.55)" stroke-width="1.6"/>
+    <path d="M0 95 Q 50 165 100 95 T 200 95 T 300 95 T 400 95 T 500 95 T 600 95 T 700 95 T 800 95" fill="none" stroke="rgba(125,160,255,.22)" stroke-width="1.2"/>
+    <line x1="0" y1="95" x2="800" y2="95" stroke="rgba(255,255,255,.1)" stroke-dasharray="2 6"/>
+  </svg>
+  <div class="cover-top">
+    <!-- LOGO: uses highvance-logo.png if present in same folder; falls back to vector mark -->
+    <img class="lgimg" src="highvance-logo.png" alt="Highvance Private Limited" style="height:88px"
+         onerror="this.style.display='none';document.getElementById('cvFb').style.display='flex'">
+    <div class="brand" id="cvFb" style="display:none">
+      <svg style="width:36px;height:31px;flex:none"><use href="#hv-mark"/></svg>
+      <span class="bw"><b>HIGHV<span class="lam">Λ</span>NCE</b><em>PRIVATE LIMITED</em></span>
+    </div>
+    <span class="conf-tag">Confidential Document</span>
+  </div>
+  <div class="cover-mid">
+    <div class="cover-eyebrow">Proposal Document <i style="color:#7DA0FF;font-style:normal">◆</i> Enterprise Plan</div>
+    <h1 class="cover-title">AI VOICE AGENT<br>DEVELOPMENT<br><span class="l3">AGREEMENT</span></h1>
+    <div class="cover-rule"></div>
+    <div class="bars">
+      <span style="height:10px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:32px"></span>
+      <span style="height:24px"></span><span style="height:44px"></span><span style="height:30px"></span><span style="height:54px"></span>
+      <span style="height:38px"></span><span style="height:26px"></span><span style="height:46px"></span><span style="height:32px"></span>
+      <span style="height:20px"></span><span style="height:36px"></span><span style="height:24px"></span><span style="height:14px"></span>
+      <span style="height:28px"></span><span style="height:16px"></span><span style="height:10px"></span><span style="height:22px"></span>
+    </div>
+  </div>
+  <div class="prep">
+    <div>
+      <div class="prep-lab">Prepared For</div>
+      <div class="prep-val">Cureka</div>
+      <div class="prep-sub">Managing Director: Dr. Hema Sathish <i>◆</i> E-Commerce</div>
+    </div>
+    <div>
+      <div class="prep-lab">Prepared By</div>
+      <div class="prep-val">Highvance Private Limited</div>
+      <div class="prep-sub">AI-Driven Communication Systems</div>
+    </div>
+  </div>
+  <div class="cover-tag">Automate <i style="color:#7DA0FF;font-style:normal">◆</i> Qualify <i style="color:#7DA0FF;font-style:normal">◆</i> Convert</div>
+  <div class="cover-foot">
+    <span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span>
+    <span>highvance.in</span>
+  </div>
+</div>
+
+<!-- ================= PAGE 02 · EXECUTIVE INTRODUCTION ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">01 / Executive Introduction</div>
+    <div class="trow">
+      <h1 class="title">Executive Introduction</h1>
+      <div class="tmeta">AI Voice Agent Agreement <i>◆</i> Confidential</div>
+    </div>
+  </header>
+  <div class="two-col">
+    <div>
+      <div class="letter-dear">Dear Dr. Hema Sathish,</div>
+      <p class="letter-body">We are pleased to present this proposal for implementing <b>AI Voice Agents</b> at <span class="cl">Cureka</span> under our <b>Enterprise Plan</b> to automate <b>customer engagement</b>, <b>lead qualification</b>, and <b>follow-ups</b> across your <span class="fill">E-Commerce</span> department.</p>
+      <div class="deco-wave">
+        <svg viewBox="0 0 600 70" preserveAspectRatio="none">
+          <path d="M0 35 Q 25 5 50 35 T 100 35 T 150 35 T 200 35 T 250 35 T 300 35 T 350 35 T 400 35 T 450 35 T 500 35 T 550 35 T 600 35" fill="none" stroke="#C9D6FF" stroke-width="1.4"/>
+          <line x1="0" y1="35" x2="600" y2="35" stroke="#E4E8EF" stroke-dasharray="2 6"/>
+        </svg>
+      </div>
+    </div>
+    <aside class="meta-card">
+      <div class="meta-row">
+        <div class="meta-lab">Document</div>
+        <div class="meta-val">AI Voice Agent Development Agreement</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-lab">Client</div>
+        <div class="meta-val">Cureka<small>Managing Director: Dr. Hema Sathish</small></div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-lab">Plan</div>
+        <div class="meta-val">Enterprise Plan</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-lab">Department</div>
+        <div class="meta-val">E-Commerce</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-lab">Prepared By</div>
+        <div class="meta-val">Highvance Private Limited</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-lab">Status</div>
+        <div class="meta-val">Confidential Document</div>
+      </div>
+    </aside>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 02 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 03 · ABOUT US ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">02 / About Highvance</div>
+    <div class="trow">
+      <h1 class="title"><span class="sect-mark">◈</span>About Us</h1>
+      <div class="tmeta">Highvance Private Limited</div>
+    </div>
+  </header>
+  <div class="about-grid">
+    <div>
+      <p class="about-lead">Highvance Private Limited specializes in building <span class="hl">AI-driven communication systems</span> that help businesses scale outreach, improve response speed, and reduce manpower dependency while increasing conversions.</p>
+      <div class="chips-row">
+        <span class="chip"><i>◆</i> AI Voice Agents</span>
+        <span class="chip"><i>◆</i> Telephony Integrations</span>
+        <span class="chip"><i>◆</i> CRM Integrations</span>
+      </div>
+    </div>
+    <div class="hub">
+      <svg class="hub-lines" viewBox="0 0 316 250">
+        <g fill="none" stroke="#C9D6FF" stroke-width="1.3">
+          <path d="M62 125 C 105 125, 108 30, 158 30"/>
+          <path d="M62 125 C 105 125, 108 93, 158 93"/>
+          <path d="M62 125 C 105 125, 108 157, 158 157"/>
+          <path d="M62 125 C 105 125, 108 220, 158 220"/>
+        </g>
+        <g fill="#C9D6FF">
+          <circle cx="158" cy="30" r="2.6"/><circle cx="158" cy="93" r="2.6"/><circle cx="158" cy="157" r="2.6"/><circle cx="158" cy="220" r="2.6"/>
+        </g>
+      </svg>
+      <div class="hub-core">
+        <svg style="width:22px;height:19px"><use href="#hv-mark"/></svg>
+        <span>AI-Driven Communication Systems</span>
+      </div>
+      <div class="hub-chip" style="top:16px">Scale Outreach</div>
+      <div class="hub-chip" style="top:79px">Improve Response Speed</div>
+      <div class="hub-chip" style="top:143px">Reduce Manpower Dependency</div>
+      <div class="hub-chip" style="top:206px">Increase Conversions</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 03 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 04 · SCOPE OF IMPLEMENTATION ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">03 / Scope of Implementation</div>
+    <div class="trow">
+      <h1 class="title">Scope of Implementation</h1>
+      <div class="tmeta">Department <i>◆</i> Agents Included</div>
+    </div>
+  </header>
+
+  <div class="scope-cards">
+    <div class="scope-card">
+      <div class="scope-lab"><span class="fic"><svg class="ic"><use href="#i-building"/></svg></span> Department / Use Case</div>
+      <div class="scope-val"><span class="scope-fill">E-Commerce</span></div>
+    </div>
+    <div class="scope-card">
+      <div class="scope-lab"><span class="fic"><svg class="ic"><use href="#i-bot"/></svg></span> Agents Included</div>
+      <div class="scope-val"><span class="scope-fill"><span class="n">1</span> AI Voice Agent</span></div>
+    </div>
+  </div>
+
+  <div class="scope-panel">
+    <div class="panel-cap">
+      <span class="sm">◈</span><h4>From Lead to Conversion</h4><span class="sl"></span>
+    </div>
+    <div class="journey">
+      <div class="jnode"><span class="jdot">01</span><span class="jlab">Lead</span></div>
+      <div class="jlink"></div>
+      <div class="jnode"><span class="jdot">02</span><span class="jlab">AI Conversation</span></div>
+      <div class="jlink"></div>
+      <div class="jnode"><span class="jdot">03</span><span class="jlab">Qualification</span></div>
+      <div class="jlink"></div>
+      <div class="jnode"><span class="jdot">04</span><span class="jlab">Follow-Up</span></div>
+      <div class="jlink"></div>
+      <div class="jnode"><span class="jdot">05</span><span class="jlab">Appointment</span></div>
+      <div class="jlink"></div>
+      <div class="jnode final"><span class="jdot">06</span><span class="jlab">Conversion</span></div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 04 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 05 · OUTBOUND I ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">04 / Outbound AI Voice Agent</div>
+    <div class="trow">
+      <h1 class="title"><span class="sect-mark">◈</span>Outbound Agent Capabilities</h1>
+      <div class="tmeta">Capabilities 01–04 <i>◆</i> of 08</div>
+    </div>
+  </header>
+
+  <div class="rail" style="margin-top:24px">
+    <div class="rnode active"><span class="rdot">01</span><span class="rlab">Instant Lead Capture</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">02</span><span class="rlab">First Contact Maximization</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">03</span><span class="rlab">Smart Follow-Up</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">04</span><span class="rlab">Human-Like Conversations</span></div>
+    <div class="rlink dash"></div>
+    <div class="rnode"><span class="rdot">05</span><span class="rlab">Lead Qualification</span></div>
+    <div class="rlink"></div>
+    <div class="rnode"><span class="rdot">06</span><span class="rlab">Appointment Booking</span></div>
+    <div class="rlink"></div>
+    <div class="rnode"><span class="rdot">07</span><span class="rlab">Confirmation &amp; Reminders</span></div>
+    <div class="rlink"></div>
+    <div class="rnode"><span class="rdot">08</span><span class="rlab">Pre-Appointment Calls</span></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px">
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 01</span>
+      <span class="fic"><svg class="ic"><use href="#i-capture"/></svg></span>
+      <div class="ftitle">Instant Lead Capture</div>
+      <div class="fdesc">Automatically captures leads from all sources — website, social media, ads, forms, and more</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 02</span>
+      <span class="fic"><svg class="ic"><use href="#i-bolt"/></svg></span>
+      <div class="ftitle">First Contact Maximization</div>
+      <div class="fdesc">Calls leads instantly upon enquiry to maximize the first contact rate</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 03</span>
+      <span class="fic"><svg class="ic"><use href="#i-repeat"/></svg></span>
+      <div class="ftitle">Smart Follow-Up</div>
+      <div class="fdesc">Schedules follow-up calls at intelligent intervals to increase overall pickup rate</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 04</span>
+      <span class="fic"><svg class="ic"><use href="#i-chat"/></svg></span>
+      <div class="ftitle">Human-Like Conversations</div>
+      <div class="fdesc">Engages prospects in natural, human-like dialogue for a premium caller experience</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 05 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 06 · OUTBOUND II ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">04 / Outbound AI Voice Agent — Continued</div>
+    <div class="trow">
+      <h1 class="title"><span class="sect-mark">◈</span>Outbound Agent Capabilities</h1>
+      <div class="tmeta">Capabilities 05–08 <i>◆</i> of 08</div>
+    </div>
+  </header>
+
+  <div class="rail" style="margin-top:24px">
+    <div class="rnode done"><span class="rdot">01</span><span class="rlab">Instant Lead Capture</span></div>
+    <div class="rlink"></div>
+    <div class="rnode done"><span class="rdot">02</span><span class="rlab">First Contact Maximization</span></div>
+    <div class="rlink"></div>
+    <div class="rnode done"><span class="rdot">03</span><span class="rlab">Smart Follow-Up</span></div>
+    <div class="rlink"></div>
+    <div class="rnode done"><span class="rdot">04</span><span class="rlab">Human-Like Conversations</span></div>
+    <div class="rlink dash"></div>
+    <div class="rnode active"><span class="rdot">05</span><span class="rlab">Lead Qualification</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">06</span><span class="rlab">Appointment Booking</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">07</span><span class="rlab">Confirmation &amp; Reminders</span></div>
+    <div class="rlink"></div>
+    <div class="rnode active"><span class="rdot">08</span><span class="rlab">Pre-Appointment Calls</span></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px">
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 05</span>
+      <span class="fic"><svg class="ic"><use href="#i-target"/></svg></span>
+      <div class="ftitle">Lead Qualification</div>
+      <div class="fdesc">Qualifies interest, intent, and preferences through structured dialogue</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 06</span>
+      <span class="fic"><svg class="ic"><use href="#i-cal"/></svg></span>
+      <div class="ftitle">Appointment Booking</div>
+      <div class="fdesc">Books meetings directly with your team on the call</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 07</span>
+      <span class="fic"><svg class="ic"><use href="#i-bell"/></svg></span>
+      <div class="ftitle">Confirmation &amp; Reminders</div>
+      <div class="fdesc">Sends automated confirmations and reminder messages for higher show-up rate</div>
+    </div>
+    <div class="fcard">
+      <span class="fnum">CAPABILITY 08</span>
+      <span class="fic"><svg class="ic"><use href="#i-phone"/></svg></span>
+      <div class="ftitle">Pre-Appointment Calls</div>
+      <div class="fdesc">Calls leads before their appointment to remind, reschedule, or cancel as needed</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 06 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 07 · INBOUND ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">05 / Inbound AI Voice Agent</div>
+    <div class="trow">
+      <h1 class="title"><span class="sect-mark">◈</span>Inbound Agent Capabilities</h1>
+      <div class="tmeta">6 Inbound Capabilities</div>
+    </div>
+  </header>
+
+  <div class="in-grid">
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-clock"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">Zero Wait Time</div><span class="n">01</span></div>
+        <div class="fdesc">Answers every incoming call instantly — no hold, no delay</div>
+      </div>
+    </div>
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-info"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">Information Handling</div><span class="n">02</span></div>
+        <div class="fdesc">Provides detailed, relevant information in a natural conversation</div>
+      </div>
+    </div>
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-check"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">Live Qualification</div><span class="n">03</span></div>
+        <div class="fdesc">Qualifies callers based on interest, intent, and eligibility during the call</div>
+      </div>
+    </div>
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-clip"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">On-Spot Booking</div><span class="n">04</span></div>
+        <div class="fdesc">Books meetings automatically on the spot</div>
+      </div>
+    </div>
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-msg"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">Post-Call Reminders</div><span class="n">05</span></div>
+        <div class="fdesc">Sends instant confirmation and reminder messages after the call</div>
+      </div>
+    </div>
+    <div class="in-row">
+      <span class="fic"><svg class="ic"><use href="#i-rotate"/></svg></span>
+      <div>
+        <div class="in-top"><div class="ftitle">Reschedule Handling</div><span class="n">06</span></div>
+        <div class="fdesc">Handles rescheduling and cancellations based on caller needs</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:52px;opacity:.55">
+    <svg viewBox="0 0 682 70" preserveAspectRatio="none" style="width:100%;height:70px">
+      <path d="M0 35 Q 28 5 57 35 T 113 35 T 170 35 T 227 35 T 284 35 T 341 35 T 398 35 T 455 35 T 511 35 T 568 35 T 625 35 T 682 35" fill="none" stroke="#C9D6FF" stroke-width="1.4"/>
+      <line x1="0" y1="35" x2="682" y2="35" stroke="#E4E8EF" stroke-dasharray="2 6"/>
+    </svg>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 07 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 08 · PLATFORM CAPABILITIES I ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">06 / Platform Capabilities</div>
+    <div class="trow">
+      <h1 class="title">Platform Capabilities</h1>
+      <div class="tmeta">Out of the Box Controls</div>
+    </div>
+  </header>
+  <p class="lead-intro">Every AI Voice Agent built on the Highvance platform includes the following controls out of the box:</p>
+
+  <div class="sechead"><span class="sm">◈</span><h3>Call Scheduling &amp; Routing</h3><span class="sl"></span></div>
+  <div>
+    <div class="prow">
+      <span class="fic"><svg class="ic"><use href="#i-calplus"/></svg></span>
+      <div>
+        <div class="ftitle">Working Days &amp; Hours</div>
+        <div class="fdesc">Set the exact days and hours (IST) outbound calls are allowed to fire; leave unselected to run 24/7. Test calls always work regardless of the schedule</div>
+      </div>
+    </div>
+    <div class="prow">
+      <span class="fic"><svg class="ic"><use href="#i-timer"/></svg></span>
+      <div>
+        <div class="ftitle">Call Timing Controls</div>
+        <div class="fdesc">Configurable max call duration, ring timeout, and a no-response cut-off that auto-hangs up on prolonged caller silence</div>
+      </div>
+    </div>
+    <div class="prow">
+      <span class="fic"><svg class="ic"><use href="#i-signal"/></svg></span>
+      <div>
+        <div class="ftitle">Multi-Provider Telephony</div>
+        <div class="fdesc">Mix telephony providers (e.g. Plivo, Twilio) on a single agent, with round-robin rotation across multiple calling numbers and a max-calls-per-number cap</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sechead"><span class="sm">◈</span><h3>Retry &amp; Follow-Up Logic</h3><span class="sl"></span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-retry"/></svg></span>
+      <div class="ftitle">Automatic Retries</div>
+      <div class="fdesc">Re-attempts calls that hit a busy signal, go unanswered, or land on voicemail/answering machine</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-layers"/></svg></span>
+      <div class="ftitle">Custom Retry Situations</div>
+      <div class="fdesc">Additional outcomes flagged by post-call analysis (e.g. call dropped, asked to call later) can also trigger a retry</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-sliders"/></svg></span>
+      <div class="ftitle">Configurable Retry Rules</div>
+      <div class="fdesc">Set the maximum retry attempts and the interval between attempts</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-back"/></svg></span>
+      <div class="ftitle">Auto Call-Back</div>
+      <div class="fdesc">If a caller asks to be called back at a specific time, the agent confirms it and the system schedules the call automatically</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 08 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 09 · PLATFORM CAPABILITIES II ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">06 / Platform Capabilities — Continued</div>
+    <div class="trow">
+      <h1 class="title">Platform Capabilities</h1>
+      <div class="tmeta">Tools <i>◆</i> Extraction &amp; Analysis</div>
+    </div>
+  </header>
+
+  <div class="sechead" style="margin-top:30px"><span class="sm">◈</span><h3>Tools &amp; Functions</h3><span class="sl"></span></div>
+  <div>
+    <div class="prow">
+      <span class="fic"><svg class="ic"><use href="#i-transfer"/></svg></span>
+      <div>
+        <div class="ftitle">Call Transfer</div>
+        <div class="fdesc">Hand off live calls to a human agent when needed</div>
+      </div>
+    </div>
+    <div class="prow">
+      <span class="fic"><svg class="ic"><use href="#i-cal"/></svg></span>
+      <div>
+        <div class="ftitle">Appointment Booking</div>
+        <div class="fdesc">Schedule appointments directly via Cal.com or a custom booking API, with support for multiple booking calendars mapped to specific use cases</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sechead"><span class="sm">◈</span><h3>Extraction &amp; Analysis</h3><span class="sl"></span></div>
+  <div class="pipe">
+    <span class="pc">Every Call</span><span class="pa">→</span>
+    <span class="pc">Structured Fields</span><span class="pa">→</span>
+    <span class="pc">Review Queue</span><span class="pa">→</span>
+    <span class="pc end">Your CRM</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:14px">
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-chart"/></svg></span>
+      <div class="ftitle">Lead Scoring</div>
+      <div class="fdesc">Scores each call's sales potential, deal value, and buying signals</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-smile"/></svg></span>
+      <div class="ftitle">Sentiment Analysis</div>
+      <div class="fdesc">Detects caller mood, objections, and buying signals from conversation tone</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-compass"/></svg></span>
+      <div class="ftitle">Intent Detection</div>
+      <div class="fdesc">Tags calls with configured intent labels</div>
+    </div>
+    <div class="fcard">
+      <span class="fic"><svg class="ic"><use href="#i-db"/></svg></span>
+      <div class="ftitle">CRM Data Extraction</div>
+      <div class="fdesc">Extracts structured fields from every call; low-confidence extractions are routed to a review queue before being pushed to your CRM</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 09 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 10 · PRICING MODEL — CUREKA (ENTERPRISE PLAN) ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">07 / Investment</div>
+    <div class="trow">
+      <h1 class="title">Pricing Model</h1>
+      <div class="tmeta">Enterprise Plan <i>◆</i> Rates excl. GST</div>
+    </div>
+  </header>
+
+  <div class="vdbar">
+    <span class="vt"><i>◆</i> Enterprise Plan — Cureka</span>
+    <span class="vd">Preferential enterprise per-minute usage rates applied to this engagement, scaling with monthly call volume</span>
+  </div>
+
+  <div class="phead-strip"><span>Component</span><span>Rate (excl. GST)</span><span>Details</span><span>—</span></div>
+  <div class="pgrid">
+    <div class="pcard">
+      <span class="pbadge">One-Time</span>
+      <span class="pn">COMPONENT 01</span>
+      <div class="pname">Setup Fee</div>
+      <div class="prate">₹5,000<small>/ agent</small></div>
+      <div class="prate-lab">Rate (excl. GST)</div>
+      <div class="pdiv"></div>
+      <div class="pdetail">One-time, per AI Voice Agent built and deployed</div>
+    </div>
+    <div class="pcard tier">
+      <span class="pbadge">Enterprise</span>
+      <span class="pn">COMPONENT 02</span>
+      <div class="pname">Usage — Tier 1</div>
+      <div class="prate">₹4.5<small>/ minute</small></div>
+      <div class="prate-lab">Rate (excl. GST)</div>
+      <div class="pdiv"></div>
+      <div class="pdetail">Monthly usage of 50,000+ minutes</div>
+    </div>
+    <div class="pcard tier">
+      <span class="pbadge">Enterprise</span>
+      <span class="pn">COMPONENT 03</span>
+      <div class="pname">Usage — Tier 2</div>
+      <div class="prate">₹4<small>/ minute</small></div>
+      <div class="prate-lab">Rate (excl. GST)</div>
+      <div class="pdiv"></div>
+      <div class="pdetail">Monthly usage of 1,00,000+ minutes</div>
+    </div>
+    <div class="pcard">
+      <span class="pbadge">Monthly</span>
+      <span class="pn">COMPONENT 04</span>
+      <div class="pname">Phone Number</div>
+      <div class="prate">₹299<small>/ number</small></div>
+      <div class="prate-lab">Rate (excl. GST)</div>
+      <div class="pdiv"></div>
+      <div class="pdetail">Billed monthly, per dedicated calling number provisioned</div>
+    </div>
+  </div>
+
+  <div class="note-grid">
+    <div class="note-panel">
+      <div class="note-lab">Billing</div>
+      <p>Setup fees are billed per agent at the time of deployment. Usage is billed per minute at the applicable Enterprise Plan tier — <b>₹4.5/minute</b> for monthly usage of 50,000+ minutes, and <b>₹4/minute</b> for monthly usage of 1,00,000+ minutes.</p>
+    </div>
+    <div class="note-panel gst">
+      <div class="note-lab">GST</div>
+      <p>All rates above are exclusive of GST. 18% GST will be applied additionally on every component listed — Setup Fee, usage charges, and Phone Number charges.</p>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 10 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 11 · DATA SECURITY ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">08 / Data Security</div>
+    <div class="trow">
+      <h1 class="title">Data Security</h1>
+      <div class="tmeta">Protected System Architecture</div>
+    </div>
+  </header>
+
+  <div class="sec-grid">
+    <div class="perim">
+      <span class="cnr c1"></span><span class="cnr c2"></span><span class="cnr c3"></span><span class="cnr c4"></span>
+      <div class="perim-cap">Protected System</div>
+      <div class="hub-shield"><svg class="ic"><use href="#i-shield"/></svg></div>
+      <div class="hub-name">Client &amp; Lead Data</div>
+      <div class="stack">
+        <span class="vln"></span>
+        <span class="sn"><svg class="ic"><use href="#i-key"/></svg></span>
+        <span class="vln"></span>
+        <span class="sn"><svg class="ic"><use href="#i-ban"/></svg></span>
+        <span class="vln"></span>
+        <span class="sn"><svg class="ic"><use href="#i-server"/></svg></span>
+        <span class="vln"></span>
+        <span class="sn"><svg class="ic"><use href="#i-archive"/></svg></span>
+      </div>
+      <div class="sec-note">Isolated, client-specific security perimeter around every engagement</div>
+    </div>
+    <div>
+      <div class="srow">
+        <span class="fic"><svg class="ic"><use href="#i-key"/></svg></span>
+        <div>
+          <div class="ftitle">Restricted Access</div>
+          <div class="fdesc">Access to client data is limited to authorized Highvance team members on a need-to-know basis</div>
+        </div>
+      </div>
+      <div class="srow">
+        <span class="fic"><svg class="ic"><use href="#i-ban"/></svg></span>
+        <div>
+          <div class="ftitle">No Unauthorized Sharing</div>
+          <div class="fdesc">Client and lead data is never shared with third parties outside the agreed scope of service</div>
+        </div>
+      </div>
+      <div class="srow">
+        <span class="fic"><svg class="ic"><use href="#i-server"/></svg></span>
+        <div>
+          <div class="ftitle">Dedicated Infrastructure</div>
+          <div class="fdesc">Telephony and CRM integrations run on isolated, client-specific configurations to prevent cross-account data mixing</div>
+        </div>
+      </div>
+      <div class="srow">
+        <span class="fic"><svg class="ic"><use href="#i-archive"/></svg></span>
+        <div>
+          <div class="ftitle">Data Retention</div>
+          <div class="fdesc">Call data is retained only for the duration required to deliver the service and as agreed with the client, after which it can be purged on request</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 11 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 12 · EXPECTED OUTCOMES ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">09 / Expected Outcomes</div>
+    <div class="trow">
+      <h1 class="title">Expected Outcomes</h1>
+      <div class="tmeta">With AI Voice Agents</div>
+    </div>
+  </header>
+
+  <div class="ogrid">
+    <div class="ocard">
+      <span class="big-n">01</span>
+      <span class="otile"><svg class="ic"><use href="#i-bolt"/></svg></span>
+      <div class="ftitle">Instant Response</div>
+      <div class="fdesc">Every enquiry handled immediately, 24 hours a day, 7 days a week</div>
+      <svg class="owave" viewBox="0 0 170 56" preserveAspectRatio="none"><path d="M0 28 Q 14 4 28 28 T 57 28 T 85 28 T 113 28 T 141 28 T 170 28"/></svg>
+    </div>
+    <div class="ocard">
+      <span class="big-n">02</span>
+      <span class="otile"><svg class="ic"><use href="#i-bot"/></svg></span>
+      <div class="ftitle">24/7 Automation</div>
+      <div class="fdesc">Automated calling and lead qualification around the clock</div>
+      <svg class="owave" viewBox="0 0 170 56" preserveAspectRatio="none"><path d="M0 28 Q 14 52 28 28 T 57 28 T 85 28 T 113 28 T 141 28 T 170 28"/></svg>
+    </div>
+    <div class="ocard">
+      <span class="big-n">03</span>
+      <span class="otile"><svg class="ic"><use href="#i-trend"/></svg></span>
+      <div class="ftitle">Faster Conversions</div>
+      <div class="fdesc">Shorter lead-to-close cycles with intelligent follow-up</div>
+      <svg class="owave" viewBox="0 0 170 56" preserveAspectRatio="none"><path d="M0 28 Q 14 4 28 28 T 57 28 T 85 28 T 113 28 T 141 28 T 170 28"/></svg>
+    </div>
+    <div class="ocard">
+      <span class="big-n">04</span>
+      <span class="otile"><svg class="ic"><use href="#i-trophy"/></svg></span>
+      <div class="ftitle">Higher Closures</div>
+      <div class="fdesc">Greater conversion and closure rates with AI</div>
+      <svg class="owave" viewBox="0 0 170 56" preserveAspectRatio="none"><path d="M0 28 Q 14 52 28 28 T 57 28 T 85 28 T 113 28 T 141 28 T 170 28"/></svg>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 12 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 13 · LOOKING FORWARD ================= -->
+<div class="page light">
+  <header>
+    <div class="eyebrow">10 / Closing</div>
+    <div class="trow">
+      <h1 class="title">Looking Forward</h1>
+      <div class="tmeta">Next Steps <i>◆</i> Engagement</div>
+    </div>
+  </header>
+
+  <p class="closing-letter">We look forward to working with <span style="color:var(--blue)">Cureka</span> to <span style="color:var(--blue)">scale your growth through AI</span>. Please feel free to reach out at any time to discuss questions or to proceed with the engagement.</p>
+  <div class="warm">Warm regards,</div>
+
+  <div class="close-bottom">
+    <div class="sigblock">
+      <div class="sigline"></div>
+      <div class="signame">Prem Gupta</div>
+      <div class="sigorg">Highvance Private Limited</div>
+    </div>
+    <div class="contact-card">
+      <div class="glow2"></div>
+      <!-- LOGO: PNG on dark card (screen blend), vector fallback -->
+      <img class="lgimg" src="highvance-logo.png" alt="Highvance" style="height:48px;position:relative;margin-bottom:6px"
+           onerror="this.style.display='none';document.getElementById('ccFb').style.display='flex'">
+      <span class="gic" id="ccFb" style="display:none"><svg style="width:20px;height:18px"><use href="#hv-mark"/></svg></span>
+      <div class="csite">highvance.in</div>
+      <div class="csub">AI-Driven Communication Systems</div>
+      <div class="cdiv"></div>
+      <div class="ctag">Automate <i>◆</i> Qualify <i>◆</i> Convert</div>
+    </div>
+  </div>
+  <footer class="pfoot"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>AI VOICE AGENT AGREEMENT — CONFIDENTIAL <i>◆</i> 13 / 14</span></footer>
+</div>
+
+<!-- ================= PAGE 14 · BACK COVER ================= -->
+<div class="page dark back">
+  <div class="glow"></div>
+  <!-- LOGO: full stacked logo on dark page (screen blend), vector fallback -->
+  <img class="lgimg" src="highvance-logo.png" alt="Highvance Private Limited" style="height:118px;position:relative;margin-bottom:16px"
+       onerror="this.style.display='none';document.getElementById('bkFb').style.display='block'">
+  <div id="bkFb" style="display:none">
+    <svg style="width:96px;height:83px;margin:0 auto 20px;display:block;position:relative"><use href="#hv-mark"/></svg>
+    <h2>HIGHV<span class="lam">Λ</span>NCE</h2>
+    <div class="bsub">Private Limited</div>
+  </div>
+  <div class="bsite">highvance.in</div>
+  <svg class="bwave" viewBox="0 0 420 80" preserveAspectRatio="none">
+    <path d="M0 40 Q 26 8 52 40 T 105 40 T 157 40 T 210 40 T 262 40 T 315 40 T 367 40 T 420 40" fill="none" stroke="rgba(30,94,255,.6)" stroke-width="1.5"/>
+    <path d="M0 40 Q 26 72 52 40 T 105 40 T 157 40 T 210 40 T 262 40 T 315 40 T 367 40 T 420 40" fill="none" stroke="rgba(125,160,255,.25)" stroke-width="1.1"/>
+  </svg>
+  <div class="btag">Automate <i>◆</i> Qualify <i>◆</i> Convert</div>
+  <div class="bconf">AI Voice Agent Agreement — Confidential Document</div>
+  <div class="pfoot on-dark" style="left:60px;right:60px"><span>HIGHVANCE PRIVATE LIMITED <i>◆</i> AI-DRIVEN COMMUNICATION SYSTEMS</span><span>14 / 14</span></div>
+</div>
+
+</body>
+</html>
