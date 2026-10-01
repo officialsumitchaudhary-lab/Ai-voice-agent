@@ -30,5 +30,5 @@
 
 1. **Voice engine.** Use the same voice engine as Aarushi. The prompt is Romanized Hinglish; Cartesia
    Sonic 3.5 was the reason for the old Devanagari rule.
-2. **New variables:** `{fasting_start_time}` (last food time, in words), `{available_slots}`, `{payment_modes}`.
-3. **KB needed:** prep rules per type, combined-prep rule for several tests, report delivery, home-visit requests (female phlebotomist, address, arrival call).
+2. **Knowledge base:** `prompts/tanvi-kb.md` (v1.1 demo). Upload only this file.
+3. **New variable:** `{fasting_start_time}`, the last time to eat in Romanized Hindi (e.g. raat das baje), worked out by the platform from the slot.
