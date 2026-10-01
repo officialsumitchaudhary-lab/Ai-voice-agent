@@ -25,3 +25,9 @@
 7. **`{track_name}`**: the feed sent "Data analystics". Send "Data Analytics".
 8. **End-of-turn wait.** She answered "hmm actually…" within a second. Raise the endpointing /
    silence threshold to about one second so callers can finish.
+
+## Tanvi
+
+1. **Voice engine.** Use the same voice engine as Aarushi. The prompt is Romanized Hinglish; Cartesia
+   Sonic 3.5 was the reason for the old Devanagari rule.
+2. If the platform plays a welcome message, remove the opening block from the prompt so it isn't said twice.
