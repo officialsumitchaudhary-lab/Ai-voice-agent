@@ -30,4 +30,5 @@
 
 1. **Voice engine.** Use the same voice engine as Aarushi. The prompt is Romanized Hinglish; Cartesia
    Sonic 3.5 was the reason for the old Devanagari rule.
-2. If the platform plays a welcome message, remove the opening block from the prompt so it isn't said twice.
+2. **New variables:** `{fasting_start_time}` (last food time, in words), `{available_slots}`, `{payment_modes}`.
+3. **KB needed:** prep rules per type, combined-prep rule for several tests, report delivery, home-visit requests (female phlebotomist, address, arrival call).
