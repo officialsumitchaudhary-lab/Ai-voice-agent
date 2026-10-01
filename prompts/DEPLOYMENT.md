@@ -38,6 +38,5 @@
 1. **Voice engine.** Same as Aarushi: the prompt is Romanized Hinglish, not Devanagari.
 2. **`{available_slots}`.** Send three or more ready-to-speak site visit slots, e.g. `Shanivaar subah das baje`.
    The old prompt hard-coded Saturday, Sunday and Monday slots.
-3. **KB needed:** Section 4 projects with type, size, listed price range and rate per square yard;
-   Section 5 highlights; Section 6 fit rules; company verification details for scam doubts;
-   brokerage and possession facts, and which bank names are production verified.
+3. **Knowledge base:** `prompts/neha-kb.md` (v1.1 demo). Upload only this file.
+4. **Callback number:** the KB has none until a real one exists. Add it to Section 1 before go-live.
