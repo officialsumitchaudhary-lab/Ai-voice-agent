@@ -19,3 +19,9 @@
    `{discount_percent}` twenty.
 3. **`{trial_end_date}`** already in spoken words; **`{discount_percent}`** may be digits.
 4. If the platform plays a welcome message, she continues from it; otherwise she opens herself.
+5. **Re-upload `meera-kb.md` to the platform.** Test calls quoted thirty thousand and twelve thousand
+   rupees and "twelve September". None of these are in the KB, so the platform has an old KB or none.
+6. **`{trial_end_date}` must be a future date**, in words, e.g. Sunday, eleven October.
+7. **`{track_name}`**: the feed sent "Data analystics". Send "Data Analytics".
+8. **End-of-turn wait.** She answered "hmm actually…" within a second. Raise the endpointing /
+   silence threshold to about one second so callers can finish.
