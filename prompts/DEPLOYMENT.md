@@ -12,10 +12,10 @@
 
 ## Meera
 
-1. **Discounted prices in the KB.** The prompt forbids calculating prices, so write the final
-   discounted amount for every plan into the KB, in spoken words. Otherwise she must route it to support.
-2. **KB entries needed:** the four holding-back things, one honest answer per objection,
-   plans and monthly entry price, what comes after the first module, under-eighteen and
-   someone-else-answers handling, silence / voicemail / bad line handling, post-call fields.
+1. **Knowledge base:** `prompts/meera-kb.md` (demo data). Discounted amounts are precomputed for
+   a twenty percent discount, so keep `{discount_percent}` at twenty or update the KB table.
+2. **Demo call values:** `{learner_name}` Rohan, `{track_name}` Data Analytics, `{trial_day}` five,
+   `{trial_end_date}` Sunday, eleven October, `{lessons_completed}` two, `{last_active}` three days ago,
+   `{discount_percent}` twenty.
 3. **`{trial_end_date}`** already in spoken words; **`{discount_percent}`** may be digits.
 4. If the platform plays a welcome message, she continues from it; otherwise she opens herself.
