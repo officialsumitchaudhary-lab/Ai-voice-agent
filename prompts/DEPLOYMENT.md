@@ -9,3 +9,13 @@
 4. **Model.** Many failures broke explicit rules. Use a strong model, temperature 0.5 or lower.
 5. **Transcriber.** Hindi arrives in Devanagari; the prompt handles it, but a Romanized or
    Hinglish STT setting reduces script leaks further.
+
+## Meera
+
+1. **Discounted prices in the KB.** The prompt forbids calculating prices, so write the final
+   discounted amount for every plan into the KB, in spoken words. Otherwise she must route it to support.
+2. **KB entries needed:** the four holding-back things, one honest answer per objection,
+   plans and monthly entry price, what comes after the first module, under-eighteen and
+   someone-else-answers handling, silence / voicemail / bad line handling, post-call fields.
+3. **`{trial_end_date}`** already in spoken words; **`{discount_percent}`** may be digits.
+4. If the platform plays a welcome message, she continues from it; otherwise she opens herself.
