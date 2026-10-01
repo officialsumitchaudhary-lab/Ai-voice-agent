@@ -40,3 +40,8 @@
    The old prompt hard-coded Saturday, Sunday and Monday slots.
 3. **Knowledge base:** `prompts/neha-kb.md` (v1.1 demo). Upload only this file.
 4. **Callback number:** the KB has none until a real one exists. Add it to Section 1 before go-live.
+5. **Welcome message:** capitalise the caller's name (the test call said "sumit").
+6. **End-of-turn wait:** raise the silence threshold to about one second; Neha cut in on "ah mujhe…".
+7. **Knowledge base retrieval:** set retrieval to return all of Section 4 (or paste Section 4 into the prompt), so she sees every project before deciding fit.
+8. **Model:** Devanagari leaks, a repeated question, an invented BHK and digits all broke explicit rules. Use a stronger model, temperature 0.5 or lower, and a Hinglish STT setting if available.
+

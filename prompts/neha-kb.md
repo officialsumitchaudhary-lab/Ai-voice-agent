@@ -24,7 +24,8 @@ Neha may say "Aapko koi brokerage nahi deni, developer pay karta hai." She never
 - Loan approval is the bank's decision. Never promised.
 
 ## 4. PROJECTS
-Match by property type first, then BHK or size, then budget. A budget inside a project's range and a BHK the project offers is a fit; the exact price for that BHK is the advisor's at the site visit. Nothing fits → Section 6.
+Match by property type first, then BHK or size, then budget. **The caller's budget is a ceiling.** A project fits when its starting price is at or below their budget and it offers their BHK or size. Check every project of that type; pitch the best fit. The exact price for their BHK is the advisor's at the site visit. Nothing fits → Section 6.
+Example: budget one crore, flat, two or three BHK → Meridian Greens and Skyline Orchid both fit.
 
 ### Flats
 
