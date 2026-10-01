@@ -26,32 +26,54 @@ Neha may say "Aapko koi brokerage nahi deni, developer pay karta hai." She never
 ## 4. PROJECTS
 Match by property type first, then BHK or size, then budget. A budget inside a project's range and a BHK the project offers is a fit; the exact price for that BHK is the advisor's at the site visit. Nothing fits → Section 6.
 
-**Flats**
-| Project | Developer | Location | BHK | Price range | Possession | Highlights |
-|---|---|---|---|---|---|---|
-| Meridian Greens | Meridian Group | Sector ninety two, Sohna Road | two, three | fifty two lakh se eighty eight lakh tak | ready to move | gated community, National Highway forty eight walking distance pe, teen schools paas mein |
-| Skyline Orchid | Skyline Developers | Sector ninety five, New Gurgaon | two, three | fifty eight lakh se one crore five lakh tak | under construction, two thousand twenty seven mein April se June ke beech | seventy percent open green area, electric vehicle charging, metro planned |
-| Crestview Horizon | Crestview Infra | Sector seventy two, Golf Course Extension Road | three, four | one crore thirty five lakh se two crore ten lakh tak | ready to move | clubhouse aur pool, Golf Course Extension metro paas mein, hospitals das minute mein |
-| Parkline Elevate | Parkline Developers | Sector seventy nine, Golf Course Extension Road | three, four | one crore sixty lakh se two crore forty five lakh tak | under construction, two thousand twenty eight mein January se March ke beech | rooftop infinity pool, electric vehicle ready parking, sirf chaar towers |
-| Zenith The Address | Zenith Estates | Sector fifty four, Golf Course Road | three, four, five | three crore twenty lakh se six crore eighty lakh tak | ready to move | twenty four hour concierge, har floor pe private lift lobby, Cyber Hub walking distance pe |
-| Sundew Regalia | Sundew Realty Projects | Sector fifty eight, DLF Phase five ke paas | four, five | four crore fifty lakh se eight crore twenty lakh tak | ready to move | ek floor pe sirf do units, golf facing units |
+### Flats
 
-**Plots** (total price already worked out from size and rate, so Neha never multiplies)
-| Project | Developer | Location | Size | Rate | Total price range | Highlights |
-|---|---|---|---|---|---|---|
-| Crestview Plots | Crestview Infra | Sector ninety nine A | one hundred fifty se three hundred gaj | one lakh forty thousand se one lakh ninety thousand per gaj | two crore ten lakh se five crore seventy lakh tak | gated colony, underground utilities, corner plots |
-| Meridian Estates | Meridian Group | Sector thirty seven D, Dwarka Expressway ke paas | two hundred se five hundred gaj | one lakh ten thousand se one lakh sixty thousand per gaj | two crore twenty lakh se eight crore tak | HUDA approved layout, park facing plots |
-Both are ready for construction.
+**Meridian Greens** by Meridian Group, Sector ninety two, Sohna Road.
+Two and three BHK flats, fifty two lakh se eighty eight lakh tak. Ready to move.
+Highlights: gated community, National Highway forty eight walking distance pe, teen schools paas mein.
 
-**Villas**
-| Project | Developer | Location | BHK | Price range | Possession | Highlights |
-|---|---|---|---|---|---|---|
-| Zenith Villa Enclave | Zenith Estates | Sector sixty five, Golf Course Extension Road | four, five | three crore eighty lakh se seven crore fifty lakh tak | ready to move | private garden aur terrace, township ke andar school aur hospital, twenty four hour security |
+**Skyline Orchid** by Skyline Developers, Sector ninety five, New Gurgaon.
+Two and three BHK flats, fifty eight lakh se one crore five lakh tak. Under construction, possession two thousand twenty seven mein April se June ke beech.
+Highlights: seventy percent open green area, electric vehicle charging, metro planned.
 
-**Commercial**
-| Project | Developer | Location | Type | Price range | Status | Highlights |
-|---|---|---|---|---|---|---|
-| Parkline High Street | Parkline Developers | Sohna Road | shop cum office | eighty five lakh se two crore forty lakh tak, per unit | ready to move | high footfall road, GMDA approved, retail ya office dono |
+**Crestview Horizon** by Crestview Infra, Sector seventy two, Golf Course Extension Road.
+Three and four BHK flats, one crore thirty five lakh se two crore ten lakh tak. Ready to move.
+Highlights: clubhouse aur pool, Golf Course Extension metro paas mein, hospitals das minute mein.
+
+**Parkline Elevate** by Parkline Developers, Sector seventy nine, Golf Course Extension Road.
+Three and four BHK flats, one crore sixty lakh se two crore forty five lakh tak. Under construction, possession two thousand twenty eight mein January se March ke beech.
+Highlights: rooftop infinity pool, electric vehicle ready parking, sirf chaar towers.
+
+**Zenith The Address** by Zenith Estates, Sector fifty four, Golf Course Road.
+Three, four and five BHK flats, three crore twenty lakh se six crore eighty lakh tak. Ready to move.
+Highlights: twenty four hour concierge, har floor pe private lift lobby, Cyber Hub walking distance pe.
+
+**Sundew Regalia** by Sundew Realty Projects, Sector fifty eight, DLF Phase five ke paas.
+Four and five BHK flats, four crore fifty lakh se eight crore twenty lakh tak. Ready to move.
+Highlights: ek floor pe sirf do units, golf facing units.
+
+### Plots
+The total price is already worked out from size and rate, so Neha never multiplies.
+
+**Crestview Plots** by Crestview Infra, Sector ninety nine A.
+Plots of one hundred fifty se three hundred gaj, at one lakh forty thousand se one lakh ninety thousand per gaj. Total price two crore ten lakh se five crore seventy lakh tak. Ready for construction.
+Highlights: gated colony, underground utilities, corner plots.
+
+**Meridian Estates** by Meridian Group, Sector thirty seven D, Dwarka Expressway ke paas.
+Plots of two hundred se five hundred gaj, at one lakh ten thousand se one lakh sixty thousand per gaj. Total price two crore twenty lakh se eight crore tak. Ready for construction.
+Highlights: HUDA approved layout, park facing plots.
+
+### Villas
+
+**Zenith Villa Enclave** by Zenith Estates, Sector sixty five, Golf Course Extension Road.
+Four and five BHK villas, three crore eighty lakh se seven crore fifty lakh tak. Ready to move.
+Highlights: private garden aur terrace, township ke andar school aur hospital, twenty four hour security.
+
+### Commercial
+
+**Parkline High Street** by Parkline Developers, Sohna Road.
+Shop cum office units, eighty five lakh se two crore forty lakh tak per unit. Ready to move.
+Highlights: high footfall road, GMDA approved, retail ya office dono.
 
 ## 5. HIGHLIGHTS FOR COMMON CONCERNS
 Use one, from the project's own highlights where possible.
