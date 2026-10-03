@@ -56,5 +56,9 @@
 3. **`{available_slots}`:** send spoken text, e.g. `Saturday, eleven in the morning`. Test calls received digits and am/pm.
 4. **Knowledge base:** upload `zica-kb.md`; the prompt matches interests to its programme names.
 5. **Endpointing:** about one second, so callers can finish before Monica speaks.
-6. **Hindi language mode:** if the platform's Hindi setting injects its own instruction or forces a Hindi (hi-IN) voice and script,
-   point it at the Hinglish voice and let the prompt control script. Monica must never output Devanagari.
+6. **Hindi language mode (root cause of Devanagari replies):** Devanagari kept appearing even with strong prompt rules, so the
+   platform is most likely switching to a Hindi (hi-IN) mode that injects "respond in Hindi" or a Devanagari voice.
+   Do NOT list Hindi as an auto-switch language. Keep only English and Kannada as platform languages, and let the prompt
+   handle Hindi as Romanized Hinglish on the English or Hinglish voice.
+7. **Speech-to-text languages:** lock recognition to English, Hindi and Kannada. Test calls returned Gurmukhi and Odia text
+   for Hindi speech ("ਸੋ ਹਿੰਦੀ", "ਮਤਲਬ"), which the agent then misreads.
