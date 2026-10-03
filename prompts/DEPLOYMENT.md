@@ -45,3 +45,14 @@
 7. **Knowledge base retrieval:** set retrieval to return all of Section 4 (or paste Section 4 into the prompt), so she sees every project before deciding fit.
 8. **Model:** Devanagari leaks, a repeated question, an invented BHK and digits all broke explicit rules. Use a stronger model, temperature 0.5 or lower, and a Hinglish STT setting if available.
 
+
+## Monica (ZICA ZIMA Hegde Nagar)
+
+1. **Language confirmation:** turn OFF any platform setting that asks "which language are you comfortable in" on a detected
+   language change. The prompt asks once and locks the language; the platform question caused repeated asks in testing.
+   If the platform auto-switches, set its threshold as high as allowed (switch after two or more turns, not one word).
+2. **Welcome message:** no commas inside the name or phrases ("calling, from", "quickly, connect" cause pauses).
+   Send `{lead_name}` in proper case and `{course_interest}` as it is spoken (VFX, not vfx).
+3. **`{available_slots}`:** send spoken text, e.g. `Saturday, eleven in the morning`. Test calls received digits and am/pm.
+4. **Knowledge base:** upload `zica-kb.md`; the prompt matches interests to its programme names.
+5. **Endpointing:** about one second, so callers can finish before Monica speaks.
