@@ -58,7 +58,7 @@
 5. **Endpointing:** about one second, so callers can finish before Monica speaks.
 6. **Hindi language mode (root cause of Devanagari replies):** Devanagari kept appearing even with strong prompt rules, so the
    platform is most likely switching to a Hindi (hi-IN) mode that injects "respond in Hindi" or a Devanagari voice.
-   Do NOT list Hindi as an auto-switch language. Keep only English and Kannada as platform languages, and let the prompt
-   handle Hindi as Romanized Hinglish on the English or Hinglish voice.
-7. **Speech-to-text languages:** lock recognition to English, Hindi and Kannada. Test calls returned Gurmukhi and Odia text
+   Do NOT list Hindi as an auto-switch language. Keep English as the only platform language, and let the prompt handle Hindi as Romanized
+   Hinglish on the same voice.
+7. **Speech-to-text languages:** lock recognition to English and Hindi. Test calls returned Gurmukhi and Odia text
    for Hindi speech ("ਸੋ ਹਿੰਦੀ", "ਮਤਲਬ"), which the agent then misreads.
