@@ -56,3 +56,5 @@
 3. **`{available_slots}`:** send spoken text, e.g. `Saturday, eleven in the morning`. Test calls received digits and am/pm.
 4. **Knowledge base:** upload `zica-kb.md`; the prompt matches interests to its programme names.
 5. **Endpointing:** about one second, so callers can finish before Monica speaks.
+6. **Hindi language mode:** if the platform's Hindi setting injects its own instruction or forces a Hindi (hi-IN) voice and script,
+   point it at the Hinglish voice and let the prompt control script. Monica must never output Devanagari.
