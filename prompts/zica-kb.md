@@ -1,8 +1,8 @@
-# ZICA ZIMA HEGDE NAGAR — AGENT KNOWLEDGE BASE (v1)
+# ZICA ZIMA HEGDE NAGAR — AGENT KNOWLEDGE BASE (v2)
 
 ## 0. HOW THIS FILE IS USED
 The only source of facts about ZICA ZIMA Hegde Nagar. Anything not written here is answered by the counsellor, never guessed.
-Fees, batch start dates and timings are not in this file yet: the counsellor gives them.
+Fees are never stated by the agent: the counsellor gives them. Batch dates and timings depend on the course and the slot the student chooses, and are confirmed in counselling.
 Durations and figures are written in words, as they are spoken.
 
 ---
@@ -13,21 +13,30 @@ Address: number four nine seven, third floor, Thanisandra Main Road, above Kanti
 Phone and WhatsApp: eight eight six seven seven, nine six one two three.
 Email: zicazima.hegdenagar@gmail.com
 Website: zicazimahegdenagar.com. Demo and counselling booking: courses.zicazimahegdenagar.com
+Hours: eight in the morning to eight at night, Monday to Saturday.
+Location: a Google Maps pin is sent on WhatsApp. The agent never reads a link aloud.
 
 ## CHUNK: The brands
 ZICA and ZIMA belong to Zee Learn, founded by Dr. Subhash Chandra, who launched Zee TV.
 ZICA has a legacy of over thirty years in creative education: animation, VFX, game art, graphic design, UI UX and more.
 ZIMA was established by Zee Learn in two thousand four, for film, television and media education.
+Asked "is this Zee?": yes, ZICA and ZIMA are Zee Learn brands. How this centre is owned or run is never discussed.
 
 ## CHUNK: Recognition and collaborations
 - The centre is a certified training provider of MESC, the Media and Entertainment Skills Council.
 - The centre has a Skill India collaboration.
 - ZICA has a collaboration with Zee Media, which gives students exposure to live projects, internships and film festivals.
-The exact certificate, assessment and issuer for a specific programme is confirmed by the counsellor.
+Students who complete a programme get a certificate from ZICA or ZIMA. Any further assessment or certificate for a specific programme is confirmed by the counsellor.
+
+## CHUNK: Faculty
+Industry experts from Zee come and teach at the centre, alongside the centre's trainers.
 
 ## CHUNK: Who it is for
 School leavers after tenth or twelfth, PUC students, graduates, working professionals, career changers, and anyone who wants to freelance or create their own content. Students with low marks are welcome to explore. Parents are welcome to join counselling.
-Eligibility depends on the programme and is confirmed by the counsellor. For anyone under eighteen, a parent or guardian is involved before admission or payment.
+No age limit for skill courses. The B.Voc degree needs twelfth pass.
+Students who did not pass tenth or twelfth can join skill based courses.
+ZIMA programmes have a selection process during counselling, to check the course fits the student.
+For anyone under eighteen, a parent or guardian is involved before admission or payment.
 
 ## CHUNK: Free demo class and free career counselling
 Both are free.
@@ -35,24 +44,29 @@ Both are free.
 - **Free career counselling session:** the counsellor goes through the course, projects, AI tools, fees, certification and career pathways for the chosen programme. A parent or decision-maker can join.
 Booking is at courses.zicazimahegdenagar.com, by phone or WhatsApp, or through the agent.
 
-## CHUNK: Batches
-Weekday and weekend batches are available. Exact timings and start dates come from the counsellor.
+## CHUNK: Batches and mode
+Weekday and weekend batches are available. The start date depends on the course and the slot the student prefers, and is fixed in the counselling session.
+Classes run both online and offline. Some courses must be done offline at the centre; the counsellor confirms which.
+
+## CHUNK: Laptop
+Yes, a laptop or computer is needed for practising at home. The centre's recommendation is a Mac mini. The counsellor confirms what a specific course needs.
 
 ## CHUNK: Admissions
 Admissions are open for twenty twenty six to twenty seven. Seats are limited.
 
 ## CHUNK: Fees and loans
-Fees are shared by the counsellor for the exact programme, including taxes, inclusions and payment options.
-An education loan facility is available. The counsellor explains it.
+The agent never states a fee. The counsellor shares the fee for the exact programme in the counselling session.
+Fees can be paid in instalments, and many programmes have a monthly EMI option. An education loan facility is available.
+There are no refunds once fees are paid. Said plainly if asked.
 
 ---
 
 ## CHUNK: B.Voc Degree in Animation and VFX
 A three year B.Voc degree in Animation and VFX, offered by ZICA Hegde Nagar.
 Covers 3D Animation, VFX Compositing, Editing and Motion Graphics.
-For students after twelfth, including those with lower marks.
+Needs twelfth pass, including students with lower marks.
 Includes industry-expert mentors, hands-on training, paid internship opportunities, studio visits, portfolio development and placement assistance.
-The awarding university and eligibility are confirmed by the counsellor.
+It runs alongside the thirty six month PCDP in Animation and VFX Plus. The awarding university is confirmed by the counsellor.
 
 ## CHUNK: Two-Year AI-Powered 3D Animation Professional Career Skills Development Programme
 A two year professional skills programme in 3D animation, with AI-assisted workflows in the syllabus.
@@ -125,6 +139,17 @@ Twelve-month and six-month in-centre tracks.
 - **Programme in Architectural Design and Animation, six months:** AutoCAD drafting, 3ds Max modelling and V-Ray rendering.
 - **Programme in Digital Photography, five months:** camera, exposure, lenses, lighting, composition and editing in Photoshop and Lightroom.
 
+## CHUNK: More ZICA programmes
+- **PDP in Interior Design, twenty four months.** **Professional Programme in Interior Design, twelve months.**
+- **PDP in Fashion Design, twenty four months.** **Professional Programme in Fashion Design, twelve months.** **Programme in Fashion Styling, six months.**
+- **Programme in Motion Graphics and Video Editing, four months.**
+
+## CHUNK: ZICA short software courses
+For people who want one tool, not a full programme:
+- Autodesk Maya, seven months. Autodesk 3ds Max, six months. Dynamics Plugins, three months. ZBrush, three months. Final Cut Pro, three months. AutoCAD, two and a half months.
+- Two months each: Photoshop, Illustrator, CorelDraw, Adobe Animate, After Effects, Fusion, Nuke, Substance Painter, Adobe XD, Figma.
+- Adobe Premiere and Canva, one and a half months each.
+
 ## CHUNK: ZICA marketing and video programmes
 - **Professional Programme in Digital Design and Marketing, twelve months:** six months of digital design, then six months of digital marketing: social media, SEO, paid ads, analytics, email, CRM and AI tools.
 - **Programme in Digital Marketing, six months:** social media, website, search and paid ads, email and automation, AI tools, and content.
@@ -148,6 +173,14 @@ AI-powered learning modules are part of the centre's training. AI is clearly in 
 - **Programme in Film and TV Production, six months:** the producer's role, budgeting, legal agreements, permissions, marketing and distribution.
 - **Programme in Film and TV Editing, six months:** editing grammar and history, and practical editing in FCP, Avid and Premiere Pro, with studio visits.
 - **Programme in Film Acting, six months:** voice, diction, improvisation, monologues, theatre, screen scenes and music video acting, based on Stanislavski's method and Natyashastra.
+
+## CHUNK: More ZIMA programmes
+- **Certificate Programme in Vertical Film Making, one month.** **Certificate Programme in Vertical Cinematography, one month.**
+- **Foundation Programme in Cinematography, three months.**
+- **Certificate Programme in Screenwriting, three months,** online, on weekends.
+- **Foundation Programme in Acting, three months.** **Certificate Course in Voice Acting and Dubbing, one month.** **Weekend Acting Workshop, two days.**
+- Software courses, two months each: Final Cut Pro, Avid Media Composer, Adobe Premiere Pro.
+ZIMA's twelve month Sound Engineering programme is also called the Professional Programme in Audio Engineering.
 
 ## CHUNK: ZIMA sound and music programmes
 - **Professional Programme in Sound Engineering, twelve months:** four stages of three months: recording technology, microphones and mixing, music production and composing, and audio post-production including ADR, Foley, surround sound and AI for audio. Software: Pro Tools, Luna, Nuendo, Cubase.
@@ -185,7 +218,8 @@ Industry professionals associated with ZICA include leaders from Green Gold Anim
 The centre also does creative work for businesses: graphic design, video editing, digital marketing and animation. Business enquiries go to the centre's phone or WhatsApp.
 
 ## CHUNK: Never stated
-- A fee, discount, scholarship or batch date not given by the counsellor.
+- Any fee, discount or scholarship. Batch dates before counselling.
+- How the centre is owned or run.
 - A job, salary or admission promise.
 - Any individual's salary package.
 - That a certificate equals a university degree.
