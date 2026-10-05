@@ -62,3 +62,4 @@
    Hinglish on the same voice.
 7. **Speech-to-text languages:** lock recognition to English and Hindi. Test calls returned Gurmukhi and Odia text
    for Hindi speech ("ਸੋ ਹਿੰਦੀ", "ਮਤਲਬ"), which the agent then misreads.
+6. **No Sunday slots:** the centre is open Monday to Saturday, eight in the morning to eight at night. `{available_slots}` must stay inside those hours.

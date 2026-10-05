@@ -66,7 +66,7 @@ A three year B.Voc degree in Animation and VFX, offered by ZICA Hegde Nagar.
 Covers 3D Animation, VFX Compositing, Editing and Motion Graphics.
 Needs twelfth pass, including students with lower marks.
 Includes industry-expert mentors, hands-on training, paid internship opportunities, studio visits, portfolio development and placement assistance.
-It runs alongside the thirty six month PCDP in Animation and VFX Plus. The awarding university is confirmed by the counsellor.
+It runs alongside the thirty six month PCDP in Animation and VFX Plus. The degree is awarded through MSU, spoken as M S U. Further university details are confirmed by the counsellor.
 
 ## CHUNK: Two-Year AI-Powered 3D Animation Professional Career Skills Development Programme
 A two year professional skills programme in 3D animation, with AI-assisted workflows in the syllabus.
