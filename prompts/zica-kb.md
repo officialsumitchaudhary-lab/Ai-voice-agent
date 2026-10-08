@@ -203,9 +203,38 @@ ZIMA's twelve month Sound Engineering programme is also called the Professional 
 A job itself depends on the student's skills, portfolio, interviews and the employer. The centre does not guarantee employment or a salary.
 
 ## CHUNK: Where ZICA alumni work
-Students of the centre have contributed to award-winning films, in roles including editing, cinematography, direction, and animation and live action film-making. Film and student names are shared by the counsellor.
 ZICA alumni across India have worked at studios such as Double Negative, Yash Raj Films, Redefine, MPC, Prime Focus, Red Chillies VFX, Framestore, Rising Sun Pictures, Cosmos Maya, Rockstar India, Digital District and Amazon miniTV, as compositors, roto artists, matchmove artists, three D animators, texturing artists and motion graphics designers.
-These are individual past outcomes of ZICA students nationally, not a promise for any student. Individual salary packages are never quoted.
+These are ZICA students from centres across India, from the ZICA placement brochure twenty twenty five. Always say "ZICA students", never "students from this centre". Individual past results, never a promise for any student.
+
+## CHUNK: Films ZICA alumni have worked on
+- Olwiston Jiu, compositor at Futureworks Studio: Rocky Aur Rani Kii Prem Kahaani, Heeramandi, Bade Miyan Chote Miyan, Bloody Daddy, Showtime, Ae Watan Mere Watan, The Vaccine War.
+- Adarsh Satish Bhai Patel, compositor at Visual Birds: Animal, Jawan, Lootere, Crakk.
+- Jhoydeep, at Framework Studio: IF, Guardians of the Galaxy Volume Three, Prehistoric Planet Ice Worlds.
+- Ranvir Singh, senior camera track artist at Yash Raj Films: Pathaan.
+- Dibyaranjan Samantaray, senior roto artist at Double Negative: Avengers Endgame.
+- Jyotiprakash Jena, senior matchmove artist at Double Negative: Brahmastra Part One Shiva.
+- Ranjan Das, roto artist at Double Negative: Bhediya.
+- Diptisundar Behera, senior compositor at Monsters Aliens Robots Zombies, Toronto, Canada: The Lord of the Rings, The Fellowship of the Ring.
+- Laxmikanta Giri, texturing artist at MPC: Dungeons and Dragons, Honor Among Thieves.
+- Dinesh Behera, roto artist at Rotomaker India: Fantastic Beasts, The Crimes of Grindelwald.
+- Rashmiranjan Behera, senior paint artist at Pixstone Chennai: Bhuj, The Pride of India.
+- Jashobanta Behera, senior roto artist at Digital District: The Big Bull.
+- Sipun Giri, senior roto artist at Pixrock VFX: Bachchhan Paandey.
+- Sudam Meher, compositor at Visual Bird Studio: Code Name Tiranga.
+- Adarsh Patel, compositor at Visual Birds: Afwaah.
+- Subrat Kumar Padhi, compositor at Redefine: State of Siege, Temple Attack.
+- Tapas Kumar Parida, VFX roto artist at Matrix VFX: Veera Simha Reddy.
+- Nitish Hemwani, compositor at Zoro Media: Medal.
+- Jayanta Kumar Sahu, compositor at Cosmos Maya: Motu Patlu and the Terror of Giant Beasts.
+- Shalini Mahapatra, three D animator at Cosmos Maya: Motu Patlu Kung Fu Kings Six, The Secret of Devil's Heart.
+- Vivek, caricature artist at Amazon miniTV: Tujhpe Main Fida.
+
+## CHUNK: ZICA Stars, alumni salary packages
+Packages of individual ZICA alumni, from the placement brochure twenty twenty five. Each is one person's result, never what a student will earn.
+- VFX and compositing: Vikas Kaushal, senior compositor, Rising Sun Pictures, Australia, sixty lakhs. Riya Jain, VFX artist, Framestore, twelve lakhs. Sumit Badoniya, senior matchmove artist, Redefine, eleven lakhs. Nitish Rohe, body track TD, DNEG, nine lakh sixty thousand. Prakhar Agrawal, compositing artist, Red Chillies VFX, eight lakhs. Nayan Mehta, FX artist, Red Chillies VFX, seven lakh fifty thousand. Shadab Khan, compositing artist, Visual Birds Studios, three lakhs.
+- Three D and animation: Ibrahim Zainuddin, senior graphic and three D artist, Mindcraft Advertising, Dubai, thirty eight lakhs. Dev Rajore, three D animator, Rockstar India, seven lakhs. Ayush Singh Dabi, three D artist, Gameium, five lakhs. Anirudha Tyagi, three D animator, Embide Studio, four lakh eighty thousand. Raj Sharma, three D artist, Lakshya Digital, three lakh sixty thousand.
+- Motion graphics and design: Arpit Kharnar, motion graphic designer, Systango, eight lakhs. Pratik Bharke, motion graphic designer, Recharge Studios, four lakh twenty thousand. Kritika Singhai, motion graphic designer, Swiggy, three lakh fifty thousand. Priyanshi Pathak, designer, Valere Labs, three lakhs. Himanshu Panwar, graphic designer, Cimpress India, two lakh forty thousand.
+- Marketing and own business: Atharva Porwal, owner of Media By Chance, seven lakhs. Vivanshu Jain, social media manager, Nitingale Creative Design Studio, three lakhs. Panchika Gupta, digital marketing executive, Tripocio Carnival, three lakhs.
 
 ## CHUNK: Industry partners and mentors
 Industry professionals associated with ZICA include leaders from Green Gold Animation, Paperboat Design Studios, Occult VFX, Parichay Animation Studio, Powerkids Entertainment, Popcorn Animation Studios and Redefine.
@@ -222,6 +251,5 @@ The centre also does creative work for businesses: graphic design, video editing
 - Any fee, discount or scholarship. Batch dates before counselling.
 - How the centre is owned or run.
 - A job, salary or admission promise.
-- Any individual's salary package.
 - That a certificate equals a university degree.
-- Another student's personal details.
+- Any student's details beyond the names, roles, studios, films and packages in the brochure chunks.
