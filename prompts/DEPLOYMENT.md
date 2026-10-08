@@ -62,4 +62,8 @@
    Hinglish on the same voice.
 7. **Speech-to-text languages:** lock recognition to English and Hindi. Test calls returned Gurmukhi and Odia text
    for Hindi speech ("ਸੋ ਹਿੰਦੀ", "ਮਤਲਬ"), which the agent then misreads.
-6. **No Sunday slots:** the centre is open Monday to Saturday, eight in the morning to eight at night. `{available_slots}` must stay inside those hours.
+8. **No Sunday slots:** the centre is open Monday to Saturday, eight in the morning to eight at night. `{available_slots}` must stay inside those hours.
+9. **Cold calls, `{lead_source}`:** send a true, speakable phrase per lead, e.g. `you attended our workshop at Jain College`,
+   `a friend, Rahul, shared your number`, `you visited our stall at the Phoenix Mall career fair`. Leave it blank rather than
+   guess. Never dial numbers you can't source, scrub against DND before every campaign, and honour removals in the dialer
+   within the same day.
