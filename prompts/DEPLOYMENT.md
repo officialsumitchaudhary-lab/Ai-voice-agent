@@ -63,7 +63,7 @@
 7. **Speech-to-text languages:** lock recognition to English and Hindi. Test calls returned Gurmukhi and Odia text
    for Hindi speech ("ਸੋ ਹਿੰਦੀ", "ਮਤਲਬ"), which the agent then misreads.
 8. **No Sunday slots:** the centre is open Monday to Saturday, eight in the morning to eight at night. `{available_slots}` must stay inside those hours.
-9. **Cold calls, `{lead_source}`:** send a true, speakable phrase per lead, e.g. `you attended our workshop at Jain College`,
-   `a friend, Rahul, shared your number`, `you visited our stall at the Phoenix Mall career fair`. Leave it blank rather than
-   guess. Never dial numbers you can't source, scrub against DND before every campaign, and honour removals in the dialer
-   within the same day.
+9. **Cold calls:** the number source is fixed in the prompt ("from colleges"), so `{lead_source}` is no longer sent. Scrub every
+   list against DND before a campaign and honour removal requests in the dialer the same day.
+10. **Referrals:** add post-call extraction fields for the referred student's name, number and best time to call, and route them
+   to the counsellor's callback list. Monica tells the caller the counsellor will call, so someone must.
