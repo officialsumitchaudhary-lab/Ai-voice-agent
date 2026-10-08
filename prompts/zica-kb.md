@@ -63,13 +63,13 @@ There are no refunds once fees are paid. Said plainly if asked.
 
 ## CHUNK: B.Voc Degree in Animation and VFX
 A three year B.Voc degree in Animation and VFX, offered by ZICA Hegde Nagar.
-Covers 3D Animation, VFX Compositing, Editing and Motion Graphics.
+Covers three D Animation, VFX Compositing, Editing and Motion Graphics.
 Needs twelfth pass, including students with lower marks.
 Includes industry-expert mentors, hands-on training, paid internship opportunities, studio visits, portfolio development and placement assistance.
 It runs alongside the thirty six month PCDP in Animation and VFX Plus. The degree is awarded through MSU, spoken as M S U. Further university details are confirmed by the counsellor.
 
-## CHUNK: Two-Year AI-Powered 3D Animation Professional Career Skills Development Programme
-A two year professional skills programme in 3D animation, with AI-assisted workflows in the syllabus.
+## CHUNK: Two-Year AI-Powered three D Animation Professional Career Skills Development Programme
+A two year professional skills programme in three D animation, with AI-assisted workflows in the syllabus.
 Open to students exploring their next step after tenth or twelfth, including students who did not clear those exams; entry requirements for tenth not passed and twelfth not passed are checked separately by the counsellor.
 Needs regular attendance, assignments, projects and practice. Includes trainer interaction and a beginner demo.
 It is a professional skills programme, not a replacement for a school certificate or a university degree.
@@ -77,7 +77,7 @@ It is a professional skills programme, not a replacement for a school certificat
 ---
 
 ## CHUNK: Industry-Ready Programmes (overview)
-Industry-Ready Programmes add real industry learning on top of classroom training. Available in Graphic Design, 3D Animation and Visual Effects, each in four versions:
+Industry-Ready Programmes add real industry learning on top of classroom training. Available in Graphic Design, three D Animation and Visual Effects, each in four versions:
 - **Professional Plus, seventeen months:** twelve months in the centre, three months of industry-based learning inside a production house, two months of paid internship.
 - **Professional, fourteen months:** twelve months in the centre, two months of paid internship.
 - **Plus, eleven months:** six months in the centre, three months of industry-based learning, two months of paid internship.
@@ -93,50 +93,50 @@ Four credentials: a ZICA course completion certificate, an industry certificatio
 
 ## CHUNK: Industry-Ready Graphic Design
 Twelve-month and six-month in-centre tracks.
-- Twelve month track: art, design, illustration and computer graphics for six months, then layout design, UI, motion graphics and 3D photorealistic design for six months. Software: Illustrator, Photoshop, Canva, CorelDRAW, After Effects, XD, Figma, Dimension.
+- Twelve month track: art, design, illustration and computer graphics for six months, then layout design, UI, motion graphics and three D photorealistic design for six months. Software: Illustrator, Photoshop, Canva, CorelDRAW, After Effects, XD, Figma, Dimension.
 - Six month track: digital illustration, computer graphics and layout design. Software: Illustrator, Photoshop, CorelDRAW, InDesign.
 - Plus specialisation: matte painting, digital painting, branding and DTP.
 
-## CHUNK: Industry-Ready 3D Animation
-- Twelve month track: fundamentals of art and computer graphics for two months, 3D animation in Maya for seven months (modelling, texturing, lighting, rigging, character animation), and one specialisation for three months: modelling and texturing, lighting and shading, character animation, or dynamics.
-- Six month track: 3D animation in Maya with art and design fundamentals.
+## CHUNK: Industry-Ready three D Animation
+- Twelve month track: fundamentals of art and computer graphics for two months, three D animation in Maya for seven months (modelling, texturing, lighting, rigging, character animation), and one specialisation for three months: modelling and texturing, lighting and shading, character animation, or dynamics.
+- Six month track: three D animation in Maya with art and design fundamentals.
 - Software: Maya, Arnold, Photoshop, ZBrush, Substance Painter, After Effects, Bifrost, RealFlow, FumeFX.
 
 ## CHUNK: Industry-Ready Visual Effects
-- Twelve month track: design, computer graphics and film-making basics for three months, 3D digital art in Maya for three months, dynamics and fluid effects for one and a half months, visual effects and tracking for four and a half months.
+- Twelve month track: design, computer graphics and film-making basics for three months, three D digital art in Maya for three months, dynamics and fluid effects for one and a half months, visual effects and tracking for four and a half months.
 - Six month track: compositing, the VFX pipeline, rotoscoping, keying, wire removal, set extension, camera projection and cleanup.
-- Software: Photoshop, Premiere, Audition, Maya, XGen, Bullet, MASH, After Effects, Nuke, SilhouetteFX, 3D Equalizer.
+- Software: Photoshop, Premiere, Audition, Maya, XGen, Bullet, MASH, After Effects, Nuke, SilhouetteFX, three D Equalizer.
 
 ---
 
 ## CHUNK: ZICA animation and VFX programmes
-- **Professional Career Development Programme in 3D Animation and VFX, thirty six months:** six modules of six months, from art and storytelling to 3D digital art, rigging, character animation, dynamics, motion graphics and advanced VFX. Software includes Maya, ZBrush, Substance, Houdini, Nuke, SilhouetteFX, 3DEqualizer.
-- **Professional Development Programme in 3D Animation and VFX, twenty seven months:** art, 3D digital art, lighting, animation, dynamics, advanced VFX, and one three month specialisation.
-- **Professional Programme in 3D Animation, twelve months:** two months of art fundamentals, seven months of Maya, three months of one specialisation.
+- **Professional Career Development Programme in three D Animation and VFX, thirty six months:** six modules of six months, from art and storytelling to three D digital art, rigging, character animation, dynamics, motion graphics and advanced VFX. Software includes Maya, ZBrush, Substance, Houdini, Nuke, SilhouetteFX, three D Equalizer.
+- **Professional Development Programme in three D Animation and VFX, twenty seven months:** art, three D digital art, lighting, animation, dynamics, advanced VFX, and one three month specialisation.
+- **Professional Programme in three D Animation, twelve months:** two months of art fundamentals, seven months of Maya, three months of one specialisation.
 - **Blender, ten months:** modelling, texturing, materials, lighting, rendering, rigging, dynamics and animation in Blender.
-- **Professional Programme in Visual Effects, twelve months:** design and film-making basics, 3D in Maya, dynamics and fluid effects, compositing and tracking.
+- **Professional Programme in Visual Effects, twelve months:** design and film-making basics, three D in Maya, dynamics and fluid effects, compositing and tracking.
 - **Programme in Visual Effects, six months:** compositing and the VFX pipeline in After Effects, Nuke and SilhouetteFX.
 - **Houdini, six months:** procedural modelling, lighting, rendering, particles, Pyro FX and destruction effects.
 
 ## CHUNK: ZICA film-making and VFX programmes
-- **Professional Development Programme in Film-making and VFX, twenty four months:** art and film-making, photography, scriptwriting, cinematography, editing, 3D animation, dynamics, advanced VFX and portfolio.
+- **Professional Development Programme in Film-making and VFX, twenty four months:** art and film-making, photography, scriptwriting, cinematography, editing, three D animation, dynamics, advanced VFX and portfolio.
 - **Professional Programme in Film-making and VFX, twelve months:** film-making fundamentals, post-production and motion graphics, the VFX pipeline, and a final showreel project.
 
 ## CHUNK: ZICA game programmes
 - **Professional Career Development Programme in Advanced Game Art and Design, thirty six months:** game art fundamentals, visual design, asset creation, rigging and animation, lighting and dynamics, and Unreal Blueprint. Software: Blender, Unreal, Photoshop, Nuke.
 - **Professional Development Programme in Game Art and Design, twenty seven months:** game art, compositing, assets, texturing, rigging, animation, Unreal lighting and particles, and a Blueprint project.
-- **Professional Programme in Game Art and Design, twelve months:** drawing, digital painting, character design, 3D modelling, texturing, animation and level design in Blender and Unreal Engine.
+- **Professional Programme in Game Art and Design, twelve months:** drawing, digital painting, character design, three D modelling, texturing, animation and level design in Blender and Unreal Engine.
 - **Unreal, ten months:** level design, world building, materials, lighting, Niagara particles, Blueprint, building a playable game, and a capstone portfolio.
 
 ## CHUNK: ZICA design programmes
-- **Professional Programme in Graphic Design, twelve months:** design fundamentals, illustration, layout, UI, motion graphics and 3D photorealistic design.
+- **Professional Programme in Graphic Design, twelve months:** design fundamentals, illustration, layout, UI, motion graphics and three D photorealistic design.
 - **Programme in Graphic Design, six months:** illustration, computer graphics and layout in Photoshop, Illustrator, InDesign, Canva and CorelDRAW.
-- **Professional Programme in Visual Promotion and Ad Design, twelve months:** media and visual design, 3D product modelling and animation in Blender, motion graphics and compositing, and one specialisation in 2D or 3D product presentation.
-- **Programme in Advanced Motion Graphics, six months:** motion graphics, illustration, audio and video editing, and 3D particles in After Effects and Element 3D.
+- **Professional Programme in Visual Promotion and Ad Design, twelve months:** media and visual design, three D product modelling and animation in Blender, motion graphics and compositing, and one specialisation in two D or three D product presentation.
+- **Programme in Advanced Motion Graphics, six months:** motion graphics, illustration, audio and video editing, and three D particles in After Effects and Element three D.
 - **Programme in Motion Graphics and Editing, four months:** editing, colour grading, effects, keying and motion graphics in Premiere and After Effects.
 - **Professional Programme in UI and UX, twelve months:** UI UX principles, research, wireframing, prototyping, usability testing and design systems in Figma, XD, Miro and Notion.
 - **Programme in UI and UX, six months:** UI UX fundamentals, design techniques and design systems.
-- **Programme in Architectural Design and Animation, six months:** AutoCAD drafting, 3ds Max modelling and V-Ray rendering.
+- **Programme in Architectural Design and Animation, six months:** AutoCAD drafting, three D S Max modelling and V-Ray rendering.
 - **Programme in Digital Photography, five months:** camera, exposure, lenses, lighting, composition and editing in Photoshop and Lightroom.
 
 ## CHUNK: More ZICA programmes
@@ -146,7 +146,7 @@ Twelve-month and six-month in-centre tracks.
 
 ## CHUNK: ZICA short software courses
 For people who want one tool, not a full programme:
-- Autodesk Maya, seven months. Autodesk 3ds Max, six months. Dynamics Plugins, three months. ZBrush, three months. Final Cut Pro, three months. AutoCAD, two and a half months.
+- Autodesk Maya, seven months. Autodesk three D S Max, six months. Dynamics Plugins, three months. ZBrush, three months. Final Cut Pro, three months. AutoCAD, two and a half months.
 - Two months each: Photoshop, Illustrator, CorelDraw, Adobe Animate, After Effects, Fusion, Nuke, Substance Painter, Adobe XD, Figma.
 - Adobe Premiere and Canva, one and a half months each.
 
@@ -161,7 +161,7 @@ For people who want one tool, not a full programme:
 **Programme in Creative Gen AI, two months:** AI-powered creative work in Adobe tools: Lightroom AI, Photoshop AI, Illustrator AI for branding, AI in motion and video, and a portfolio.
 
 ## CHUNK: Where AI is in the courses
-AI-powered learning modules are part of the centre's training. AI is clearly in the syllabus of Creative Gen AI, the Two-Year AI-Powered 3D Animation programme, Digital Marketing and Digital Design and Marketing, and the ZIMA sound and music programmes. For any other course, the counsellor explains which AI tools are included.
+AI-powered learning modules are part of the centre's training. AI is clearly in the syllabus of Creative Gen AI, the Two-Year AI-Powered three D Animation programme, Digital Marketing and Digital Design and Marketing, and the ZIMA sound and music programmes. For any other course, the counsellor explains which AI tools are included.
 
 ---
 
@@ -203,7 +203,7 @@ ZIMA's twelve month Sound Engineering programme is also called the Professional 
 A job itself depends on the student's skills, portfolio, interviews and the employer. The centre does not guarantee employment or a salary.
 
 ## CHUNK: Where ZICA alumni work
-ZICA alumni across India have worked at studios such as Double Negative, Yash Raj Films, Redefine, MPC, Prime Focus, Red Chillies VFX, Framestore, Rising Sun Pictures, Cosmos Maya, Rockstar India, Digital District and Amazon miniTV, as compositors, roto artists, matchmove artists, 3D animators, texturing artists and motion graphics designers.
+ZICA alumni across India have worked at studios such as Double Negative, Yash Raj Films, Redefine, MPC, Prime Focus, Red Chillies VFX, Framestore, Rising Sun Pictures, Cosmos Maya, Rockstar India, Digital District and Amazon miniTV, as compositors, roto artists, matchmove artists, three D animators, texturing artists and motion graphics designers.
 These are individual past outcomes of ZICA students nationally, not a promise for any student. Individual salary packages are never quoted.
 
 ## CHUNK: Industry partners and mentors
