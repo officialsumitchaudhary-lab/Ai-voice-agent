@@ -203,6 +203,7 @@ ZIMA's twelve month Sound Engineering programme is also called the Professional 
 A job itself depends on the student's skills, portfolio, interviews and the employer. The centre does not guarantee employment or a salary.
 
 ## CHUNK: Where ZICA alumni work
+Students of the centre have contributed to award-winning films, in roles including editing, cinematography, direction, and animation and live action film-making. Film and student names are shared by the counsellor.
 ZICA alumni across India have worked at studios such as Double Negative, Yash Raj Films, Redefine, MPC, Prime Focus, Red Chillies VFX, Framestore, Rising Sun Pictures, Cosmos Maya, Rockstar India, Digital District and Amazon miniTV, as compositors, roto artists, matchmove artists, three D animators, texturing artists and motion graphics designers.
 These are individual past outcomes of ZICA students nationally, not a promise for any student. Individual salary packages are never quoted.
 
