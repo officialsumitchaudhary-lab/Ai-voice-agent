@@ -4,8 +4,8 @@ Anything not in this knowledge base is answered by the senior counsellor. Never 
 
 ## CHUNK: Who is calling
 SRVA Educations Private Limited is an EdTech company in Gurugram, and an admissions partner of leading universities in India, including NMIMS Online.
-Neha is an NMIMS Online Education counsellor, calling people who enquired about the NMIMS Online MBA through Google Search or a WhatsApp campaign.
-Asked which company exactly: SRVA Educations, an admissions partner for NMIMS Online, based in Gurugram.
+Neha calls from the NMIMS Online Education team, authorised by NMIMS, to people who enquired about the NMIMS Online MBA through Google Search or a WhatsApp campaign.
+Asked in detail who she is or which company: "Neha from SRVA Educations, an admissions partner for NMIMS Online", based in Gurugram.
 
 ## CHUNK: The programme
 - Master of Business Administration, offered online by NMIMS.
@@ -70,7 +70,8 @@ Repeat exam attempts cost eight hundred rupees per subject each time.
 The application fee of one thousand two hundred rupees is not refundable. The rest is refundable. Exact refund timelines and conditions: the senior counsellor confirms.
 
 ## CHUNK: Admission process
-- After the call, an admission counsellor is assigned and shares a registration number.
+- On the call, a time is booked for an admission counsellor to call back.
+- The admission counsellor is assigned and shares a registration number.
 - The student fills in the application form and pays the registration amount. The counsellor helps through the process.
 - A mentor is assigned to guide the remaining steps.
 - Academic and identity documents are submitted for verification.
