@@ -37,6 +37,7 @@ The right one depends on the person's current role and career goal.
 - Diploma plus degree holders are eligible. A diploma alone is not.
 - Final-semester students can apply. Admission is confirmed after document submission and approval from the university.
 - Below the required percentage, or unclear cases: the senior counsellor checks.
+- Asked "what if my percentage were lower": give the rule, then where the caller stands with their own percentage.
 
 ## CHUNK: Approvals and recognition
 - The programme is UGC entitled.
@@ -45,13 +46,16 @@ The right one depends on the person's current role and career goal.
 - A specific employer's promotion or qualification rules depend on that company's policy.
 
 ## CHUNK: Fees and payment options
-Registration: eleven thousand two hundred rupees. That is an application fee of one thousand two hundred rupees, plus ten thousand rupees paid towards the tuition fee. The ten thousand is adjusted in every payment option, including EMI.
+Registration: eleven thousand two hundred rupees. That is an application fee of one thousand two hundred rupees, which is separate and not refundable, plus ten thousand rupees paid towards the tuition fee. Only the ten thousand counts towards the fee. The ten thousand is adjusted in every payment option, including EMI.
 After registration, the student picks a payment option for the tuition fee:
 - **One-time payment:** one lakh ninety six thousand rupees. Saves twenty four thousand rupees compared with paying per semester.
 - **Annual:** one lakh five thousand rupees per year, two lakh ten thousand rupees in total. Saves ten thousand rupees compared with paying per semester.
 - **Semester-wise:** fifty five thousand rupees per semester, two lakh twenty thousand rupees in total.
 - **No-cost EMI:** eight thousand seven hundred fifty rupees per month for twenty four months, two lakh ten thousand rupees in total. Through a loan partner, subject to the applicant's approval. Any loan partner charges: the senior counsellor confirms.
 No scholarship. Defence personnel get a fee concession; the senior counsellor gives details.
+
+## CHUNK: Fees feel too high
+The lowest monthly outflow is the no-cost EMI: eight thousand seven hundred fifty rupees a month for twenty four months, through a loan partner, subject to approval. Annual and semester options also spread the cost. No decision is needed on the call.
 
 ## CHUNK: Other charges
 - Exam fee: eight hundred rupees per subject per exam. See the exams chunk.
@@ -77,14 +81,16 @@ The application fee of one thousand two hundred rupees is not refundable. The re
 - Academic and identity documents are submitted for verification.
 - After verification: fee payment and student verification.
 - Admission is confirmed and a student number is issued.
+These are all the steps the client lists. No entrance exam, interview or resume step is listed; never add one. Anything else: the senior counsellor.
 
 ## CHUNK: Intake and dates
-Applications are already in progress. Tentative dates for the next intake come from the senior counsellor. There is no deadline to quote.
+Applications are already in progress. Tentative dates for the next intake come from the senior counsellor. Never state a month, a monthly intake or a deadline.
 
 ## CHUNK: Career services and alumni
 - Career Services: guidance and mentoring for career planning, and help with technical and soft skills.
 - Access to more than five hundred hiring partners.
 - After completing the programme: Alumni Portal access, to connect with past students, see jobs alumni share, and get references or guidance.
+Only these services are listed. No resume writing, interview preparation or "strong placement" claim.
 No job, placement, promotion, salary increase or return on investment is guaranteed. Outcomes depend on the person's profile, skills, experience, employer and the recruitment process.
 
 ## CHUNK: Why an online MBA, general points
@@ -105,9 +111,13 @@ Neither is better for everyone; it depends on priorities.
 - Networking online works differently: industry expert sessions, masterclasses and the Alumni Portal.
 - Online learning needs self-discipline; live and recorded sessions, the student portal and study resources help build a routine.
 
+## CHUNK: Other programmes
+This call is about the NMIMS Online MBA. For any other programme, the senior counsellor guides.
+
 ## CHUNK: Never stated
 - A guaranteed admission, job, placement, promotion, salary increase or return on investment.
 - A ranking, or that NMIMS is "number one". Anything negative about another university.
-- A deadline, limited seats or a scholarship.
+- A deadline, limited seats, a scholarship, or an intake month.
+- Where the number came from beyond "an online enquiry for the Online MBA". Never a website, form, brochure or email.
 - A refund, charge or eligibility rule beyond this knowledge base.
 - OTP, CVV, card PIN, banking password, Aadhaar OTP, or taking payment on the call.
