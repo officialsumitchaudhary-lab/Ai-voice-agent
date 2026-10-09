@@ -67,3 +67,12 @@
    list against DND before a campaign and honour removal requests in the dialer the same day.
 10. **Referrals:** add post-call extraction fields for the referred student's name, number and best time to call, and route them
    to the counsellor's callback list. Monica tells the caller the counsellor will call, so someone must.
+
+## Neha (SRVA, NMIMS Online MBA)
+
+1. **Files:** system prompt `srva-neha.md`, knowledge base `srva-neha-kb.md`.
+2. **Welcome message:** `Hello, am I speaking with {lead_name}?` The prompt continues from it. Proper-case names, no stray spaces before punctuation.
+3. **Calendar:** connect the counsellor calendar so the agent can check a time and book it. Without it she notes the preferred time and says the counsellor confirms.
+4. **Hangup message:** keep it empty or one short line. The prompt already closes with a goodbye.
+5. **Languages:** English and Hindi only. Hindi must stay Romanized Hinglish; if Devanagari appears, check the platform's Hindi mode or voice.
+6. **Post-call fields:** outcome, qualification, percentage, specialisation, counsellor slot, callback time, email.
