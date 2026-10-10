@@ -76,3 +76,12 @@
 4. **Hangup message:** keep it empty or one short line. The prompt already closes with a goodbye.
 5. **Languages:** English and Hindi only. Hindi must stay Romanized Hinglish; if Devanagari appears, check the platform's Hindi mode or voice.
 6. **Post-call fields:** outcome, qualification, percentage, specialisation, counsellor slot, callback time, email.
+
+## Kavya (Be Better Academy)
+
+1. **Files:** system prompt `bba-kavya.md`, knowledge base `bba-kavya-kb.md`.
+2. **Variables:** `{lead_name}`, `{lead_type}` (meta, organic, cold, old_enquiry), `{enquiry_context}` (class or course enquired, old status; blank for cold).
+3. **Welcome message:** name and Academy only, in Roman letters, e.g. `Namaskar {lead_name}, mi Kavya boltey, Be Better Academy madhun.` The prompt continues from it by lead type. Language selection stays with the platform rule.
+4. **Calendar:** one calendar per branch (Dehu Road, Mukai Chowk) for visit booking.
+5. **Languages:** Marathi, Hindi, English, all Romanized. If Devanagari appears, check the platform language mode.
+6. **Hangup message:** empty or one short line; the prompt already closes.
