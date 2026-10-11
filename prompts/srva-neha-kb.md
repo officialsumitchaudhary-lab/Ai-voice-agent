@@ -36,7 +36,7 @@ The right one depends on the person's current role and career goal.
 - No work experience required.
 - Diploma plus degree holders are eligible. A diploma alone is not.
 - Final-semester students can apply. Admission is confirmed after document submission and approval from the university.
-- Students still graduating have no final percentage yet. Never ask them for one; eligibility is confirmed after their result.
+- Students still graduating: the counsellor confirms eligibility after their final result.
 - Below the required percentage, or unclear cases: the senior counsellor checks.
 - Asked "what if my percentage were lower": give the rule, then where the caller stands, only if they already have a result.
 

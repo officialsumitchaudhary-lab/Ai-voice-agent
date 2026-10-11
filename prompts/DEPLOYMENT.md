@@ -75,7 +75,7 @@
 3. **Calendar:** connect the counsellor calendar so the agent can check a time and book it. Without it she notes the preferred time and says the counsellor confirms.
 4. **Hangup message:** keep it empty or one short line. The prompt already closes with a goodbye.
 5. **Languages:** English and Hindi only. Hindi must stay Romanized Hinglish; if Devanagari appears, check the platform's Hindi mode or voice.
-6. **Post-call fields:** outcome, qualification, percentage, specialisation, counsellor slot, callback time, email.
+6. **Post-call fields:** outcome, education, percentage (graduates only, optional), specialisation, counsellor slot, callback time, email. Never mark percentage as required or "collect during call": the agent will ask students for it.
 
 ## Kavya (Be Better Academy)
 
