@@ -69,6 +69,14 @@
    to the counsellor's callback list. Monica tells the caller the counsellor will call, so someone must.
 11. **Hangup (cold webinar prompt):** keep the platform hangup message empty; Monica speaks the goodbye line herself. Set a silence timeout of about five seconds so the call drops after it.
 
+## Monica inbound (ZICA ZIMA Hegde Nagar; file monica-inbound.md)
+
+1. **Files:** system prompt `monica-inbound.md`, knowledge base `zica-kb.md`. No variables.
+2. **Welcome message:** `Hello, thank you for calling Zee Institute of Creative and Media Arts. I'm Monica. How can I help you today?`
+3. **Hangup message:** empty; Monica speaks the goodbye line. Silence timeout about five seconds.
+4. **Caller number:** the webinar link goes on WhatsApp to the calling number unless the caller gives another; pass the caller ID to the post-call record.
+5. **Follow-ups the team must do:** counselling callbacks at the time noted, resending webinar links, and messages for existing students, business enquiries, jobs and vendors. Monica tells callers the team will call back, so someone must.
+
 ## Megha (SRVA, NMIMS Online MBA; files srva-neha*)
 
 1. **Files:** system prompt `srva-neha.md`, knowledge base `srva-neha-kb.md`.
