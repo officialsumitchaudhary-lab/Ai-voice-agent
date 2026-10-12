@@ -81,7 +81,7 @@
 
 1. **Files:** system prompt `bba-kavya.md`, knowledge base `bba-kavya-kb.md`.
 2. **Variables:** `{lead_name}`, `{lead_type}` (meta, organic, cold, old_enquiry), `{enquiry_context}` (class or course enquired, old status; blank for cold).
-3. **Welcome message:** name and Academy only, in Roman letters, e.g. `Namaskar {lead_name}, mi Kavya boltey, Be Better Academy madhun.` The prompt continues from it by lead type. Language selection stays with the platform rule.
+3. **Welcome message:** name and Academy only, in Marathi script, e.g. `नमस्कार {lead_name} जी, मी काव्या बोलतेय, Be Better Academy मधून. दोन मिनिटं बोलू शकतो का?` The prompt continues from it by lead type. Language selection stays with the platform rule.
 4. **Calendar:** one calendar per branch (Dehu Road, Mukai Chowk) for visit booking.
-5. **Languages:** Marathi, Hindi, English, all Romanized. If Devanagari appears, check the platform language mode.
+5. **Languages:** Marathi in Marathi script (English words in Roman), Hindi as Romanized Hinglish, English. If Hindi comes out in Devanagari, check the platform Hindi mode.
 6. **Hangup message:** empty or one short line; the prompt already closes.
