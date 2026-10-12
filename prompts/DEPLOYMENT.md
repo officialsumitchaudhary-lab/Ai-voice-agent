@@ -67,6 +67,7 @@
    list against DND before a campaign and honour removal requests in the dialer the same day.
 10. **Referrals:** add post-call extraction fields for the referred student's name, number and best time to call, and route them
    to the counsellor's callback list. Monica tells the caller the counsellor will call, so someone must.
+11. **Hangup (cold webinar prompt):** keep the platform hangup message empty; Monica speaks the goodbye line herself. Set a silence timeout of about five seconds so the call drops after it.
 
 ## Megha (SRVA, NMIMS Online MBA; files srva-neha*)
 
