@@ -26,7 +26,7 @@ Asked "is this Zee?": yes, ZICA and ZIMA are Zee Learn brands. How this centre i
 - The centre is a certified training provider of MESC, the Media and Entertainment Skills Council.
 - The centre has a Skill India collaboration.
 - ZICA has a collaboration with Zee Media, which gives students exposure to live projects, internships and film festivals.
-Students who complete a programme get a certificate from ZICA or ZIMA. Any further assessment or certificate for a specific programme is confirmed by the counsellor.
+Certification, depending on the course chosen: MESC, Skill India, NCVET, and ZICA or ZIMA. The counsellor confirms which certificates a specific programme carries.
 
 ## CHUNK: Faculty
 Industry experts from Zee come and teach at the centre, alongside the centre's trainers.
@@ -157,6 +157,12 @@ For people who want one tool, not a full programme:
 - **Video Editing:** offered at the centre, through the editing and motion graphics programmes. Details from the counsellor.
 - **Web Design:** offered at the centre. Details from the counsellor.
 
+## CHUNK: The career webinar
+An online webinar, every second and fourth Sunday of the month, ten in the morning, two hours, led by the centre head. It is paid. The price keeps changing, so the agent never states it: the pricing details are on the link sent on WhatsApp.
+
+## CHUNK: A I assisted filmmaking
+People use A I video generation to create brand promotion videos and three D short animated videos, but many end up burning credits on mistakes made by the A I. The centre teaches how to overcome the challenges of A I tools and take the work to the next level, towards Pixar style filmmaking. More is explained in the webinar.
+
 ## CHUNK: Creative Gen AI
 **Programme in Creative Gen AI, two months:** AI-powered creative work in Adobe tools: Lightroom AI, Photoshop AI, Illustrator AI for branding, AI in motion and video, and a portfolio.
 
@@ -195,12 +201,13 @@ ZIMA's twelve month Sound Engineering programme is also called the Professional 
 ---
 
 ## CHUNK: Placement and career support
-- Placement assistance is offered to every student.
+- Placement assistance is offered to every student: a minimum of ten interviews, plus job melas organised by top studios.
+- Studios hiring through placement include Prime Focus, Green Gold, DNEG, Red Chillies and more.
 - Interview preparation and presentation skill training are part of the support.
 - Studio visits and internship opportunities.
 - Masterclasses by industry professionals.
 - Industry-Ready Programmes add a guaranteed paid internship and a star placement opportunity.
-A job itself depends on the student's skills, portfolio, interviews and the employer. The centre does not guarantee employment or a salary.
+Getting the job is the student's responsibility: their performance in the interview, with their portfolio, is the key factor in securing an offer. The centre does not guarantee employment or a salary.
 
 ## CHUNK: Where ZICA alumni work
 ZICA alumni across India have worked at studios such as Double Negative, Yash Raj Films, Redefine, MPC, Prime Focus, Red Chillies VFX, Framestore, Rising Sun Pictures, Cosmos Maya, Rockstar India, Digital District and Amazon miniTV, as compositors, roto artists, matchmove artists, three D animators, texturing artists and motion graphics designers.
