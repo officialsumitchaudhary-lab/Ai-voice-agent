@@ -1,0 +1,248 @@
+1
+00:00:13,960 --> 00:00:17,594
+Aarushi (AI): Hello Sumit ji, main Aarushi bol rahi hoon Highvance Overseas se.
+
+2
+00:00:17,594 --> 00:00:20,910
+Aarushi (AI): Aapne abhi Germany mein study ke liye enquiry ki hai,
+
+3
+00:00:20,910 --> 00:00:22,960
+Aarushi (AI): usi ke regarding aapse baat karni thi.
+
+4
+00:00:22,960 --> 00:00:24,600
+Aarushi (AI): Do minute baat kar sakte hain?
+
+5
+00:00:26,300 --> 00:00:28,010
+Student: Haan ji, batao, kya baat karni hai?
+
+6
+00:00:29,070 --> 00:00:29,640
+Aarushi (AI): Haan, bilkul.
+
+7
+00:00:29,789 --> 00:00:32,452
+Aarushi (AI): Aapke Master's in Mechanical Engineering ke liye
+
+8
+00:00:32,452 --> 00:00:35,484
+Aarushi (AI): Germany mein kai universities ke Autumn intake hote hain,
+
+9
+00:00:35,484 --> 00:00:36,921
+Aarushi (AI): aam taur par September mein.
+
+10
+00:00:36,921 --> 00:00:38,997
+Aarushi (AI): Kya aap abhi apna graduation year
+
+11
+00:00:38,997 --> 00:00:41,800
+Aarushi (AI): aur current graduation percentage bata sakte hain?
+
+12
+00:00:45,930 --> 00:00:48,080
+Student: Theek hai, hamara 2026 hai.
+
+13
+00:00:48,960 --> 00:00:52,190
+Aarushi (AI): Samajh gayi, aapka graduation year 2026 hai.
+
+14
+00:00:52,190 --> 00:00:55,090
+Aarushi (AI): Ab aapka graduation percentage kya hai?
+
+15
+00:00:55,360 --> 00:00:56,780
+Student: 94%.
+
+16
+00:00:57,510 --> 00:00:59,918
+Aarushi (AI): 94 pratishat, bahut achha!
+
+17
+00:00:59,918 --> 00:01:02,530
+Aarushi (AI): Ab aapne English proficiency test diya hai?
+
+18
+00:01:02,530 --> 00:01:03,900
+Aarushi (AI): Jaise IELTS ya TOEFL?
+
+19
+00:01:04,290 --> 00:01:05,700
+Student: IELTS diya hai.
+
+20
+00:01:06,530 --> 00:01:08,180
+Aarushi (AI): IELTS koi problem nahi.
+
+21
+00:01:08,180 --> 00:01:11,516
+Aarushi (AI): Kai German universities minimum 6 band overall accept karti hain,
+
+22
+00:01:11,516 --> 00:01:14,730
+Aarushi (AI): lekin exact requirement university-wise varies.
+
+23
+00:01:14,760 --> 00:01:16,565
+Aarushi (AI): Kya aap senior counsellor Priya ke saath
+
+24
+00:01:16,565 --> 00:01:18,960
+Aarushi (AI): ek free video call book karna chahenge?
+
+25
+00:01:19,670 --> 00:01:20,513
+Student: Pehle mujhe batao,
+
+26
+00:01:20,513 --> 00:01:23,170
+Student: mera admission kaun-kaun se colleges mein ho sakta hai?
+
+27
+00:01:23,890 --> 00:01:27,228
+Aarushi (AI): Main bata sakti hoon ki Germany mein Mechanical Engineering ke liye
+
+28
+00:01:27,228 --> 00:01:30,499
+Aarushi (AI): kai top universities jaise Technical University of Munich,
+
+29
+00:01:30,817 --> 00:01:33,134
+Aarushi (AI): RWTH Aachen aur Karlsruhe Institute of Technology
+
+30
+00:01:33,360 --> 00:01:34,155
+Aarushi (AI): mein strong programs hain.
+
+31
+00:01:34,155 --> 00:01:36,789
+Aarushi (AI): Unki exact eligibility aur shortlist ke liye
+
+32
+00:01:36,789 --> 00:01:38,789
+Aarushi (AI): Priya aapki profile ko detail mein dekhegi.
+
+33
+00:01:38,856 --> 00:01:42,020
+Aarushi (AI): Kya aap abhi ek free video call book karna chahenge?
+
+34
+00:01:44,290 --> 00:01:46,040
+Student: Process kya hota hai admission ka?
+
+35
+00:01:46,960 --> 00:01:50,374
+Aarushi (AI): Process mein sabse pehle aap universities ki shortlist banate hain,
+
+36
+00:01:50,562 --> 00:01:52,711
+Aarushi (AI): phir unke specific requirements ke anusaar
+
+37
+00:01:52,775 --> 00:01:54,232
+Aarushi (AI): documents taiyaar karte hain,
+
+38
+00:01:54,232 --> 00:01:56,701
+Aarushi (AI): jaise transcripts, English test score aur SOP.
+
+39
+00:01:56,701 --> 00:01:59,072
+Aarushi (AI): Uske baad online application submit karte hain,
+
+40
+00:01:59,072 --> 00:02:00,963
+Aarushi (AI): university review karti hai,
+
+41
+00:02:00,963 --> 00:02:03,052
+Aarushi (AI): aur phir admission decision aata hai.
+
+42
+00:02:03,052 --> 00:02:06,680
+Aarushi (AI): Kya aap abhi Priya ke saath free video call book karna chahenge?
+
+43
+00:02:07,260 --> 00:02:10,000
+Student: Video call pe kya hoga?
+
+44
+00:02:11,220 --> 00:02:13,585
+Aarushi (AI): Video call mein Priya aapki poori profile dekhegi,
+
+45
+00:02:14,014 --> 00:02:16,259
+Aarushi (AI): aapka academic background, English score
+
+46
+00:02:16,259 --> 00:02:17,647
+Aarushi (AI): aur financial planning samjhegi,
+
+47
+00:02:17,725 --> 00:02:21,182
+Aarushi (AI): aur aapko universities ki shortlist, intake options
+
+48
+00:02:21,182 --> 00:02:23,300
+Aarushi (AI): aur scholarship possibilities ke baare mein
+
+49
+00:02:23,300 --> 00:02:25,209
+Aarushi (AI): personalised guidance degi.
+
+50
+00:02:25,209 --> 00:02:26,676
+Aarushi (AI): Ye session poori tarah free hai
+
+51
+00:02:26,676 --> 00:02:28,389
+Aarushi (AI): aur aapke agle steps clear kar dega.
+
+52
+00:02:28,755 --> 00:02:31,120
+Aarushi (AI): Kya aap abhi ek slot book karna chahenge?
+
+53
+00:02:31,500 --> 00:02:33,239
+Student: Waise fees kitni lagegi mujhe,
+
+54
+00:02:33,239 --> 00:02:35,910
+Student: on average, Germany mein padhne ke liye?
+
+55
+00:02:36,740 --> 00:02:39,000
+Aarushi (AI): Germany mein public universities ki tuition
+
+56
+00:02:39,000 --> 00:02:40,292
+Aarushi (AI): bahut kam ya nahi hoti,
+
+57
+00:02:40,292 --> 00:02:44,921
+Aarushi (AI): aur living cost lagbhag 8 lakh se 10 lakh rupees saalana hoti hai.
+
+58
+00:02:44,923 --> 00:02:47,270
+Aarushi (AI): Kya is baare mein aur kuch poochhna chahenge?
+
+59
+00:02:47,480 --> 00:02:49,620
+Student: Achha, nahi nahi, theek hai.
+
+60
+00:02:50,610 --> 00:02:50,918
+Aarushi (AI): Theek hai.
+
+61
+00:02:50,918 --> 00:02:53,582
+Aarushi (AI): Agar aage koi sawaal ya madad chahiye toh bataiye.
+
+62
+00:02:53,582 --> 00:02:54,512
+Aarushi (AI): Shukriya.
+
