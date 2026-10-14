@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Highvance · Your business has amnesia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=Noto+Color+Emoji&display=swap">
+<style>
+/* "Your business has amnesia": 45 s Reel. Every frame is a pure function of time t.
+   ?fmt=v (1080x1920) or ?fmt=s (1080x1080); ?render=1 for frame-by-frame rendering. */
+:root {
+  --navy: #0A2A66;
+  --blue: #1E5EFF;
+  --blue-hi: #5C8DFF;
+  --ice: #C3D5FF;
+  --red: #FF4D5E;
+  --white: #FFFFFF;
+  --ink: #0A2A66;
+  --mute: #6A7898;
+  --mist: #EEF3FF;
+  --sora: "Sora", "Segoe UI", system-ui, sans-serif, "Noto Color Emoji";
+  --inter: "Inter", "Segoe UI", system-ui, sans-serif, "Noto Color Emoji";
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #030c22; overflow: hidden; }
+body.preview { height: 100vh; display: grid; place-items: center; }
+#wrap { position: relative; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); color: #fff; font-family: var(--inter); transform-origin: 0 0; }
+#stage.s { height: 1080px; }
+#hud { position: fixed; left: 12px; bottom: 10px; font: 500 12px/1.4 var(--inter); color: #8fa3cf; }
+.scene { position: absolute; inset: 0; overflow: hidden; display: none; }
+.navybg { background:
+  radial-gradient(70% 45% at 22% 24%, rgba(30,94,255,.28) 0%, rgba(30,94,255,0) 70%),
+  radial-gradient(60% 40% at 96% 96%, rgba(30,94,255,.18) 0%, rgba(30,94,255,0) 70%),
+  linear-gradient(180deg, #0B2D6D 0%, #0A2A66 45%, #071F50 100%); }
+.nightbg { background: radial-gradient(90% 60% at 50% 18%, #17357A 0%, #0A1F4D 45%, #050E26 100%); }
+.dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.09) 1.7px, transparent 2.2px); background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, rgba(0,0,0,.25) 70%, transparent 100%); mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, rgba(0,0,0,.25) 70%, transparent 100%); }
+.grain { position: absolute; inset: 0; pointer-events: none; z-index: 80; opacity: .06; background-size: 256px 256px; }
+.mk { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .04em .16em; margin: 0 -.04em -.16em; }
+.mk > span { display: inline-block; }
+.w { display: inline-block; white-space: nowrap; }
+.hi { color: var(--blue-hi); }
+.rd { color: var(--red); }
+.btxt { background: linear-gradient(180deg, #86AAFF 0%, #3D74FF 48%, #1E5EFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.abs { position: absolute; }
+.narr { position: absolute; left: 90px; right: 90px; font: 700 70px/1.1 var(--sora); letter-spacing: -.03em; text-wrap: balance; }
+.narr > div { position: absolute; left: 0; right: 0; top: 0; }
+.pill { display: inline-flex; align-items: center; gap: 12px; border-radius: 999px; font: 800 26px/1 var(--inter); letter-spacing: .1em; text-transform: uppercase; padding: 14px 22px; white-space: nowrap; }
+.pill.red { background: var(--red); color: #fff; }
+.pill.blue { background: var(--blue); color: #fff; box-shadow: 0 10px 30px rgba(30,94,255,.45); }
+.cv { position: absolute; left: 0; top: 0; }
+
+/* ---------- 1 · lock screen hook ---------- */
+.lk-date { position: absolute; left: 0; right: 0; top: 250px; text-align: center; font: 500 38px/1 var(--inter); color: rgba(255,255,255,.82); }
+.lk-time { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font: 600 230px/1 var(--sora); letter-spacing: -.04em; color: rgba(255,255,255,.92); }
+.notif { position: absolute; left: 60px; top: 640px; width: 960px; border-radius: 42px; padding: 28px 32px; background: rgba(255,255,255,.16); border: 1.5px solid rgba(255,255,255,.2);
+  box-shadow: 0 30px 70px rgba(0,0,0,.35); display: grid; grid-template-columns: 76px 1fr; column-gap: 22px; align-items: center; }
+.notif .app { width: 76px; height: 76px; border-radius: 20px; background: #25D366; display: grid; place-items: center; }
+.notif .app svg { width: 44px; height: 44px; }
+.notif .meta { display: flex; justify-content: space-between; font: 600 24px/1 var(--inter); letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.notif .who { font: 700 36px/1.2 var(--inter); margin-top: 8px; }
+.notif .msg { font: 500 34px/1.25 var(--inter); color: rgba(255,255,255,.92); }
+.stamp { position: absolute; right: 70px; top: 610px; border: 6px solid var(--red); color: var(--red); border-radius: 14px; padding: 10px 22px; font: 800 40px/1 var(--inter); letter-spacing: .08em; background: rgba(5,14,38,.55); }
+.hk { position: absolute; left: 90px; right: 90px; top: 960px; display: grid; gap: 34px; }
+.hk > div { font: 700 88px/1.06 var(--sora); letter-spacing: -.035em; text-wrap: balance; }
+.hk .w { transform-origin: 50% 85%; }
+
+/* ---------- 2 · the replay (chaos) ---------- */
+.rp-top { position: absolute; left: 60px; right: 60px; top: 230px; display: flex; justify-content: space-between; align-items: center; }
+.rp-lab { font: 700 27px/1 var(--inter); letter-spacing: .12em; text-transform: uppercase; }
+.pat { position: absolute; left: 60px; right: 60px; top: 300px; }
+.pat .l { font: 600 21px/1 var(--inter); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 10px; }
+.pat .bar { height: 16px; border-radius: 8px; background: rgba(255,255,255,.12); overflow: hidden; }
+.pat .fill { height: 100%; width: 100%; border-radius: 8px; transform-origin: 0 50%; }
+.card { position: absolute; background: #fff; color: var(--ink); border-radius: 28px; box-shadow: 0 26px 60px rgba(2,8,30,.5); padding: 22px 24px; }
+.card .hd { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.ic { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; flex: none; }
+.ic svg { width: 32px; height: 32px; }
+.card .ttl { font: 700 31px/1.1 var(--inter); }
+.card .sub { font: 500 23px/1.2 var(--inter); color: var(--mute); margin-top: 4px; }
+.card .gap { font: 700 20px/1 var(--inter); color: var(--red); letter-spacing: .06em; text-transform: uppercase; margin: 10px 0; text-align: center; }
+.bub { display: block; width: fit-content; max-width: 90%; padding: 15px 20px; border-radius: 22px; font: 500 29px/1.3 var(--inter); }
+.bub + .bub { margin-top: 10px; }
+.bub.in { background: #F1F3F8; border-top-left-radius: 6px; }
+.bub.out { background: #DCF8C6; border-top-right-radius: 6px; margin-left: auto; }
+.bub.ai { background: var(--blue); color: #fff; border-top-right-radius: 6px; margin-left: auto; }
+.bub .tm { display: block; font: 500 18px/1 var(--inter); color: var(--mute); margin-top: 6px; text-align: right; }
+.bub.ai .tm { color: rgba(255,255,255,.75); }
+.mailrow { font: 500 27px/1.35 var(--inter); }
+.mailrow b { font-weight: 700; }
+.chip { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 8px 12px; font: 600 20px/1 var(--inter); background: var(--mist); color: var(--ink); }
+.links { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.bigbub { position: absolute; left: 50%; top: 1175px; transform: translateX(-50%); background: #F1F3F8; color: var(--ink); border-radius: 30px 30px 30px 8px; padding: 20px 28px;
+  font: 600 36px/1.2 var(--inter); white-space: nowrap; box-shadow: 0 20px 50px rgba(2,8,30,.5); }
+.bigbub small { display: block; font: 600 20px/1 var(--inter); color: var(--mute); margin-bottom: 8px; letter-spacing: .06em; text-transform: uppercase; }
+.scrim { position: absolute; inset: 0; background: radial-gradient(75% 45% at 50% 42%, rgba(5,18,52,.92) 0%, rgba(5,18,52,.7) 60%, rgba(5,18,52,.35) 100%); opacity: 0; }
+.amn { position: absolute; left: 70px; right: 70px; top: 470px; text-align: center; font: 800 150px/.98 var(--sora); letter-spacing: -.05em; filter: drop-shadow(0 0 40px rgba(30,94,255,.5)); }
+.cost { position: absolute; left: 70px; right: 70px; top: 1010px; text-align: center; font: 700 58px/1.15 var(--sora); letter-spacing: -.02em; }
+.cost .ex { display: block; font: 500 22px/1 var(--inter); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 18px; }
+.scan { position: absolute; inset: 0; z-index: 70; pointer-events: none; display: none;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.07) 0 2px, transparent 2px 6px); }
+.rew { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 800 120px/1 var(--sora); color: rgba(255,255,255,.9); }
+
+/* ---------- 3 · snap + 7 · offer (hub canvas) ---------- */
+.snapt { position: absolute; left: 90px; right: 90px; top: 1330px; text-align: center; display: grid; gap: 18px; }
+.snapt > div { font: 700 72px/1.08 var(--sora); letter-spacing: -.03em; text-wrap: balance; }
+
+/* ---------- 4 · the replay, fixed ---------- */
+.fx-chat { position: absolute; left: 60px; top: 370px; width: 960px; transform-origin: 50% 0; }
+.typing { display: flex; gap: 8px; padding: 18px 22px; border-radius: 22px; background: var(--blue); margin-left: auto; width: fit-content; }
+.typing i { width: 12px; height: 12px; border-radius: 50%; background: #fff; display: block; }
+.fastchip { display: inline-flex; gap: 8px; align-items: center; margin-top: 14px; border-radius: 999px; padding: 10px 16px; font: 700 21px/1 var(--inter); letter-spacing: .06em; text-transform: uppercase; background: var(--mist); color: var(--blue); }
+.daychip { position: absolute; left: 50%; top: 650px; transform: translateX(-50%); }
+.callcard { position: absolute; left: 60px; top: 720px; width: 960px; height: 520px; border-radius: 48px;
+  background: radial-gradient(70% 55% at 50% 30%, rgba(30,94,255,.3) 0%, rgba(30,94,255,0) 70%), linear-gradient(160deg, #0C2F74 0%, #061D4D 58%, #04163C 100%);
+  box-shadow: 0 40px 90px -20px rgba(1,8,28,.8), inset 0 0 0 2px rgba(255,255,255,.08), inset 0 2px 0 rgba(255,255,255,.16); }
+.callcard .ch { position: absolute; left: 40px; right: 36px; top: 34px; display: flex; justify-content: space-between; align-items: center; }
+.callcard .wm { font: 700 38px/1 var(--sora); letter-spacing: -.035em; }
+.callcard .orb { position: absolute; left: 330px; top: 70px; width: 300px; height: 300px; }
+.callcard .cap { position: absolute; left: 44px; right: 44px; top: 360px; font: 700 40px/1.22 var(--inter); letter-spacing: -.01em; }
+.callcard .cap .w { opacity: 0; }
+.callcard .cap .kw { color: var(--blue-hi); }
+.thread { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.mempill { position: absolute; left: 50%; top: 1270px; transform: translateX(-50%); }
+
+/* ---------- 5 · autopilot ---------- */
+.ap-pill { position: absolute; left: 0; right: 0; top: 240px; height: 60px; }
+.ap-pill .pill { position: absolute; left: 50%; top: 0; }
+.ap-line { position: absolute; left: 0; top: 0; overflow: visible; }
+.ap { position: absolute; left: 170px; width: 850px; background: #fff; color: var(--ink); border-radius: 26px; padding: 20px 24px; box-shadow: 0 22px 50px rgba(2,8,30,.45); }
+.ap .hd { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ap .hd .t { font: 700 24px/1.1 var(--inter); }
+.ap .hd .s { margin-left: auto; font: 700 18px/1 var(--inter); letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+.ap .ic { width: 46px; height: 46px; border-radius: 13px; }
+.ap .ic svg { width: 26px; height: 26px; }
+.ap .body { font: 500 25px/1.32 var(--inter); }
+.ana { display: grid; grid-template-columns: 150px 1fr; gap: 22px; align-items: center; }
+.ring { width: 150px; height: 150px; position: relative; }
+.ring svg { position: absolute; inset: 0; }
+.ring .n { position: absolute; inset: 0; display: grid; place-items: center; font: 800 54px/1 var(--sora); color: var(--ink); }
+.ring .n small { display: block; font: 600 16px/1 var(--inter); letter-spacing: .1em; color: var(--mute); text-align: center; margin-top: -26px; }
+.chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.fields { display: grid; grid-template-columns: 200px 1fr; gap: 8px 16px; font: 500 24px/1.3 var(--inter); }
+.fields dt { color: var(--mute); }
+.fields dd { font-weight: 700; white-space: nowrap; }
+.stages { display: flex; gap: 10px; margin-top: 14px; position: relative; }
+.stages span { position: relative; z-index: 1; flex: 1; text-align: center; padding: 12px 8px; border-radius: 12px; font: 700 21px/1 var(--inter); color: var(--mute); background: var(--mist); }
+.stages .hl { position: absolute; z-index: 2; top: 0; height: 100%; border-radius: 12px; background: var(--blue); color: #fff; display: grid; place-items: center; font: 700 21px/1 var(--inter); }
+.caret { display: inline-block; width: 3px; height: 1em; background: var(--blue); vertical-align: -3px; margin-left: 2px; }
+
+/* ---------- 6 · mirror ---------- */
+.half { position: absolute; top: 0; bottom: 0; width: 540px; overflow: hidden; }
+.half.a { left: 0; background: linear-gradient(180deg, #2A1030 0%, #1A0C2A 60%, #0E0A22 100%); }
+.half.b { right: 0; background: linear-gradient(180deg, #0D3488 0%, #0A2A66 60%, #071F50 100%); }
+.half .L { position: absolute; left: 0; right: 0; top: 220px; text-align: center; font: 800 260px/1 var(--sora); }
+.half.a .L { color: rgba(255,77,94,.3); }
+.half.b .L { color: rgba(92,141,255,.35); }
+.half .tag { position: absolute; left: 50%; top: 1080px; transform: translateX(-50%); white-space: nowrap; }
+.mirror-bub { background: #F1F3F8; color: var(--ink); border-radius: 26px 26px 26px 8px; padding: 16px 24px; font: 600 32px/1 var(--inter); }
+.mirror-ok { background: var(--blue); color: #fff; border-radius: 999px; padding: 16px 26px; font: 700 30px/1 var(--inter); box-shadow: 0 10px 30px rgba(30,94,255,.5); }
+.mdiv { position: absolute; left: 539px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,.25); }
+.mt { position: absolute; left: 70px; right: 70px; top: 1250px; text-align: center; display: grid; gap: 22px; }
+.mt > div { font: 700 70px/1.08 var(--sora); letter-spacing: -.03em; text-wrap: balance; }
+
+/* ---------- 7 · offer ---------- */
+.of { position: absolute; left: 70px; right: 70px; top: 1060px; text-align: center; }
+.of .l1, .of .l2 { font: 700 74px/1.06 var(--sora); letter-spacing: -.035em; }
+.of .cta { margin-top: 56px; display: inline-flex; align-items: center; gap: 16px; background: var(--blue); color: #fff; border-radius: 999px; padding: 34px 60px; font: 800 60px/1 var(--inter);
+  letter-spacing: -.01em; box-shadow: 0 18px 60px rgba(30,94,255,.6), inset 0 2px 0 rgba(255,255,255,.25); position: relative; overflow: hidden; }
+.of .cta .shine { position: absolute; top: -20%; bottom: -20%; width: 120px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45), rgba(255,255,255,0)); transform: skewX(-20deg); }
+.of .sm { margin: 36px auto 0; max-width: 860px; font: 500 31px/1.35 var(--inter); color: var(--ice); text-wrap: balance; }
+.foot { position: absolute; left: 0; right: 0; top: 1530px; text-align: center; font: 600 26px/1 var(--inter); color: rgba(255,255,255,.78); letter-spacing: .02em; }
+
+/* =================== 1:1 =================== */
+.s .lk-date { top: 64px; font-size: 28px; }
+.s .lk-time { top: 100px; font-size: 150px; }
+.s .notif { top: 300px; padding: 22px 28px; border-radius: 34px; grid-template-columns: 64px 1fr; }
+.s .notif .app { width: 64px; height: 64px; border-radius: 17px; }
+.s .notif .who { font-size: 30px; } .s .notif .msg { font-size: 30px; } .s .notif .meta { font-size: 21px; }
+.s .stamp { top: 278px; font-size: 32px; padding: 8px 18px; }
+.s .hk { top: 560px; left: 80px; right: 80px; gap: 22px; }
+.s .hk > div { font-size: 64px; }
+.s .rp-top { top: 40px; left: 40px; right: 40px; }
+.s .rp-lab { font-size: 22px; }
+.s .pill { font-size: 21px; padding: 11px 18px; }
+.s .pat { top: 96px; left: 40px; right: 40px; }
+.s .pat .l { font-size: 17px; margin-bottom: 8px; } .s .pat .bar { height: 12px; }
+.s .card { padding: 16px 18px; border-radius: 22px; }
+.s .card .hd { margin-bottom: 10px; gap: 10px; }
+.s .ic { width: 44px; height: 44px; border-radius: 12px; } .s .ic svg { width: 26px; height: 26px; }
+.s .card .ttl { font-size: 23px; } .s .card .sub { font-size: 17px; }
+.s .bub { font-size: 21px; padding: 10px 14px; border-radius: 18px; } .s .bub .tm { font-size: 15px; }
+.s .mailrow { font-size: 20px; } .s .chip { font-size: 17px; padding: 6px 10px; } .s .card .gap { font-size: 16px; margin: 6px 0; }
+.s .bigbub { top: 640px; font-size: 30px; padding: 16px 24px; }
+.s .narr { left: 70px; right: 70px; font-size: 56px; }
+.s .amn { top: 170px; font-size: 112px; }
+.s .cost { top: 560px; font-size: 46px; }
+.s .rew { font-size: 90px; }
+.s .snapt { top: 800px; left: 70px; right: 70px; gap: 12px; }
+.s .snapt > div { font-size: 54px; }
+.s .fx-chat { left: 300px; top: 150px; width: 480px; transform-origin: 0 0; }
+.s .daychip { top: 725px; }
+.s .callcard { left: 560px; top: 150px; width: 480px; height: 560px; border-radius: 36px; }
+.s .callcard .ch { left: 26px; right: 22px; top: 24px; }
+.s .callcard .wm { font-size: 28px; }
+.s .callcard .pill-sm { display: none; }
+.s .callcard .orb { left: 100px; top: 70px; width: 280px; height: 280px; }
+.s .callcard .cap { left: 26px; right: 26px; top: 350px; font-size: 30px; }
+.s .mempill { top: 730px; }
+.s .ap-pill { top: 36px; }
+.s .ap { left: auto; width: 490px; padding: 14px 16px; border-radius: 20px; }
+.s .ap .hd .t { font-size: 19px; } .s .ap .hd .s { font-size: 14px; }
+.s .ap .ic { width: 36px; height: 36px; border-radius: 10px; } .s .ap .ic svg { width: 20px; height: 20px; }
+.s .ap .body { font-size: 19px; }
+.s .ana { grid-template-columns: 110px 1fr; gap: 14px; }
+.s .ring { width: 110px; height: 110px; } .s .ring .n { font-size: 40px; }
+.s .fields { grid-template-columns: 150px 1fr; font-size: 18px; gap: 4px 10px; }
+.s .stages span, .s .stages .hl { font-size: 15px; padding: 9px 4px; }
+.s .stages { margin-top: 10px; gap: 6px; }
+.s .half .L { top: 40px; font-size: 180px; }
+.s .half .tag { top: 640px; }
+.s .mirror-bub { font-size: 26px; } .s .mirror-ok { font-size: 24px; }
+.s .mt { top: 770px; gap: 12px; } .s .mt > div { font-size: 52px; }
+.s .of { top: 520px; } .s .of .l1, .s .of .l2 { font-size: 54px; }
+.s .of .cta { margin-top: 30px; font-size: 44px; padding: 24px 44px; }
+.s .of .sm { margin-top: 22px; font-size: 24px; max-width: 760px; }
+.s .foot { top: auto; bottom: 34px; font-size: 21px; }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+  <section class="scene nightbg" id="s1">
+    <div class="lk-date">Wednesday, 14 October</div>
+    <div class="lk-time">11:42</div>
+    <div class="notif" id="notif">
+      <div class="app" id="notifApp"></div>
+      <div>
+        <div class="meta"><span>WhatsApp</span><span>now</span></div>
+        <div class="who">Ananya</div>
+        <div class="msg">Hi, premium plan abhi available hai?</div>
+      </div>
+    </div>
+    <div class="stamp" id="stamp">SEEN · NO REPLY</div>
+    <div class="hk"><div id="h1"></div><div id="h2"></div></div>
+  </section>
+
+  <section class="scene navybg" id="s2">
+    <div class="dots"></div>
+    <div class="rp-top"><div class="rp-lab" id="rpLab">↺ Replay · Ananya’s last 48 hours</div><div class="pill red" id="rpCount">Repeat #1</div></div>
+    <div class="pat" id="pat"><div class="l">Ananya’s patience</div><div class="bar"><div class="fill" id="patFill" style="background:linear-gradient(90deg,#FFB020,#FF4D5E)"></div></div></div>
+    <div id="cards"></div>
+    <svg class="links" id="links"></svg>
+    <div class="bigbub" id="bigbub"><small>Ananya · next day</small>Never mind. Booked elsewhere.</div>
+    <div class="narr" id="n2"></div>
+    <div class="scrim" id="scrim"></div>
+    <div class="amn btxt" id="amn">Your business has amnesia.</div>
+    <div class="cost" id="cost"><span id="costT"></span><span class="ex">Example deal</span></div>
+  </section>
+
+  <section class="scene navybg" id="s3">
+    <div class="dots"></div>
+    <canvas class="cv" id="hubCv"></canvas>
+    <div class="snapt"><div id="sn1">Same customer. Same 48 hours.</div><div class="hi" id="sn2">Now with one AI brain.</div></div>
+  </section>
+
+  <section class="scene navybg" id="s4">
+    <div class="dots"></div>
+    <div class="rp-top"><div class="rp-lab" style="color:var(--ice)">↺ Replay · With Highvance</div><div class="pill blue" id="fxCount">Repeat #0</div></div>
+    <div class="pat"><div class="l">Ananya’s patience</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#5C8DFF,#1E5EFF)"></div></div></div>
+    <div class="card fx-chat" id="fxChat">
+      <div class="hd"><div class="ic" id="fxIc"></div><div><div class="ttl">Ananya</div><div class="sub">WhatsApp · 11:42 PM</div></div></div>
+      <div class="bub in" id="fxB1">Hi, premium plan abhi available hai?<span class="tm">11:42 PM</span></div>
+      <div class="typing" id="fxTyping"><i></i><i></i><i></i></div>
+      <div class="bub ai" id="fxB2">Haan ji! Premium plan available hai. Kal 11 baje call kar loon? 🙂<span class="tm">11:42 PM · AI</span></div>
+      <div class="bub in" id="fxB3">Haan, please 🙏<span class="tm">11:43 PM</span></div>
+      <div class="fastchip" id="fxFast">⚡ Replied instantly</div>
+    </div>
+    <div class="pill blue daychip" id="dayChip">Next day · 11:00 AM</div>
+    <svg class="thread" id="thread"><defs><filter id="glow"><feGaussianBlur stdDeviation="6"/></filter></defs>
+      <path id="thrGlow" fill="none" stroke="#5C8DFF" stroke-width="14" stroke-linecap="round" opacity=".55" filter="url(#glow)"/>
+      <path id="thrLine" fill="none" stroke="#9CC0FF" stroke-width="5" stroke-linecap="round"/>
+      <circle id="thrDot" r="10" fill="#fff"/>
+    </svg>
+    <div class="callcard" id="call">
+      <div class="ch"><div class="wm">Highvance</div><div class="pill blue pill-sm" style="font-size:20px;padding:12px 18px">● AI call · Ananya</div></div>
+      <canvas class="orb" id="orb"></canvas>
+      <div class="cap" id="cap"></div>
+    </div>
+    <div class="pill blue mempill" id="memPill">One memory · Every channel</div>
+    <div class="narr" id="n4"></div>
+  </section>
+
+  <section class="scene navybg" id="s5">
+    <div class="dots"></div>
+    <div class="ap-pill" id="apPill"></div>
+    <svg class="ap-line" id="apLine"></svg>
+    <div class="ap" id="ap1">
+      <div class="hd"><div class="ic" style="background:#25D366" data-g="chat"></div><div class="t">WhatsApp → Ananya</div><div class="s">Sent automatically</div></div>
+      <div class="bub ai" style="max-width:100%">Thanks Ananya! Here’s what we discussed + your demo slot ✅ Thu, 4:00 PM<span class="tm">11:07 AM</span></div>
+    </div>
+    <div class="ap" id="ap2">
+      <div class="hd"><div class="ic" style="background:#F5A524" data-g="mail"></div><div class="t">Email → ananya@…</div><div class="s">Delivered</div></div>
+      <div class="body"><b>Recap:</b> Premium plan + your demo on Thursday</div>
+    </div>
+    <div class="ap" id="ap3">
+      <div class="hd"><div class="ic" style="background:#1E5EFF" data-g="chart"></div><div class="t">Post-call analytics</div><div class="s">Live</div></div>
+      <div class="ana">
+        <div class="ring"><svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="62" fill="none" stroke="#EEF3FF" stroke-width="14"/><circle id="scoreArc" cx="75" cy="75" r="62" fill="none" stroke="#1E5EFF" stroke-width="14" stroke-linecap="round" transform="rotate(-90 75 75)" stroke-dasharray="389.6" stroke-dashoffset="389.6"/></svg><div class="n"><div><span id="scoreN">0</span><small>LEAD SCORE</small></div></div></div>
+        <div><div class="chips"><span class="chip" id="chS">Sentiment: Positive</span><span class="chip" id="chI">Intent: High</span></div><div class="body" id="sumT"></div></div>
+      </div>
+    </div>
+    <div class="ap" id="ap4">
+      <div class="hd"><div class="ic" style="background:#7C5CFF" data-g="crm"></div><div class="t">CRM · Ananya Sharma</div><div class="s">Synced</div></div>
+      <dl class="fields" id="crmF"></dl>
+      <div class="stages" id="stages"><span>New</span><span>Qualified</span><span>Demo booked</span><div class="hl" id="stHl">New</div></div>
+    </div>
+    <div class="narr" id="n5"></div>
+  </section>
+
+  <section class="scene" id="s6">
+    <div class="half a" id="hA"><div class="L">A</div><canvas class="cv" id="cvA"></canvas><div class="tag"><div class="mirror-bub" id="mbA">Never mind.</div></div></div>
+    <div class="half b" id="hB"><div class="L">B</div><canvas class="cv" id="cvB"></canvas><div class="tag"><div class="mirror-ok" id="mbB">Demo booked ✅</div></div></div>
+    <div class="mdiv"></div>
+    <div class="mt"><div id="m1">Same customer. Same budget.</div><div id="m2">Be honest: are you <span class="hi">A or B?</span> 👇</div></div>
+  </section>
+
+  <section class="scene navybg" id="s7">
+    <div class="dots"></div>
+    <canvas class="cv" id="ofCv"></canvas>
+    <div class="of">
+      <div class="l1" id="of1">Not a voice agent.</div>
+      <div class="l2 hi" id="of2">Your business’s memory.</div>
+      <div class="cta" id="cta">Comment AUDIT 👇<span class="shine" id="shine"></span></div>
+      <div class="sm" id="ofSm">We’ll mystery-shop your business for free and show you what your customers experience.</div>
+    </div>
+    <div class="foot" id="foot">highvance.in · Built for teams handling 10K+ calls a month</div>
+  </section>
+
+  <div class="scan" id="scan"><div class="rew">◀◀</div></div>
+  <div class="grain" id="grain"></div>
+</div></div>
+<div id="hud"></div>
+
+<script>
+(function () {
+  var Q = new URLSearchParams(location.search);
+  var FMT = Q.get('fmt') === 's' ? 's' : 'v', SQ = FMT === 's', RENDER = Q.has('render');
+  var W = 1080, H = SQ ? 1080 : 1920, FPS = 30, DUR = 45;
+  var stage = document.getElementById('stage'); stage.classList.add(FMT);
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---------- helpers ----------
+  function clamp(x, a, b) { a = a === undefined ? 0 : a; b = b === undefined ? 1 : b; return x < a ? a : x > b ? b : x; }
+  function P(t, t0, d) { return clamp((t - t0) / d); }
+  function lerp(a, b, x) { return a + (b - a) * x; }
+  var E = {
+    oC: function (x) { return 1 - Math.pow(1 - x, 3); },
+    oQ: function (x) { return 1 - Math.pow(1 - x, 4); },
+    oX: function (x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); },
+    iC: function (x) { return x * x * x; },
+    ioC: function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; },
+    oB: function (x, s) { s = s || 1.70158; var c3 = s + 1; return 1 + c3 * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); }
+  };
+  function shake(t, t0, amp, decay) { if (t < t0) return 0; var d = t - t0; return amp * Math.exp(-d * (decay || 13)) * Math.sin(d * 92); }
+  function jit(t, seed) { return Math.sin(t * 37.1 + seed * 12.9) * Math.sin(t * 23.7 + seed * 4.3); }
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var q = Math.imul(seed ^ seed >>> 15, 1 | seed); q = q + Math.imul(q ^ q >>> 7, 61 | q) ^ q; return ((q ^ q >>> 14) >>> 0) / 4294967296; }; }
+  function show(el, on, disp) { var v = on ? (disp || 'block') : 'none'; if (el.style.display !== v) el.style.display = v; }
+  function op(el, v) { el.style.opacity = clamp(v).toFixed(3); }
+  function tf(el, s) { el.style.transform = s; }
+  function words(el, text, mode) {
+    el.textContent = '';
+    var out = [];
+    text.split(' ').forEach(function (raw, i) {
+      if (i) el.appendChild(document.createTextNode(' '));
+      var cls = '', m = raw.match(/^\[(.+)\]([.,!?’'"]*)$/);
+      if (m) { raw = m[1] + m[2]; cls = 'hi'; }
+      var r2 = raw.match(/^\{(.+)\}([.,!?’'"]*)$/);
+      if (r2) { raw = r2[1] + r2[2]; cls = 'rd'; }
+      var inner = document.createElement('span'); inner.textContent = raw; if (cls) inner.className = cls;
+      if (mode === 'mask') { var o = document.createElement('span'); o.className = 'mk'; o.appendChild(inner); el.appendChild(o); out.push(inner); }
+      else { inner.className = 'w' + (cls ? ' ' + cls : ''); el.appendChild(inner); out.push(inner); }
+    });
+    return out;
+  }
+  function maskIn(ws, t, t0, stag, d) { ws.forEach(function (w, i) { var e = E.oX(P(t, t0 + i * stag, d || 0.4)); w.style.transform = 'translateY(' + ((1 - e) * 145).toFixed(1) + '%)'; }); }
+  function popIn(ws, t, t0, stag) { ws.forEach(function (w, i) { var p = P(t, t0 + i * stag, 0.16), e = E.oX(p); op(w, p * 3); w.style.transform = 'translateY(' + ((1 - e) * 26).toFixed(1) + 'px) scale(' + (1 + (1 - e) * 0.34).toFixed(3) + ')'; }); }
+
+  // material icon paths (Apache 2.0), 24x24
+  var G = {
+    chat: 'M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z',
+    phone: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z',
+    mail: 'M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+    send: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z',
+    crm: 'M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z',
+    chart: 'M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z'
+  };
+  function svgIcon(g) { return '<svg viewBox="0 0 24 24"><path fill="#fff" d="' + G[g] + '"/></svg>'; }
+  document.querySelectorAll('[data-g]').forEach(function (e) { e.innerHTML = svgIcon(e.dataset.g); });
+  $('notifApp').innerHTML = svgIcon('chat'); $('fxIc').style.background = '#25D366'; $('fxIc').innerHTML = svgIcon('chat');
+
+  // channels: colour while they're separate tools, brand blue once connected
+  var CH = [
+    { id: 'chat', g: 'chat', col: '#25D366', name: 'WhatsApp' },
+    { id: 'call', g: 'phone', col: '#14B8A6', name: 'Calls' },
+    { id: 'mail', g: 'mail', col: '#F5A524', name: 'Email' },
+    { id: 'dm', g: 'send', col: '#DD2A7B', name: 'Instagram' },
+    { id: 'crm', g: 'crm', col: '#7C5CFF', name: 'CRM' }
+  ];
+
+  // ---------- timeline ----------
+  var T = {
+    h1: 0.45, h2: 1.32, stag: 0.13, hit: 2.05, stamp: 2.15,
+    s2: 3.0, cards: [3.35, 4.95, 6.55, 8.15, 9.0], bigbub: 9.55, amn: 10.2, cost: 11.05, rewind: 12.0,
+    s3: 12.25, fly: 12.35, land: [12.85, 12.97, 13.09, 13.21, 13.33], links: 13.35, core: 12.55, logo: 13.6, sn1: 13.9, sn2: 14.9,
+    s4: 16.0, fxB1: 16.15, typing: 16.6, fxB2: 17.3, fxFast: 17.6, fxB3: 18.2, nextDay: 18.9, call: 19.05, voice: 19.5, voiceEnd: 25.0,
+    thread: 19.7, memPill: 21.0, n4: [19.2, 22.0, 25.1],
+    s5: 27.0, ap: [27.2, 28.5, 29.8, 31.3], apPill: [27.15, 29.8, 31.3], n5: [27.25, 29.85, 32.4], stage1: 32.45, stage2: 33.05,
+    s6: 35.0, m1: 35.7, stop: 36.75, m2: 37.0,
+    s7: 40.0, of1: 40.15, of2: 40.75, cta: 41.5, sm: 41.95, foot: 42.3, loop: 44.45
+  };
+
+  // ---------- 1 · hook ----------
+  var h1 = words($('h1'), 'She told your business everything.', 'pop');
+  var h2 = words($('h2'), 'Then she bought from your {competitor.}', 'pop');
+
+  // ---------- 2 · cards ----------
+  var CARDS = [
+    { id: 'chat', html: '<div class="hd"><div class="ic" style="background:#25D366">' + svgIcon('chat') + '</div><div><div class="ttl">Ananya</div><div class="sub">WhatsApp</div></div></div>' +
+      '<div class="bub in">Hi, premium plan abhi available hai?<span class="tm">11:42 PM</span></div><div class="gap">10 hrs 33 min later</div>' +
+      '<div class="bub out">Hi! Please share your name and requirement.<span class="tm">10:15 AM</span></div>' },
+    { id: 'call', html: '<div class="hd"><div class="ic" style="background:#14B8A6">' + svgIcon('phone') + '</div><div><div class="ttl">Call · Ananya</div><div class="sub">2:30 PM · 0:46</div></div></div>' +
+      '<div class="bub out" style="background:#FFE3E6">“Sorry ma’am, aap kya dhoondh rahe the?”</div>' },
+    { id: 'mail', html: '<div class="hd"><div class="ic" style="background:#F5A524">' + svgIcon('mail') + '</div><div><div class="ttl">Re: Enquiry</div><div class="sub">6:10 PM · to Ananya</div></div></div>' +
+      '<div class="mailrow">Dear Customer, kindly fill the attached form.</div><div style="margin-top:10px"><span class="chip">📎 Enquiry_Form.pdf</span></div>' },
+    { id: 'dm', html: '<div class="hd"><div class="ic" style="background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)">' + svgIcon('send') + '</div><div><div class="ttl">Instagram DM</div><div class="sub">Next day · 9:05 AM</div></div></div>' +
+      '<div class="bub out" style="background:#F1F3F8">Hey! How can we help you today? 😊</div>' },
+    { id: 'crm', html: '<div class="hd" style="margin-bottom:8px"><div class="ic" style="background:#7C5CFF">' + svgIcon('crm') + '</div><div><div class="ttl">CRM · search “Ananya”</div><div class="sub" style="color:#FF4D5E;font-weight:700">0 results</div></div></div>' }
+  ];
+  var LAY = SQ ? [
+    { x: 30, y: 140, w: 470, r: -3 }, { x: 545, y: 150, w: 480, r: 3 }, { x: 60, y: 380, w: 460, r: 2 }, { x: 540, y: 400, w: 470, r: -3 }, { x: 290, y: 600, w: 470, r: 2 }
+  ] : [
+    { x: 28, y: 365, w: 660, r: -3 }, { x: 400, y: 575, w: 650, r: 3 }, { x: 36, y: 800, w: 650, r: -2 }, { x: 392, y: 1000, w: 660, r: 3.5 }, { x: 170, y: 1185, w: 620, r: -2.5 }
+  ];
+  CARDS.forEach(function (c, i) {
+    var d = document.createElement('div'); d.className = 'card'; d.innerHTML = c.html;
+    d.style.left = LAY[i].x + 'px'; d.style.top = LAY[i].y + 'px'; d.style.width = LAY[i].w + 'px';
+    $('cards').appendChild(d); c.el = d; c.lay = LAY[i];
+  });
+  var NARR2 = ['She messaged. 11 hours, no reply.', 'She called. ‘Who is this?’', 'She emailed. Got a form.', 'She DM’d. ‘Hi 😊’'];
+  var n2 = NARR2.map(function (txt) { var d = document.createElement('div'); $('n2').appendChild(d); return words(d, txt, 'mask'); });
+  var costW = words($('costT'), '5 tools. 0 memory. ₹2.4 lakh walked out.', 'mask');
+  var links = $('links'); links.setAttribute('width', W); links.setAttribute('height', H);
+  var LINKS = [];
+
+  // ---------- 4 · fixed replay ----------
+  var AI_LINE = 'Hi Ananya! Kal raat aapne *WhatsApp* pe *premium* *plan* ke baare mein poocha tha — wahin se continue karein?';
+  var capToks = [];
+  (function () {
+    var cap = $('cap'), parts = AI_LINE.split(' ');
+    var weights = parts.map(function (w) { var s = w.replace(/[^A-Za-z]/g, ''); return s ? Math.max(1, (s.toLowerCase().match(/[aeiouy]+/g) || []).length) : 0.6; });
+    var tot = weights.reduce(function (a, b) { return a + b; }, 0), cur = T.voice, span = T.voiceEnd - T.voice;
+    parts.forEach(function (raw, i) {
+      if (i) cap.appendChild(document.createTextNode(' '));
+      var kw = /^\*.*\*$/.test(raw), s = document.createElement('span');
+      s.className = 'w' + (kw ? ' kw' : ''); s.textContent = raw.replace(/\*/g, ''); cap.appendChild(s);
+      var d = weights[i] / tot * span; capToks.push({ el: s, a: cur, b: cur + d * 0.85, spoken: raw !== '—' }); cur += d;
+    });
+  })();
+  var NARR4 = ['Called the next day.', 'AI already knew last night’s chat.', 'She never repeated herself. [Not] [once.]'];
+  var n4 = NARR4.map(function (txt) { var d = document.createElement('div'); $('n4').appendChild(d); return words(d, txt, 'mask'); });
+  var orb = $('orb'), octx = orb.getContext('2d'), ORB = SQ ? 280 : 300; orb.width = ORB; orb.height = ORB;
+  function vAmp(t) {
+    var a = 0;
+    capToks.forEach(function (k, i) { if (!k.spoken || t < k.a || t > k.b) return; var x = (t - k.a) / (k.b - k.a); a = Math.max(a, Math.pow(Math.sin(Math.PI * x), 0.6) * (0.8 + 0.2 * Math.sin(t * 31 + i * 2.3))); });
+    return a;
+  }
+
+  // ---------- 5 · autopilot ----------
+  var AP_PILLS = ['Auto Follow-Up', 'Post-Call Analytics', 'CRM Synced'].map(function (txt) {
+    var d = document.createElement('div'); d.className = 'pill blue'; d.textContent = txt; $('apPill').appendChild(d); return d;
+  });
+  var NARR5 = ['Call ends. Follow-up sends itself.', 'Scored. Tagged. Synced to your CRM.', 'Nobody on your team pressed a [button.]'];
+  var n5 = NARR5.map(function (txt) { var d = document.createElement('div'); $('n5').appendChild(d); return words(d, txt, 'mask'); });
+  var SUM = 'Wants premium plan · budget fits · demo Thu 4 PM';
+  var FIELDS = [['Intent', 'Premium plan'], ['Lead score', '92'], ['Next action', 'Don’t ask her name again 😉']];
+  var crmF = $('crmF'), crmDD = [];
+  FIELDS.forEach(function (f) { var dt = document.createElement('dt'); dt.textContent = f[0]; var dd = document.createElement('dd'); crmF.appendChild(dt); crmF.appendChild(dd); crmDD.push({ el: dd, txt: f[1] }); });
+  var APL = SQ ? [{ x: 40, y: 120 }, { x: 550, y: 120 }, { x: 40, y: 400 }, { x: 550, y: 400 }] : [{ y: 340 }, { y: 600 }, { y: 790 }, { y: 1050 }];
+  ['ap1', 'ap2', 'ap3', 'ap4'].forEach(function (id, i) { var e = $(id); e.style.top = APL[i].y + 'px'; if (SQ) e.style.left = APL[i].x + 'px'; });
+
+  // ---------- 6 + 7 ----------
+  var hubCv = $('hubCv'), hctx = hubCv.getContext('2d'); hubCv.width = W; hubCv.height = H;
+  var ofCv = $('ofCv'), fctx = ofCv.getContext('2d'); ofCv.width = W; ofCv.height = H;
+  var cvA = $('cvA'), cvB = $('cvB'), actx = cvA.getContext('2d'), bctx = cvB.getContext('2d');
+  cvA.width = cvB.width = 540; cvA.height = cvB.height = H;
+  var m1 = words($('m1'), 'Same customer. Same budget.', 'mask');
+  var of1 = words($('of1'), 'Not a voice agent.', 'mask');
+
+  // grain (seeded so every render worker draws the same texture)
+  (function () {
+    var cv = document.createElement('canvas'); cv.width = cv.height = 256;
+    var cx = cv.getContext('2d'), img = cx.createImageData(256, 256), r = rng(7);
+    for (var i = 0; i < img.data.length; i += 4) { var v = r() < .5 ? 0 : 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = Math.floor(r() * 90); }
+    cx.putImageData(img, 0, 0); $('grain').style.backgroundImage = 'url(' + cv.toDataURL() + ')';
+  })();
+
+  // ---------- geometry measured after fonts load ----------
+  var M = {};
+  var HUB = SQ ? { cx: 540, cy: 400, R: 250, nr: 54, core: 112 } : { cx: 540, cy: 840, R: 320, nr: 68, core: 150 };
+  var OFHUB = SQ ? { cx: 540, cy: 280, R: 190, nr: 40, core: 86 } : { cx: 540, cy: 640, R: 300, nr: 62, core: 140 };
+  function rel(el) { var r = el.getBoundingClientRect(), s = stage.getBoundingClientRect(), k = s.width / W; return { x: (r.left - s.left) / k, y: (r.top - s.top) / k, w: r.width / k, h: r.height / k }; }
+  function measure() {
+    show($('s2'), true);
+    CARDS.forEach(function (c) {
+      var r = rel(c.el), ic = rel(c.el.querySelector('.ic'));
+      c.cx = r.x + r.w / 2; c.cy = r.y + r.h / 2; c.ix = ic.x + ic.w / 2; c.iy = ic.y + ic.h / 2;
+    });
+    show($('s2'), false);
+    // red links between consecutive cards, broken in the middle
+    for (var i = 0; i < CARDS.length - 1; i++) {
+      var a = CARDS[i], b = CARDS[i + 1], mx = (a.cx + b.cx) / 2, my = (a.cy + b.cy) / 2;
+      var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.innerHTML = '<line class="la" x1="' + a.cx + '" y1="' + a.cy + '" x2="' + mx + '" y2="' + my + '" stroke="#FF4D5E" stroke-width="5" stroke-dasharray="14 12" stroke-linecap="round"/>' +
+        '<line class="lb" x1="' + mx + '" y1="' + my + '" x2="' + b.cx + '" y2="' + b.cy + '" stroke="#FF4D5E" stroke-width="5" stroke-dasharray="14 12" stroke-linecap="round"/>' +
+        '<g class="x" transform="translate(' + mx + ' ' + my + ')"><circle r="22" fill="#FF4D5E" opacity=".25"/><path d="M-11-11L11 11M11-11L-11 11" stroke="#FF4D5E" stroke-width="6" stroke-linecap="round"/></g>';
+      links.appendChild(g);
+      LINKS.push({ g: g, la: g.querySelector('.la'), lb: g.querySelector('.lb'), x: g.querySelector('.x'), ax: a.cx, ay: a.cy, bx: b.cx, by: b.cy, mx: mx, my: my });
+    }
+    // memory thread: from the first chat bubble to the orb
+    show($('s4'), true); show($('call'), true); show($('fxChat'), true);
+    tf($('fxChat'), chatTf(99)); tf($('call'), 'none');
+    var b1 = rel($('fxB1')), o = rel(orb);
+    M.tA = { x: b1.x + b1.w * 0.75, y: b1.y + b1.h }; M.tB = { x: o.x + o.w / 2, y: o.y + o.h / 2 };
+    var th = $('thread'); th.setAttribute('width', W); th.setAttribute('height', H);
+    var c1x = SQ ? M.tA.x + 120 : M.tA.x + 260, c1y = SQ ? M.tA.y + 40 : M.tA.y + 60, c2x = SQ ? M.tB.x - 220 : M.tB.x + 380, c2y = SQ ? M.tB.y - 40 : M.tB.y - 260;
+    var d = 'M' + M.tA.x + ' ' + M.tA.y + ' C' + c1x + ' ' + c1y + ' ' + c2x + ' ' + c2y + ' ' + M.tB.x + ' ' + M.tB.y;
+    $('thrLine').setAttribute('d', d); $('thrGlow').setAttribute('d', d);
+    M.thrLen = $('thrLine').getTotalLength();
+    show($('s4'), false);
+    // autopilot pipeline (vertical line with nodes) for 9:16
+    show($('s5'), true);
+    M.apNodes = ['ap1', 'ap2', 'ap3', 'ap4'].map(function (id) { var r = rel($(id)); return { x: 105, y: r.y + r.h / 2 }; });
+    show($('s5'), false);
+    var al = $('apLine'); al.setAttribute('width', W); al.setAttribute('height', H);
+    if (!SQ) {
+      var y0 = M.apNodes[0].y, y1 = M.apNodes[3].y;
+      al.innerHTML = '<line id="apTrack" x1="105" y1="' + y0 + '" x2="105" y2="' + y1 + '" stroke="rgba(255,255,255,.18)" stroke-width="6" stroke-linecap="round"/>' +
+        '<line id="apFill" x1="105" y1="' + y0 + '" x2="105" y2="' + y0 + '" stroke="#5C8DFF" stroke-width="6" stroke-linecap="round"/>' +
+        M.apNodes.map(function (n, i) { return '<g id="apN' + i + '" transform="translate(105 ' + n.y + ')"><circle r="26" fill="#1E5EFF" stroke="#fff" stroke-width="4"/><path d="M-10 0l6 6 12-13" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>'; }).join('');
+    }
+    // where the stage highlight sits for each stage
+    show($('s5'), true);
+    var spans = $('stages').querySelectorAll('span'), sr = rel($('stages'));
+    M.stages = Array.prototype.map.call(spans, function (s) { var r = rel(s); return { x: r.x - sr.x, w: r.w }; });
+    show($('s5'), false);
+  }
+
+  // ---------- hub drawing ----------
+  function glyph(c, g, x, y, size, col) {
+    c.save(); c.translate(x - size / 2, y - size / 2); c.scale(size / 24, size / 24); c.fillStyle = col; c.fill(new Path2D(G[g])); c.restore();
+  }
+  function mixCol(a, b, x) {
+    var pa = [parseInt(a.substr(1, 2), 16), parseInt(a.substr(3, 2), 16), parseInt(a.substr(5, 2), 16)];
+    var pb = [parseInt(b.substr(1, 2), 16), parseInt(b.substr(3, 2), 16), parseInt(b.substr(5, 2), 16)];
+    return 'rgb(' + pa.map(function (v, i) { return Math.round(lerp(v, pb[i], x)); }).join(',') + ')';
+  }
+  function ringPos(hub, i, rot) { var a = -Math.PI / 2 + i * Math.PI * 2 / 5 + (rot || 0); return { x: hub.cx + Math.cos(a) * hub.R, y: hub.cy + Math.sin(a) * hub.R }; }
+  function drawHub(c, hub, t, o) {
+    // o: nodes [{x,y,col,s,a}], link (0..1), ring (0..1), core (0..1), logo (0..1), pulse (0..1|-1), alpha
+    c.save(); c.globalAlpha = o.alpha === undefined ? 1 : o.alpha;
+    var g = c.createRadialGradient(hub.cx, hub.cy, hub.core * 0.4, hub.cx, hub.cy, hub.R * 1.5);
+    g.addColorStop(0, 'rgba(30,94,255,' + (0.35 * o.core).toFixed(3) + ')'); g.addColorStop(1, 'rgba(30,94,255,0)');
+    c.fillStyle = g; c.fillRect(0, 0, c.canvas.width, c.canvas.height);
+    if (o.ring > 0) {
+      c.strokeStyle = 'rgba(92,141,255,' + (0.35 * o.ring).toFixed(3) + ')'; c.lineWidth = 3;
+      c.beginPath(); c.arc(hub.cx, hub.cy, hub.R, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * o.ring); c.stroke();
+    }
+    o.nodes.forEach(function (n, i) {
+      if (o.link <= 0) return;
+      var dx = n.x - hub.cx, dy = n.y - hub.cy, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+      var x0 = hub.cx + ux * hub.core, y0 = hub.cy + uy * hub.core, x1 = lerp(x0, n.x - ux * hub.nr, o.link), y1 = lerp(y0, n.y - uy * hub.nr, o.link);
+      c.save(); c.shadowColor = 'rgba(92,141,255,.9)'; c.shadowBlur = 16; c.strokeStyle = '#5C8DFF'; c.lineWidth = 5; c.lineCap = 'round';
+      c.setLineDash([18, 14]); c.lineDashOffset = -t * 90; c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y1); c.stroke(); c.restore();
+      if (o.link >= 1) { // data particles
+        for (var k = 0; k < 2; k++) {
+          var p = ((t * 0.55 + i * 0.21 + k * 0.5) % 1), back = (i + k) % 2;
+          var q = back ? 1 - p : p, px = lerp(x0, n.x - ux * hub.nr, q), py = lerp(y0, n.y - uy * hub.nr, q);
+          c.fillStyle = 'rgba(255,255,255,' + (0.9 * Math.sin(Math.PI * p)).toFixed(3) + ')'; c.beginPath(); c.arc(px, py, 5, 0, Math.PI * 2); c.fill();
+        }
+      }
+    });
+    if (o.pulse > 0 && o.pulse < 1) {
+      c.strokeStyle = 'rgba(195,213,255,' + (Math.pow(1 - o.pulse, 1.4) * 0.9).toFixed(3) + ')'; c.lineWidth = 6;
+      c.beginPath(); c.arc(hub.cx, hub.cy, hub.core * (1 + o.pulse * 2.6), 0, Math.PI * 2); c.stroke();
+    }
+    if (o.core > 0) {
+      var cr = hub.core * (0.6 + 0.4 * E.oB(o.core)) * (1 + 0.02 * Math.sin(t * 3));
+      c.save(); c.shadowColor = 'rgba(30,94,255,.95)'; c.shadowBlur = hub.core * 0.6;
+      var cg = c.createRadialGradient(hub.cx - cr * 0.3, hub.cy - cr * 0.35, cr * 0.1, hub.cx, hub.cy, cr);
+      cg.addColorStop(0, '#2F6BFF'); cg.addColorStop(0.55, '#1648C8'); cg.addColorStop(1, '#0A2A66');
+      c.fillStyle = cg; c.beginPath(); c.arc(hub.cx, hub.cy, cr, 0, Math.PI * 2); c.fill(); c.restore();
+      c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = 2; c.beginPath(); c.arc(hub.cx, hub.cy, cr, 0, Math.PI * 2); c.stroke();
+      c.save(); c.translate(hub.cx, hub.cy); c.rotate(t * 0.8); c.strokeStyle = 'rgba(195,213,255,.8)'; c.lineWidth = 4; c.lineCap = 'round';
+      c.beginPath(); c.arc(0, 0, cr + 16, 0, 1.1); c.stroke(); c.beginPath(); c.arc(0, 0, cr + 16, Math.PI, Math.PI + 0.7); c.stroke(); c.restore();
+      if (o.logo > 0) {
+        c.fillStyle = 'rgba(255,255,255,' + o.logo.toFixed(3) + ')'; c.font = '700 ' + Math.round(hub.core * 0.33) + 'px Sora'; c.textAlign = 'center'; c.textBaseline = 'middle';
+        c.fillText('Highvance', hub.cx, hub.cy + 2);
+      }
+    }
+    o.nodes.forEach(function (n, i) {
+      if (n.a <= 0) return;
+      var r = hub.nr * n.s;
+      if (o.labels > 0) {
+        c.save(); c.globalAlpha *= o.labels; c.fillStyle = '#C3D5FF'; c.font = '600 ' + Math.round(hub.nr * 0.36) + 'px Inter'; c.textAlign = 'center'; c.textBaseline = 'top';
+        c.fillText(CH[i].name, n.x, n.y + r + 12); c.restore();
+      }
+      c.save(); c.globalAlpha *= n.a; c.shadowColor = 'rgba(0,0,0,.35)'; c.shadowBlur = 18; c.shadowOffsetY = 6;
+      c.fillStyle = n.col; c.beginPath(); c.arc(n.x, n.y, r, 0, Math.PI * 2); c.fill(); c.restore();
+      c.save(); c.globalAlpha *= n.a; c.strokeStyle = 'rgba(255,255,255,.55)'; c.lineWidth = 3; c.beginPath(); c.arc(n.x, n.y, r, 0, Math.PI * 2); c.stroke();
+      glyph(c, n.g, n.x, n.y, r * 0.95, '#fff'); c.restore();
+    });
+    c.restore();
+  }
+  function orbDraw(t, a, pres) {
+    var S = ORB, c = octx, R = S * 0.2, TAU = Math.PI * 2;
+    c.clearRect(0, 0, S, S); c.save(); c.translate(S / 2, S / 2); c.scale(pres, pres);
+    var g = c.createRadialGradient(0, 0, R * 0.6, 0, 0, R * 2.4);
+    g.addColorStop(0, 'rgba(30,94,255,' + (0.5 + 0.4 * a).toFixed(3) + ')'); g.addColorStop(0.45, 'rgba(30,94,255,' + (0.15 + 0.15 * a).toFixed(3) + ')'); g.addColorStop(1, 'rgba(30,94,255,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(0, 0, R * 2.4, 0, TAU); c.fill();
+    for (var k = 0; k < 3; k++) { var p = ((t / 2.4) + k / 3) % 1, al = Math.pow(1 - p, 2) * (0.1 + 0.55 * a); c.strokeStyle = 'rgba(195,213,255,' + al.toFixed(3) + ')'; c.lineWidth = 2.5; c.beginPath(); c.arc(0, 0, R * (1.1 + p * 1.2), 0, TAU); c.stroke(); }
+    var N = 72, r1 = R * 1.2; c.lineCap = 'round'; c.lineWidth = R * 0.055;
+    for (var i = 0; i < N; i++) {
+      var th = i / N * TAU - Math.PI / 2, m = i <= N / 2 ? i : N - i;
+      var n = 0.5 + 0.5 * Math.sin(m * 0.9 + t * 11) * Math.cos(m * 0.37 - t * 6.3);
+      var la = a * (0.3 + 0.7 * Math.abs(n)) * (0.7 + 0.3 * Math.cos((m / (N / 2)) * TAU));
+      var len = R * (0.05 + 0.6 * la + 0.07 * (0.5 + 0.5 * Math.sin(t * 2.6 + m * 0.5)) * (1 - a));
+      c.strokeStyle = 'rgba(255,255,255,' + (0.3 + 0.65 * Math.min(1, la * 1.6 + 0.1)).toFixed(3) + ')';
+      c.beginPath(); c.moveTo(Math.cos(th) * r1, Math.sin(th) * r1); c.lineTo(Math.cos(th) * (r1 + len), Math.sin(th) * (r1 + len)); c.stroke();
+    }
+    var cr = R * (1 + 0.05 * a); g = c.createRadialGradient(-cr * 0.32, -cr * 0.38, cr * 0.05, 0, 0, cr);
+    g.addColorStop(0, '#FFFFFF'); g.addColorStop(0.16, '#DDE7FF'); g.addColorStop(0.42, '#7FA6FF'); g.addColorStop(0.72, '#1E5EFF'); g.addColorStop(1, '#0B39A6');
+    c.shadowColor = 'rgba(30,94,255,.95)'; c.shadowBlur = R * 0.55; c.fillStyle = g; c.beginPath(); c.arc(0, 0, cr, 0, TAU); c.fill(); c.shadowBlur = 0;
+    c.restore();
+  }
+
+  // ---------- scene renderers ----------
+  function notifState(tau) { // tau: hook time; negative during the loop tail
+    var p = E.oC(clamp((tau + 0.40) / 0.65));
+    tf($('notif'), 'translateY(' + ((1 - p) * -260).toFixed(1) + 'px) scale(' + (0.92 + 0.08 * p).toFixed(3) + ')'); op($('notif'), clamp(p * 1.6));
+  }
+  function rS1(t, tau) {
+    notifState(tau);
+    popIn(h1, tau, T.h1, T.stag); popIn(h2, tau, T.h2, T.stag);
+    var g = P(tau, T.hit, 0.25);
+    $('notif').style.filter = g > 0 ? 'grayscale(' + g.toFixed(2) + ') brightness(' + (1 - 0.35 * g).toFixed(2) + ')' : 'none';
+    var sp = P(tau, T.stamp, 0.22);
+    op($('stamp'), clamp(sp * 4)); tf($('stamp'), 'rotate(-8deg) scale(' + (1 + (1 - E.oX(sp)) * 0.7).toFixed(3) + ')');
+    var sx = shake(tau, T.stamp + 0.05, 10), sy = shake(tau + 0.01, T.stamp + 0.05, 8);
+    $('s1').style.transform = 'translate(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px)';
+  }
+
+  function rS2(t) {
+    var chaos = P(t, T.s2, 0.2) * (1 - P(t, T.amn, 0.2));
+    $('s2').style.transform = 'translate(' + (jit(t, 1) * 5 * chaos).toFixed(1) + 'px,' + (jit(t, 2) * 4 * chaos).toFixed(1) + 'px)';
+    var top = E.oC(P(t, T.s2 + 0.05, 0.3));
+    op($('rpLab'), top); op($('pat'), top);
+    // repeat counter + patience
+    var k = 0; T.cards.slice(0, 4).forEach(function (ct) { if (t >= ct + 0.25) k++; });
+    var cnt = $('rpCount'); op(cnt, top * (k > 0 ? 1 : 0));
+    var label = 'Repeat #' + Math.max(1, k); if (cnt.textContent !== label) cnt.textContent = label;
+    var kp = T.cards.slice(0, 4).reduce(function (m, ct) { return t >= ct + 0.25 ? ct + 0.25 : m; }, -1);
+    tf(cnt, 'scale(' + (1 + 0.25 * (1 - E.oC(P(t, kp, 0.3)))).toFixed(3) + ')');
+    var lv = [1, 0.7, 0.45, 0.2, 0.05][k]; if (t >= T.bigbub) lv = 0;
+    var prev = [1, 1, 0.7, 0.45, 0.2][k];
+    var lvl = lerp(prev, lv, E.oC(P(t, kp, 0.4))); if (t >= T.bigbub) lvl = lerp(0.05, 0, E.oC(P(t, T.bigbub, 0.4)));
+    tf($('patFill'), 'scaleX(' + lvl.toFixed(3) + ')');
+    // cards slam in, scattered
+    var dim = 1 - 0.93 * E.oC(P(t, T.amn, 0.3));
+    op($('scrim'), E.oC(P(t, T.amn, 0.3)) * (1 - collapse));
+    var collapse = P(t, T.s3, 0.3);
+    CARDS.forEach(function (c, i) {
+      var p = P(t, T.cards[i], 0.3), e = E.oB(p, 1.6);
+      show(c.el, t >= T.cards[i]);
+      var sc = (0.7 + 0.3 * e) * (1 - E.iC(collapse));
+      var dx = (c.ix - c.cx) * E.iC(collapse), dy = (c.iy - c.cy) * E.iC(collapse);
+      tf(c.el, 'translate(' + dx.toFixed(1) + 'px,' + ((1 - e) * 80 + dy).toFixed(1) + 'px) rotate(' + c.lay.r + 'deg) scale(' + sc.toFixed(3) + ')');
+      op(c.el, clamp(p * 3) * dim);
+    });
+    LINKS.forEach(function (l, i) {
+      var t0 = T.cards[i + 1], p = E.oC(P(t, t0, 0.25)), br = P(t, t0 + 0.28, 0.2);
+      var vis = t >= t0 && collapse < 0.3;
+      l.g.style.display = vis ? 'block' : 'none'; if (!vis) return;
+      l.la.setAttribute('x2', lerp(l.ax, l.mx, p) - (l.mx - l.ax) * 0.12 * br); l.la.setAttribute('y2', lerp(l.ay, l.my, p) - (l.my - l.ay) * 0.12 * br);
+      l.lb.setAttribute('x1', lerp(l.ax, l.mx, p) + (l.bx - l.mx) * 0.12 * br); l.lb.setAttribute('y1', lerp(l.ay, l.my, p) + (l.by - l.my) * 0.12 * br);
+      l.lb.setAttribute('x2', lerp(l.mx, l.bx, p)); l.lb.setAttribute('y2', lerp(l.my, l.by, p));
+      l.x.style.opacity = br > 0 ? (0.6 + 0.4 * Math.abs(Math.sin(t * 20 + i))).toFixed(2) : 0;
+      l.g.style.opacity = dim.toFixed(2);
+    });
+    // narrative lines, one per card
+    n2.forEach(function (ws, i) {
+      var t0 = T.cards[i] + 0.05, t1 = i < 3 ? T.cards[i + 1] + 0.05 : T.amn;
+      var on = t >= t0 && t < t1 + 0.15; show(ws[0].parentNode.parentNode, on);
+      if (!on) return;
+      maskIn(ws, t, t0, 0.04, 0.32);
+      var out = P(t, t1, 0.15); op(ws[0].parentNode.parentNode, 1 - out);
+    });
+    $('n2').style.top = (SQ ? 760 : 1330) + 'px';
+    var bb = P(t, T.bigbub, 0.3); op($('bigbub'), clamp(bb * 3) * dim);
+    tf($('bigbub'), 'translateX(-50%) scale(' + (0.6 + 0.4 * E.oB(bb, 2)).toFixed(3) + ')');
+    var am = P(t, T.amn, 0.24); op($('amn'), clamp(am * 4) * (1 - collapse));
+    tf($('amn'), 'translate(' + shake(t, T.amn + 0.1, 12).toFixed(1) + 'px,0) scale(' + (1 + (1 - E.oX(am)) * 0.35).toFixed(3) + ')');
+    op($('cost'), (t >= T.cost ? 1 : 0) * (1 - collapse)); maskIn(costW, t, T.cost, 0.06, 0.35);
+    op($('cost').querySelector('.ex'), E.oC(P(t, T.cost + 0.5, 0.3)) * (1 - collapse));
+  }
+
+  function nodeAt(i, t) { // position of channel node i during the snap
+    var c = CARDS[i], lp = P(t, T.land[i] - 0.5, 0.5), e = E.ioC(lp), target = ringPos(HUB, i);
+    var mx = lerp(c.ix, target.x, 0.5) + (i % 2 ? -1 : 1) * 120, my = lerp(c.iy, target.y, 0.5) - 140; // curved path
+    var x = (1 - e) * (1 - e) * c.ix + 2 * (1 - e) * e * mx + e * e * target.x, y = (1 - e) * (1 - e) * c.iy + 2 * (1 - e) * e * my + e * e * target.y;
+    var land = P(t, T.land[i], 0.25);
+    return { x: x, y: y, g: CH[i].g, col: mixCol(CH[i].col, '#1E5EFF', E.oC(land)), s: (0.55 + 0.45 * e) * (1 + 0.25 * Math.sin(Math.PI * land)), a: clamp((t - T.fly) / 0.12) };
+  }
+  function rS3(t) {
+    var nodes = CH.map(function (c, i) { return nodeAt(i, t); });
+    var out = P(t, T.s4 - 0.2, 0.3);
+    hctx.clearRect(0, 0, W, H);
+    drawHub(hctx, HUB, t, { nodes: nodes, link: E.oC(P(t, T.links, 0.4)), ring: E.oC(P(t, T.links + 0.15, 0.5)), core: P(t, T.core, 0.45), logo: E.oC(P(t, T.logo, 0.5)), pulse: P(t, T.links + 0.05, 0.9), labels: E.oC(P(t, T.links + 0.3, 0.4)), alpha: 1 - out });
+    hubCv.style.transform = 'scale(' + (1 - 0.15 * E.iC(out)).toFixed(3) + ')';
+    maskInEl($('sn1'), t, T.sn1); maskInEl($('sn2'), t, T.sn2);
+    op($('sn1').parentNode, 1 - out);
+  }
+  var maskCache = {};
+  function maskInEl(el, t, t0) { var k = el.id; if (!maskCache[k]) maskCache[k] = words(el, el.textContent, 'mask'); maskIn(maskCache[k], t, t0, 0.05, 0.42); }
+
+  function chatTf(t) {
+    var sh = E.ioC(P(t, T.nextDay, 0.5));
+    if (SQ) return 'translateX(' + (-260 * sh).toFixed(1) + 'px)';
+    return 'translateY(' + (-30 * sh).toFixed(1) + 'px) scale(' + lerp(1, 0.66, sh).toFixed(3) + ')';
+  }
+  function rS4(t) {
+    var inn = E.oC(P(t, T.s4, 0.35)), out = P(t, T.s5 - 0.25, 0.25);
+    $('s4').style.opacity = (inn * (1 - out)).toFixed(3);
+    var ch = $('fxChat');
+    tf(ch, chatTf(t) + ' translateY(' + ((1 - E.oC(P(t, T.s4 + 0.05, 0.4))) * 80).toFixed(1) + 'px)');
+    op($('fxB1'), clamp(P(t, T.fxB1, 0.2) * 2));
+    var ty = t >= T.typing && t < T.fxB2; show($('fxTyping'), ty, 'flex');
+    if (ty) $('fxTyping').querySelectorAll('i').forEach(function (d, i) { op(d, 0.35 + 0.65 * Math.max(0, Math.sin((t - T.typing) * 9 - i * 0.9))); });
+    show($('fxB2'), t >= T.fxB2); tf($('fxB2'), 'scale(' + E.oB(P(t, T.fxB2, 0.3)).toFixed(3) + ')'); $('fxB2').style.transformOrigin = '100% 0';
+    show($('fxB3'), t >= T.fxB3); tf($('fxB3'), 'scale(' + E.oB(P(t, T.fxB3, 0.3)).toFixed(3) + ')'); $('fxB3').style.transformOrigin = '0 0';
+    show($('fxFast'), t >= T.fxFast, 'inline-flex'); op($('fxFast'), E.oC(P(t, T.fxFast, 0.3)));
+    var dc = P(t, T.nextDay + 0.1, 0.35); show($('dayChip'), t >= T.nextDay && t < T.voice + 0.6, 'inline-flex');
+    op($('dayChip'), clamp(dc * 3) * (1 - P(t, T.voice + 0.3, 0.3)));
+    // call card
+    var cp = P(t, T.call, 0.45); show($('call'), t >= T.call);
+    tf($('call'), 'translateY(' + ((1 - E.oC(cp)) * 120).toFixed(1) + 'px) scale(' + (0.92 + 0.08 * E.oC(cp)).toFixed(3) + ')'); op($('call'), clamp(cp * 3));
+    if (t >= T.call) orbDraw(t, vAmp(t), 0.85 + 0.15 * E.oB(cp));
+    capToks.forEach(function (k) { var p = P(t, k.a - 0.03, 0.12); op(k.el, p); k.el.style.transform = 'translateY(' + ((1 - E.oC(p)) * 12).toFixed(1) + 'px)'; });
+    // memory thread
+    var tp = E.ioC(P(t, T.thread, 0.8)); var thOn = t >= T.thread; show($('thread'), thOn);
+    if (thOn) {
+      ['thrLine', 'thrGlow'].forEach(function (id) { var e = $(id); e.style.strokeDasharray = M.thrLen; e.style.strokeDashoffset = (M.thrLen * (1 - tp)).toFixed(1); });
+      var dp = tp < 1 ? tp : ((t - T.thread - 0.8) / 1.6) % 1, pt = $('thrLine').getPointAtLength(M.thrLen * dp);
+      $('thrDot').setAttribute('cx', pt.x.toFixed(1)); $('thrDot').setAttribute('cy', pt.y.toFixed(1));
+      $('thrGlow').setAttribute('opacity', (0.4 + 0.25 * Math.sin(t * 4)).toFixed(2));
+    }
+    var mp = P(t, T.memPill, 0.35); show($('memPill'), t >= T.memPill, 'inline-flex');
+    tf($('memPill'), 'translateX(-50%) scale(' + (0.6 + 0.4 * E.oB(mp, 2)).toFixed(3) + ')'); op($('memPill'), clamp(mp * 3));
+    $('n4').style.top = (SQ ? 790 : 1380) + 'px';
+    n4.forEach(function (ws, i) {
+      var t0 = T.n4[i], t1 = i < 2 ? T.n4[i + 1] : 99, on = t >= t0 && t < t1 + 0.15; show(ws[0].parentNode.parentNode, on);
+      if (!on) return; maskIn(ws, t, t0, 0.05, 0.4); op(ws[0].parentNode.parentNode, 1 - P(t, t1, 0.15));
+    });
+    var z = P(t, T.n4[2] + 0.5, 0.3); tf($('fxCount'), 'scale(' + (1 + 0.3 * Math.sin(Math.PI * z)).toFixed(3) + ')');
+  }
+
+  function typeTxt(el, txt, t, t0, cps) {
+    var n = Math.max(0, Math.min(txt.length, Math.floor((t - t0) * cps)));
+    var s = Array.from(txt).slice(0, n).join(''); var caret = t >= t0 && n < Array.from(txt).length;
+    var html = s.replace(/&/g, '&amp;').replace(/</g, '&lt;') + (caret ? '<span class="caret"></span>' : '');
+    if (el.dataset.h !== html) { el.innerHTML = html; el.dataset.h = html; }
+  }
+  function rS5(t) {
+    var inn = E.oC(P(t, T.s5, 0.3)), out = P(t, T.s6 - 0.2, 0.2);
+    $('s5').style.opacity = (inn * (1 - out)).toFixed(3);
+    ['ap1', 'ap2', 'ap3', 'ap4'].forEach(function (id, i) {
+      var p = P(t, T.ap[i], 0.4), e = E.oB(p, 1.3); show($(id), t >= T.ap[i]);
+      tf($(id), 'translateX(' + ((1 - E.oC(p)) * 160).toFixed(1) + 'px) scale(' + (0.9 + 0.1 * e).toFixed(3) + ')'); op($(id), clamp(p * 3));
+    });
+    if (!SQ) {
+      var k = 0; T.ap.forEach(function (a) { if (t >= a + 0.15) k++; });
+      var y0 = M.apNodes[0].y, yk = M.apNodes[Math.max(0, k - 1)].y, prevY = M.apNodes[Math.max(0, k - 2)].y;
+      var fy = k ? lerp(prevY, yk, E.oC(P(t, T.ap[k - 1] + 0.15, 0.3))) : y0;
+      var af = $('apFill'); if (af) af.setAttribute('y2', fy.toFixed(1));
+      M.apNodes.forEach(function (n, i) { var g = $('apN' + i); if (!g) return; var p = P(t, T.ap[i] + 0.15, 0.3); g.setAttribute('opacity', clamp(p * 3).toFixed(2)); g.setAttribute('transform', 'translate(105 ' + n.y + ') scale(' + E.oB(p).toFixed(3) + ')'); });
+    }
+    // pills
+    var cur = -1; T.apPill.forEach(function (a, i) { if (t >= a) cur = i; });
+    AP_PILLS.forEach(function (el, i) {
+      if (i === cur) { var e = E.oB(P(t, T.apPill[i], 0.4), 1.3); tf(el, 'translateX(-50%) translateY(' + ((1 - e) * 40).toFixed(1) + 'px)'); op(el, clamp(P(t, T.apPill[i], 0.2) * 1.0)); }
+      else if (i === cur - 1) { var x = E.oC(P(t, T.apPill[cur], 0.3)); tf(el, 'translateX(-50%) translateY(' + (-36 * x).toFixed(1) + 'px)'); op(el, 1 - x); }
+      else op(el, 0);
+    });
+    // analytics
+    var sp = E.oC(P(t, T.ap[2] + 0.15, 1.0));
+    $('scoreArc').setAttribute('stroke-dashoffset', (389.6 * (1 - 0.92 * sp)).toFixed(1));
+    var sn = String(Math.round(92 * sp)); if ($('scoreN').textContent !== sn) $('scoreN').textContent = sn;
+    op($('chS'), E.oC(P(t, T.ap[2] + 0.3, 0.3))); op($('chI'), E.oC(P(t, T.ap[2] + 0.5, 0.3)));
+    typeTxt($('sumT'), SUM, t, T.ap[2] + 0.45, 60);
+    // CRM fields type themselves, then the pipeline stage moves
+    crmDD.forEach(function (f, i) { typeTxt(f.el, f.txt, t, T.ap[3] + 0.2 + i * 0.32, 45); });
+    var st = M.stages, s1 = E.ioC(P(t, T.stage1, 0.4)), s2 = E.ioC(P(t, T.stage2, 0.4));
+    var x = lerp(lerp(st[0].x, st[1].x, s1), st[2].x, s2), w = lerp(lerp(st[0].w, st[1].w, s1), st[2].w, s2);
+    var hl = $('stHl'); hl.style.left = x.toFixed(1) + 'px'; hl.style.width = w.toFixed(1) + 'px';
+    var lab = t >= T.stage2 + 0.2 ? 'Demo booked ✅' : t >= T.stage1 + 0.2 ? 'Qualified' : 'New'; if (hl.textContent !== lab) hl.textContent = lab;
+    $('n5').style.top = (SQ ? 700 : 1330) + 'px';
+    n5.forEach(function (ws, i) {
+      var t0 = T.n5[i], t1 = i < 2 ? T.n5[i + 1] : 99, on = t >= t0 && t < t1 + 0.15; show(ws[0].parentNode.parentNode, on);
+      if (!on) return; maskIn(ws, t, t0, 0.05, 0.4); op(ws[0].parentNode.parentNode, 1 - P(t, t1, 0.15));
+    });
+  }
+
+  function chaosMini(c, t, w, h) {
+    c.clearRect(0, 0, w, h);
+    var cx = w / 2, cy = SQ ? 450 : 820, R = SQ ? 150 : 200, pts = [[-0.9, -0.6], [0.8, -0.9], [0.95, 0.4], [-0.6, 0.85], [0.1, 0.05]];
+    var P2 = pts.map(function (p, i) { return { x: cx + p[0] * R + 8 * Math.sin(t * 2 + i), y: cy + p[1] * R + 8 * Math.cos(t * 1.7 + i) }; });
+    c.setLineDash([12, 10]); c.strokeStyle = 'rgba(255,77,94,.85)'; c.lineWidth = 4;
+    for (var i = 0; i < 4; i++) { var a = P2[i], b = P2[i + 1], mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      c.beginPath(); c.moveTo(a.x, a.y); c.lineTo(lerp(a.x, mx, 0.8), lerp(a.y, my, 0.8)); c.stroke(); c.beginPath(); c.moveTo(lerp(b.x, mx, 0.8), lerp(b.y, my, 0.8)); c.lineTo(b.x, b.y); c.stroke(); }
+    c.setLineDash([]);
+    P2.forEach(function (p, i) { var r = SQ ? 34 : 44; c.fillStyle = CH[i].col; c.beginPath(); c.arc(p.x, p.y, r, 0, Math.PI * 2); c.fill(); glyph(c, CH[i].g, p.x, p.y, r * 0.95, '#fff'); });
+  }
+  function rS6(t) {
+    var inn = P(t, T.s6, 0.35), out = P(t, T.s7 - 0.2, 0.2);
+    $('s6').style.opacity = (1 - out).toFixed(3);
+    tf($('hA'), 'translateX(' + ((1 - E.oC(inn)) * -540).toFixed(1) + 'px)'); tf($('hB'), 'translateX(' + ((1 - E.oC(inn)) * 540).toFixed(1) + 'px)');
+    chaosMini(actx, t, 540, H);
+    bctx.clearRect(0, 0, 540, H);
+    var mh = SQ ? { cx: 270, cy: 450, R: 160, nr: 34, core: 70 } : { cx: 270, cy: 820, R: 200, nr: 44, core: 92 };
+    drawHub(bctx, mh, t, { nodes: CH.map(function (c, i) { var p = ringPos(mh, i, t * 0.2); return { x: p.x, y: p.y, g: c.g, col: '#1E5EFF', s: 1, a: 1 }; }), link: 1, ring: 1, core: 1, logo: 0, pulse: -1 });
+    var ba = P(t, T.s6 + 0.5, 0.3), bb = P(t, T.s6 + 0.6, 0.3);
+    op($('mbA'), clamp(ba * 3)); tf($('mbA'), 'scale(' + E.oB(ba).toFixed(3) + ')');
+    op($('mbB'), clamp(bb * 3)); tf($('mbB'), 'scale(' + E.oB(bb).toFixed(3) + ')');
+    maskIn(m1, t, T.m1, 0.05, 0.4);
+    var p2 = P(t, T.m2, 0.35); op($('m2'), E.oC(p2)); tf($('m2'), 'translateY(' + ((1 - E.oC(p2)) * 24).toFixed(1) + 'px) scale(' + (1 + 0.06 * (1 - E.oX(p2))).toFixed(3) + ')');
+  }
+
+  function rS7(t) {
+    var inn = E.oC(P(t, T.s7, 0.4)), lp = P(t, T.loop, 0.3);
+    $('s7').style.opacity = (inn * (1 - lp)).toFixed(3);
+    fctx.clearRect(0, 0, W, H);
+    drawHub(fctx, OFHUB, t, { nodes: CH.map(function (c, i) { var p = ringPos(OFHUB, i, t * 0.15); return { x: p.x, y: p.y, g: c.g, col: '#1E5EFF', s: 1, a: 1 }; }), link: 1, ring: 1, core: 1, logo: 1, pulse: ((t - T.s7) / 2.2) % 1, labels: 1, alpha: 0.55 * inn });
+    maskIn(of1, t, T.of1, 0.05, 0.42);
+    var p2 = P(t, T.of2, 0.45); op($('of2'), E.oC(p2)); tf($('of2'), 'translateY(' + ((1 - E.oC(p2)) * 18).toFixed(1) + 'px)');
+    var cp = P(t, T.cta, 0.45); op($('cta'), clamp(cp * 4)); tf($('cta'), 'scale(' + (0.6 + 0.4 * E.oB(cp, 2.2)).toFixed(3) + ')');
+    var sh = ((t - T.cta - 0.6) / 1.6) % 1; $('shine').style.left = (t > T.cta + 0.6 ? lerp(-30, 110, sh) : -40).toFixed(1) + '%';
+    op($('ofSm'), E.oC(P(t, T.sm, 0.4))); op($('foot'), E.oC(P(t, T.foot, 0.4)));
+  }
+
+  function rScan(t) {
+    var on = (t >= T.s2 - 0.02 && t < T.s2 + 0.22) || (t >= T.rewind && t < T.s3 + 0.15);
+    show($('scan'), on); if (!on) return;
+    op($('scan'), 0.6 + 0.4 * Math.abs(jit(t, 3)));
+    $('scan').querySelector('.rew').style.display = t >= T.rewind ? 'block' : 'none';
+    $('scan').style.transform = 'translateX(' + (jit(t, 5) * 16).toFixed(1) + 'px)';
+  }
+
+  var scenes = { s1: $('s1'), s2: $('s2'), s3: $('s3'), s4: $('s4'), s5: $('s5'), s6: $('s6'), s7: $('s7') };
+  function renderAt(t) {
+    t = clamp(t, 0, DUR - 1e-6);
+    var tail = t >= T.loop; // last frames: back to the lock screen so the Reel loops
+    var s1on = t < T.s2 || tail; show(scenes.s1, s1on);
+    if (s1on) { rS1(t, tail ? t - DUR : t); scenes.s1.style.opacity = tail ? E.oC(P(t, T.loop, 0.3)).toFixed(3) : '1'; }
+    var s2on = t >= T.s2 && t < T.s3 + 0.35; show(scenes.s2, s2on); if (s2on) rS2(t);
+    var s3on = t >= T.s3 && t < T.s4 + 0.1; show(scenes.s3, s3on); if (s3on) rS3(t);
+    var s4on = t >= T.s4 && t < T.s5; show(scenes.s4, s4on); if (s4on) rS4(t);
+    var s5on = t >= T.s5 && t < T.s6; show(scenes.s5, s5on); if (s5on) rS5(t);
+    var s6on = t >= T.s6 && t < T.s7 + 0.05; show(scenes.s6, s6on); if (s6on) rS6(t);
+    var s7on = t >= T.s7 && t < T.loop + 0.3; show(scenes.s7, s7on); if (s7on) rS7(t);
+    rScan(t);
+  }
+
+  function timeline() { return { fps: FPS, dur: DUR, T: T, voice: { a: T.voice, b: T.voiceEnd, line: AI_LINE.replace(/\*/g, '') } }; }
+
+  var fontsReady = Promise.all(['800 100px Sora', '700 100px Sora', '600 100px Sora', '500 100px Inter', '600 100px Inter', '700 100px Inter', '800 100px Inter', '400 40px "Noto Color Emoji"']
+    .map(function (f) { return document.fonts.load(f, '😊👇✅😉🙏🙂📎⚡'); })).then(function () { return document.fonts.ready; });
+  window.__ready = fontsReady.then(function () {
+    measure();
+    window.__renderAt = renderAt; window.__timeline = timeline();
+    renderAt(Number(Q.get('t') || 0));
+    return true;
+  });
+
+  if (!RENDER) {
+    document.body.classList.add('preview');
+    var playing = true, t0 = performance.now(), tp = 0;
+    function fit() { var s = Math.min(innerWidth / W, innerHeight / H) * 0.96; stage.style.transform = 'scale(' + s + ')'; $('wrap').style.width = W * s + 'px'; $('wrap').style.height = H * s + 'px'; }
+    fit(); addEventListener('resize', fit);
+    addEventListener('keydown', function (e) {
+      if (e.code === 'Space') { if (playing) tp = (performance.now() - t0) / 1000; else t0 = performance.now() - tp * 1000; playing = !playing; }
+      if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { var cur = playing ? (performance.now() - t0) / 1000 : tp; cur = clamp(cur + (e.code === 'ArrowRight' ? 2 : -2), 0, DUR); t0 = performance.now() - cur * 1000; tp = cur; if (!playing) renderAt(cur); }
+    });
+    window.__ready.then(function () {
+      (function tick(now) { var t = playing ? ((now - t0) / 1000) % DUR : tp; renderAt(t); $('hud').textContent = t.toFixed(2) + ' s · space to pause · arrows to seek'; requestAnimationFrame(tick); })(performance.now());
+    });
+  }
+})();
+</script>
+</body>
+</html>
