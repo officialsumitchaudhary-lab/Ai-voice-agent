@@ -39,6 +39,10 @@ When working in this repo, act as HighVance's CMO: own the marketing strategy, g
 - The founder's script listed the URL as "hiighvance.com"; the ad uses highvance.in. Confirm.
 - The older `ad-card/` card uses Plus Jakarta Sans, #071A45 and #2F7BFF. Update it to the brand fonts and colours above before reusing it.
 
+## Campaign in progress: omnichannel Reel "Your business has amnesia" (script stage)
+- Script/prompt in `ad-video/omnichannel/prompt.md`: one customer (Ananya) repeats herself on 4 channels and buys elsewhere; replayed with Highvance's shared memory. Built for Instagram reach: comment trigger ("A or B?"), tag prompt, "Comment AUDIT" lead magnet (free mystery-shop audit), seamless loop.
+- Before production: confirm which features ship today (booking, WhatsApp/email follow-up, lead scoring, CRM sync, cross-channel memory), record the AI's Hinglish memory line from the real product, and decide who runs the AUDIT offer.
+
 ## Marketing principles for HighVance
 - Show the product working. A real recording of the agent handling a call beats any claim.
 - Hook in the first 2–3 seconds, built around a problem the buyer already feels (for example missed calls or slow follow-up).
