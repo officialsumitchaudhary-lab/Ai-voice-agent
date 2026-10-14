@@ -1,0 +1,705 @@
+<title>HighVance AI Agent Card</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: a white, blue-tinted studio page; the dark navy card is the one bold object, shown live, in placement, then specced for the editor. */
+:root {
+  /* page (brand white + blue) */
+  --paper: #F5F8FE;
+  --paper-2: #FFFFFF;
+  --ink: #0A1633;
+  --muted: #56658A;
+  --line: #DCE4F4;
+  --brand: #1F5EFF;
+  /* card */
+  --navy: #071A45;
+  --navy-2: #0A1E52;
+  --royal: #0B2F86;
+  --signal: #2F7BFF;
+  --ice: #9CC8FF;
+  --white: #FFFFFF;
+  --live: #FF5470;
+  /* stage + mockup set */
+  --stage-light: #E9EFFB;
+  --stage-dark: #0B1222;
+  --set-a: #C9D2E0;
+  --set-b: #8D99AE;
+  --person: #1A2336;
+  --person-rim: #3A4A6B;
+
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 56px;
+}
+
+/* ---------- header ---------- */
+.head { display: grid; gap: 12px; max-width: 70ch; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--brand); display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.eyebrow b { color: var(--ink); font-weight: 500; }
+h1 {
+  margin: 0; font-size: clamp(34px, 5.4vw, 56px); line-height: 1.02; font-weight: 800;
+  letter-spacing: -0.035em; text-wrap: balance;
+}
+h1 span { color: var(--brand); }
+.lede { margin: 0; color: var(--muted); font-size: 17px; max-width: 62ch; }
+
+/* ---------- hero stage ---------- */
+.hero { display: grid; gap: 16px; }
+.stage {
+  border-radius: 28px;
+  background:
+    radial-gradient(60% 80% at 50% 0%, rgba(31,94,255,.10), rgba(31,94,255,0) 70%),
+    var(--stage-light);
+  border: 1px solid var(--line);
+  padding-block: clamp(28px, 6vw, 72px);
+  padding-inline: clamp(12px, 5vw, 64px);
+  display: grid; place-items: center;
+  transition: background-color .3s ease;
+}
+.stage.dark {
+  background:
+    radial-gradient(60% 80% at 50% 0%, rgba(47,123,255,.22), rgba(47,123,255,0) 70%),
+    var(--stage-dark);
+  border-color: var(--stage-dark);
+}
+.fit { width: 100%; max-width: 960px; position: relative; }
+.fit > .card { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  font: 600 14px/1 var(--display); color: var(--ink);
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px;
+  padding: 10px 16px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center;
+}
+.btn:hover { border-color: var(--brand); color: var(--brand); }
+.btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--paper-2); border-color: var(--ink); }
+.clock { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- section scaffolding ---------- */
+.sec { display: grid; gap: 22px; }
+.sec-head { display: grid; gap: 6px; max-width: 70ch; }
+h2 { margin: 0; font-size: 26px; letter-spacing: -0.02em; line-height: 1.15; font-weight: 800; text-wrap: balance; }
+.sec-head p { margin: 0; color: var(--muted); }
+
+/* ---------- placement mockups ---------- */
+.mocks { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 20px; align-items: start; }
+.mock { display: grid; gap: 10px; min-width: 0; }
+.mock figcaption { font-size: 14px; color: var(--muted); }
+.mock figcaption b { color: var(--ink); font-weight: 700; }
+.mock figure { margin: 0; }
+.frame {
+  position: relative; overflow: hidden; border-radius: 18px; max-width: 100%;
+  background:
+    radial-gradient(40% 30% at 78% 22%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%),
+    radial-gradient(50% 40% at 15% 80%, rgba(141,153,174,.6), rgba(141,153,174,0) 70%),
+    linear-gradient(180deg, var(--set-a), var(--set-b));
+  border: 1px solid var(--line);
+}
+.frame.v { aspect-ratio: 9 / 16; }
+.frame.h { aspect-ratio: 16 / 9; }
+.frame .fit { position: absolute; max-width: none; }
+.frame.v .fit { left: 7%; width: 86%; top: 14%; }
+.frame.h .fit { right: 5%; width: 50%; top: 14%; }
+.person { position: absolute; bottom: 0; }
+.frame.v .person { left: 50%; transform: translateX(-50%); width: 92%; }
+.frame.h .person { left: 8%; width: 36%; }
+.person svg { display: block; width: 100%; height: auto; }
+.tag {
+  position: absolute; font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--paper-2); background: rgba(10,22,51,.55); padding: 6px 8px; border-radius: 6px;
+}
+.frame.v .tag { left: 50%; transform: translateX(-50%); bottom: 18%; }
+.frame.h .tag { left: 18%; bottom: 22%; }
+.safe {
+  position: absolute; left: 4%; right: 14%; top: 11%; bottom: 20%;
+  border: 1.5px dashed rgba(255,255,255,.75); border-radius: 10px; pointer-events: none;
+}
+.safe span {
+  position: absolute; left: 8px; top: 8px; font: 500 10px/1 var(--mono); letter-spacing: .08em;
+  color: var(--paper-2); text-transform: uppercase; opacity: .9;
+}
+
+/* ---------- spec sheet ---------- */
+.spec { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.item {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px;
+  padding: 22px; display: grid; gap: 14px; align-content: start; min-width: 0;
+}
+.item.wide { grid-column: span 2; }
+.item.full { grid-column: 1 / -1; }
+.label { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--brand); }
+.item h3 { margin: 0; font-size: 18px; letter-spacing: -0.01em; font-weight: 700; }
+.item p, .item li { margin: 0; color: var(--muted); font-size: 15px; }
+.item ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; font-size: 15px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; font-family: var(--mono); font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.sw { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; align-items: center; }
+.sw i { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.sw b { display: block; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.sw code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+
+.type-sample { display: grid; gap: 6px; }
+.type-sample .d { font: 800 30px/1 var(--display); letter-spacing: -0.03em; }
+.type-sample .m { font: 500 13px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+.timeline { display: grid; gap: 10px; }
+.track {
+  position: relative; display: flex; height: 44px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--paper);
+}
+.seg { display: flex; align-items: center; padding-inline: 10px; font: 500 12px/1.1 var(--mono); letter-spacing: .04em; white-space: nowrap; overflow: hidden; }
+.seg.lead { background: var(--paper); color: var(--muted); }
+.seg.speak { background: var(--brand); color: var(--paper-2); }
+.seg.listen { background: #CFE0FF; color: var(--royal); }
+.seg.clear { background: var(--paper); color: var(--muted); }
+.playhead { position: absolute; top: -1px; bottom: -1px; width: 2px; background: var(--ink); left: 0; }
+.ticks { display: flex; justify-content: space-between; font: 400 12px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.files { display: grid; gap: 8px; }
+.file { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+.file:first-child { border-top: 0; padding-top: 0; }
+.file code { font-family: var(--mono); font-size: 13.5px; color: var(--ink); overflow-wrap: anywhere; }
+.file span { font-size: 13px; color: var(--muted); }
+.file p { grid-column: 1 / -1; font-size: 14px; }
+
+.foot { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 20px; }
+
+@media (max-width: 860px) {
+  .mocks { grid-template-columns: minmax(0, 1fr); }
+  .mocks .mock:first-child { max-width: 360px; }
+  .spec { grid-template-columns: minmax(0, 1fr); }
+  .item.wide { grid-column: auto; }
+}
+
+/* =========================================================
+   THE CARD  — authored at 960 x 560 px, scaled by JS
+   ========================================================= */
+.card {
+  width: 960px; height: 560px; border-radius: 36px; overflow: hidden; isolation: isolate;
+  color: var(--white); font-family: var(--display);
+  background:
+    radial-gradient(70% 90% at 100% 0%, rgba(47,123,255,.50) 0%, rgba(47,123,255,0) 60%),
+    radial-gradient(60% 70% at 0% 100%, rgba(11,47,134,.85) 0%, rgba(11,47,134,0) 65%),
+    linear-gradient(150deg, var(--navy-2) 0%, var(--navy) 55%, #05133A 100%);
+  box-shadow:
+    0 50px 90px -30px rgba(3,14,45,.65),
+    0 0 120px -24px rgba(47,123,255,.50),
+    inset 0 0 0 1.5px rgba(255,255,255,.10),
+    inset 0 1.5px 0 rgba(255,255,255,.22);
+}
+.card::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(115deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.9) 100%);
+          mask-image: linear-gradient(115deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.9) 100%);
+}
+.card::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: repeating-radial-gradient(circle at 198px 282px, rgba(156,200,255,.08) 0 1px, transparent 1.5px 44px);
+  -webkit-mask-image: radial-gradient(circle at 198px 282px, #000 0, rgba(0,0,0,.6) 180px, transparent 360px);
+          mask-image: radial-gradient(circle at 198px 282px, #000 0, rgba(0,0,0,.6) 180px, transparent 360px);
+}
+.c-in { position: absolute; inset: 0; padding: 38px 46px 34px; display: grid; grid-template-rows: auto 1fr auto; }
+
+.c-top { display: flex; justify-content: space-between; align-items: center; }
+.c-brand { display: flex; align-items: center; gap: 14px; }
+.c-word { font-size: 27px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.c-word span { color: var(--ice); }
+.c-badge {
+  font: 500 12.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ice);
+  border: 1px solid rgba(156,200,255,.35); background: rgba(156,200,255,.08);
+  padding: 8px 12px; border-radius: 999px;
+}
+.c-live {
+  display: flex; align-items: center; gap: 10px;
+  font: 500 12.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase;
+  color: #FFD5DC; background: rgba(255,84,112,.12); border: 1px solid rgba(255,84,112,.38);
+  padding: 8px 14px 8px 12px; border-radius: 999px;
+}
+.c-live i { width: 8px; height: 8px; border-radius: 50%; background: var(--live); display: block; }
+
+.c-mid { display: grid; grid-template-columns: 304px minmax(0, 1fr); gap: 34px; align-items: center; }
+
+.orb { position: relative; width: 304px; height: 304px; margin-left: -12px; }
+.orb > * { position: absolute; border-radius: 50%; }
+.o-halo { inset: 14px; background: radial-gradient(circle, rgba(47,123,255,.62) 0%, rgba(47,123,255,.18) 42%, rgba(47,123,255,0) 68%); }
+.o-rip { inset: 86px; border: 1.5px solid var(--ice); opacity: 0; }
+.o-ring {
+  inset: 64px;
+  background: conic-gradient(from 0deg, rgba(156,200,255,0) 0deg, var(--ice) 70deg, var(--white) 110deg, rgba(47,123,255,0) 170deg, rgba(156,200,255,0) 220deg, #5DA2FF 300deg, rgba(156,200,255,0) 360deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 69%, #000 70.5% 73.5%, transparent 75%);
+          mask: radial-gradient(circle, transparent 0 69%, #000 70.5% 73.5%, transparent 75%);
+}
+.o-track { inset: 64px; border: 1px solid rgba(156,200,255,.16); }
+.o-core {
+  inset: 86px;
+  background: radial-gradient(circle at 36% 30%, #FFFFFF 0%, #DCEBFF 16%, #7DB4FF 40%, var(--signal) 62%, var(--royal) 100%);
+  box-shadow: 0 0 46px rgba(47,123,255,.85), 0 0 0 1px rgba(255,255,255,.25), inset 0 -14px 26px rgba(7,26,69,.45), inset 0 8px 16px rgba(255,255,255,.55);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.o-core b { display: block; width: 7px; height: 14px; border-radius: 4px; background: var(--white); box-shadow: 0 0 10px rgba(255,255,255,.7); }
+
+.c-talk { display: grid; gap: 16px; min-width: 0; }
+.c-status { position: relative; height: 16px; font: 500 13px/16px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ice); }
+.c-status span { position: absolute; left: 0; top: 0; display: flex; gap: 2px; white-space: nowrap; }
+.c-status em { font-style: normal; display: inline-block; width: 8px; }
+.wave { height: 112px; display: flex; align-items: center; justify-content: space-between; }
+.wave b {
+  display: block; width: 6px; height: 8px; border-radius: 4px;
+  background: linear-gradient(180deg, var(--ice) 0%, var(--white) 50%, var(--ice) 100%);
+}
+.cap { font-size: 26px; line-height: 1.34; font-weight: 600; letter-spacing: -0.012em; min-height: calc(26px * 1.34 * 3); }
+.cap span { display: inline-block; margin-right: .26em; opacity: 0; will-change: opacity, transform; }
+
+.c-bot { display: flex; justify-content: space-between; align-items: center; font: 400 14px/1 var(--mono); color: rgba(255,255,255,.62); letter-spacing: .04em; }
+.c-bot .call { display: flex; align-items: center; gap: 10px; }
+.c-bot svg { width: 16px; height: 16px; }
+.c-bot .site { font: 700 16px/1 var(--display); letter-spacing: -0.005em; color: var(--white); display: flex; align-items: center; gap: 8px; }
+.c-bot .site i { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); display: block; box-shadow: 0 0 10px var(--signal); }
+
+/* export mode: only the card, transparent or keyed ground */
+html.export, html.export body { background: transparent !important; }
+html.export.green, html.export.green body { background: #00B140 !important; }
+html.export body > *:not(#exportWrap) { display: none !important; }
+#exportWrap { display: none; }
+html.export #exportWrap { display: block; padding: 80px; width: 1120px; }
+html.export #exportWrap .card {
+  position: relative;
+  box-shadow:
+    0 26px 52px -22px rgba(3,14,45,.6),
+    0 0 56px -12px rgba(47,123,255,.45),
+    inset 0 0 0 1.5px rgba(255,255,255,.10),
+    inset 0 1.5px 0 rgba(255,255,255,.22);
+}
+html.export.green #exportWrap .card { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.10), inset 0 1.5px 0 rgba(255,255,255,.22); }
+
+@media (prefers-reduced-motion: reduce) {
+  .stage { transition: none; }
+}
+</style>
+
+<div class="page">
+  <header class="head">
+    <div class="eyebrow"><b>HighVance</b> · Video ad overlay · Motion reference</div>
+    <h1>AI Agent Card for the <span>voice agent</span> ad</h1>
+    <p class="lede">A dark-blue, round-cornered call card that sits behind or above the presenter and shows the HighVance voice agent talking: a glowing agent orb, a live voice waveform and the agent's words appearing as it speaks. It runs as a 10-second loop so the editor can stretch it under any take.</p>
+  </header>
+
+  <section class="hero" aria-label="Animated card preview">
+    <div class="stage" id="stage">
+      <div class="fit" id="heroFit">
+        <div class="card" id="card" aria-label="HighVance AI voice agent card, speaking">
+          <div class="c-in">
+            <div class="c-top">
+              <div class="c-brand">
+                <div class="c-word">High<span>Vance</span></div>
+                <div class="c-badge">AI Voice Agent</div>
+              </div>
+              <div class="c-live"><i></i>Live call</div>
+            </div>
+            <div class="c-mid">
+              <div class="orb">
+                <div class="o-halo"></div>
+                <div class="o-rip"></div><div class="o-rip"></div><div class="o-rip"></div>
+                <div class="o-track"></div>
+                <div class="o-ring"></div>
+                <div class="o-core"><b></b><b></b><b></b><b></b><b></b></div>
+              </div>
+              <div class="c-talk">
+                <div class="c-status">
+                  <span class="s-speak">Speaking<em>.</em><em>.</em><em>.</em></span>
+                  <span class="s-listen">Listening</span>
+                </div>
+                <div class="wave"></div>
+                <div class="cap"></div>
+              </div>
+            </div>
+            <div class="c-bot">
+              <div class="call">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3.2l1.6 4-2 1.3a11 11 0 0 0 6.9 6.9l1.3-2 4 1.6V19a1.8 1.8 0 0 1-1.9 1.8A15.8 15.8 0 0 1 3.2 5.9 1.8 1.8 0 0 1 5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                Inbound call · +91 98••• ••421
+              </div>
+              <div class="site"><i></i>highvance.in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="btns">
+        <button class="btn" id="playBtn" type="button" aria-pressed="false">Pause</button>
+        <button class="btn" id="restartBtn" type="button">Restart loop</button>
+        <button class="btn" id="stageBtn" type="button" aria-pressed="false">Dark set</button>
+      </div>
+      <div class="clock" id="clock">0.0 s / 10.0 s</div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="placeH">
+    <div class="sec-head">
+      <h2 id="placeH">Where it sits in the frame</h2>
+      <p>Two placements to show the editor. The grey set and silhouette stand in for the real footage.</p>
+    </div>
+    <div class="mocks">
+      <figure class="mock">
+        <div class="frame v" id="mockV">
+          <div class="fit"></div>
+          <div class="person">
+            <svg viewBox="0 0 200 170" aria-hidden="true"><path d="M100 12c20 0 34 15 34 36s-14 40-34 40-34-19-34-40 14-36 34-36Z" fill="var(--person)"/><path d="M10 170c4-40 30-62 62-68l28 14 28-14c32 6 58 28 62 68Z" fill="var(--person)"/><path d="M72 102l28 14 28-14" fill="none" stroke="var(--person-rim)" stroke-width="2"/></svg>
+          </div>
+          <div class="tag">Speaker</div>
+          <div class="safe"><span>Reels safe area</span></div>
+        </div>
+        <figcaption><b>Reel / Short, 9:16.</b> Card above the speaker's head, about 86% of frame width, top edge near 14% down.</figcaption>
+      </figure>
+      <figure class="mock">
+        <div class="frame h" id="mockH">
+          <div class="fit"></div>
+          <div class="person">
+            <svg viewBox="0 0 200 170" aria-hidden="true"><path d="M100 12c20 0 34 15 34 36s-14 40-34 40-34-19-34-40 14-36 34-36Z" fill="var(--person)"/><path d="M10 170c4-40 30-62 62-68l28 14 28-14c32 6 58 28 62 68Z" fill="var(--person)"/><path d="M72 102l28 14 28-14" fill="none" stroke="var(--person-rim)" stroke-width="2"/></svg>
+          </div>
+          <div class="tag">Speaker</div>
+        </div>
+        <figcaption><b>Landscape, 16:9.</b> Speaker on the left third, card behind on the right at about half the frame width. If the speaker is cut out from the background, put the card between the background and the speaker.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="specH">
+    <div class="sec-head">
+      <h2 id="specH">Spec for the editor</h2>
+      <p>Everything needed to rebuild or composite the card. The export files listed at the bottom are ready to drop on a timeline.</p>
+    </div>
+    <div class="spec">
+      <div class="item">
+        <div class="label">Size</div>
+        <h3>960 × 560, 36 px corners</h3>
+        <dl class="kv">
+          <dt>Aspect</dt><dd>12 : 7 (1.71)</dd>
+          <dt>Export</dt><dd>2240 × 1440 @2x</dd>
+          <dt>Card at 2x</dt><dd>1920 × 1120</dd>
+          <dt>Corner radius</dt><dd>3.75% of width</dd>
+          <dt>Padding</dt><dd>38 / 46 px</dd>
+        </dl>
+      </div>
+      <div class="item wide">
+        <div class="label">Colour</div>
+        <h3>Navy card, white type, one signal blue</h3>
+        <div class="swatches">
+          <div class="sw"><i style="background:#071A45"></i><div><b>Navy</b><code>#071A45</code></div></div>
+          <div class="sw"><i style="background:#0B2F86"></i><div><b>Royal</b><code>#0B2F86</code></div></div>
+          <div class="sw"><i style="background:#2F7BFF"></i><div><b>Signal blue</b><code>#2F7BFF</code></div></div>
+          <div class="sw"><i style="background:#9CC8FF"></i><div><b>Ice</b><code>#9CC8FF</code></div></div>
+          <div class="sw"><i style="background:#FFFFFF"></i><div><b>White</b><code>#FFFFFF</code></div></div>
+          <div class="sw"><i style="background:#FF5470"></i><div><b>Live dot</b><code>#FF5470</code></div></div>
+        </div>
+        <p>Card fill: 150° gradient #0A1E52 → #071A45 → #05133A, with a signal-blue glow in the top-right corner. Shadow: 0 50 90 at 65% navy, plus a soft #2F7BFF outer glow.</p>
+      </div>
+
+      <div class="item">
+        <div class="label">Type</div>
+        <div class="type-sample">
+          <div class="d">Plus Jakarta Sans</div>
+          <div class="m">IBM Plex Mono · labels</div>
+        </div>
+        <ul>
+          <li>Wordmark 27 px, ExtraBold</li>
+          <li>Agent words 26 px, SemiBold, max 3 lines</li>
+          <li>Labels 12.5 px mono, caps, +16% tracking</li>
+        </ul>
+        <p>Both are free on Google Fonts. Swap the text wordmark for the real HighVance logo file.</p>
+      </div>
+
+      <div class="item wide">
+        <div class="label">Motion · 10-second loop</div>
+        <h3>Speaks, listens, clears, repeats</h3>
+        <div class="timeline">
+          <div class="track" id="track">
+            <div class="seg lead" style="width:3.5%"></div>
+            <div class="seg speak" style="width:61%">Speaking · words appear</div>
+            <div class="seg listen" style="width:27.5%">Listening</div>
+            <div class="seg clear" style="width:8%">Clear</div>
+            <div class="playhead" id="playhead"></div>
+          </div>
+          <div class="ticks"><span>0 s</span><span>2.5</span><span>5</span><span>7.5</span><span>10 s</span></div>
+        </div>
+        <ul>
+          <li>Orb ring turns once per loop; three ripples leave the orb every 2.5 s and grow with the voice.</li>
+          <li>Waveform: 44 mirrored bars, louder in the middle, spreading outward from the centre on each word.</li>
+          <li>Words fade up one at a time; the newest word is ice blue, earlier words white.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="label">Entry &amp; exit</div>
+        <h3>Add on the timeline</h3>
+        <dl class="kv">
+          <dt>In</dt><dd>12 frames</dd>
+          <dt>Move</dt><dd>scale 92→100%, rise 40 px</dd>
+          <dt>Fade</dt><dd>0→100%</dd>
+          <dt>Ease</dt><dd>ease-out (0.2, 0.8, 0.2, 1)</dd>
+          <dt>Out</dt><dd>8 frames, reverse</dd>
+        </dl>
+        <p>Time the card's arrival to the line where the presenter mentions the AI agent.</p>
+      </div>
+      <div class="item">
+        <div class="label">Layering</div>
+        <h3>Behind or above, never over the face</h3>
+        <ul>
+          <li>16:9: background plate → card → speaker cutout.</li>
+          <li>9:16: card above the head, clear of the Reels UI (dashed area).</li>
+          <li>Keep the card's soft shadow; it lifts the navy off dark sets.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="label">Copy</div>
+        <h3>What the agent says</h3>
+        <p id="scriptText"></p>
+        <p>Change the line to match the presenter's script. Keep it under about 110 characters so it fits three lines.</p>
+      </div>
+
+      <div class="item full">
+        <div class="label">Files</div>
+        <div class="files">
+          <div class="file"><code>ad-card/highvance-ai-card.html</code><span>this page</span><p>Open in a browser for the live reference and the spec.</p></div>
+          <div class="file"><code>ad-card/exports/highvance-ai-card.png</code><span>PNG, transparent</span><p>Still frame mid-sentence, 2240 × 1440, for thumbnails or a static version.</p></div>
+          <div class="file"><code>ad-card/exports/highvance-ai-card-alpha.webm</code><span>VP9 with alpha, 30 fps</span><p>The full 10-second loop with a transparent background. Loop it on the timeline for longer takes.</p></div>
+          <div class="file"><code>ad-card/exports/highvance-ai-card-alpha.mov</code><span>ProRes 4444 with alpha, 1120 × 720</span><p>Same loop for Premiere Pro, Final Cut and DaVinci Resolve. Half size to stay under GitHub's file limit; sharp for 1080p reels.</p></div>
+          <div class="file"><code>ad-card/exports/highvance-ai-card-greenscreen.mp4</code><span>H.264 on #00B140</span><p>For CapCut or phone editors without alpha support: apply Chroma Key on the green.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">HighVance · highvance.in · Brand colours white and blue. The phone number on the card is masked on purpose.</p>
+</div>
+
+<div id="exportWrap"></div>
+
+<script>
+(function () {
+  var LOOP = 10;
+  var SCRIPT = "Hi Priya, this is HighVance AI. Your demo is booked for Thursday, 4 PM. Shall I send the details on WhatsApp?";
+  var SPEAK_START = 0.35, SPEAK_END = 6.4, LISTEN_END = 9.2, CLEAR_END = 9.8;
+  var BARS = 44;
+
+  document.getElementById('scriptText').textContent = '“' + SCRIPT + '”';
+
+  // word timing: longer words take longer, punctuation adds a pause
+  var words = SCRIPT.split(' ');
+  var slots = words.map(function (w) {
+    var len = w.replace(/[^A-Za-z0-9]/g, '').length;
+    var d = 0.18 + 0.045 * len;
+    var pause = /[.?!]$/.test(w) ? 0.34 : (/,$/.test(w) ? 0.18 : 0.04);
+    return { w: w, d: d, p: pause };
+  });
+  var total = slots.reduce(function (a, s) { return a + s.d + s.p; }, 0);
+  var k = (SPEAK_END - SPEAK_START) / total, acc = SPEAK_START;
+  slots.forEach(function (s) { s.s = acc; s.d *= k; acc += s.d + s.p * k; });
+
+  function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  function smooth(x) { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); }
+
+  // voice loudness: one hump per word, a little jitter
+  function amp(t) {
+    var a = 0;
+    for (var i = 0; i < slots.length; i++) {
+      var s = slots[i];
+      if (t >= s.s && t <= s.s + s.d) {
+        var x = (t - s.s) / s.d;
+        var hump = Math.pow(Math.sin(Math.PI * x), 0.6);
+        var syl = 0.78 + 0.22 * Math.sin(t * 31 + i * 2.3);
+        a = Math.max(a, hump * syl * (0.8 + 0.2 * Math.sin(i * 2.1)));
+      }
+    }
+    return a;
+  }
+  function ampS(t) { return (amp(t) + amp(t - 0.03) + amp(t - 0.06) + amp(t - 0.09)) / 4; }
+
+  function buildCard(card) {
+    var wave = card.querySelector('.wave');
+    if (!wave.children.length) for (var i = 0; i < BARS; i++) wave.appendChild(document.createElement('b'));
+    var cap = card.querySelector('.cap');
+    if (!cap.children.length) words.forEach(function (w) { var sp = document.createElement('span'); sp.textContent = w; cap.appendChild(sp); });
+    return {
+      bars: wave.children,
+      words: cap.children,
+      cap: cap,
+      rips: card.querySelectorAll('.o-rip'),
+      ring: card.querySelector('.o-ring'),
+      halo: card.querySelector('.o-halo'),
+      core: card.querySelector('.o-core'),
+      eq: card.querySelectorAll('.o-core b'),
+      live: card.querySelector('.c-live i'),
+      sSpeak: card.querySelector('.s-speak'),
+      sDots: card.querySelectorAll('.s-speak em'),
+      sListen: card.querySelector('.s-listen')
+    };
+  }
+
+  function draw(c, t) {
+    var TAU = Math.PI * 2;
+    var a = ampS(t);
+    var speaking = smooth((t - SPEAK_START + 0.15) / 0.3) * (1 - smooth((t - SPEAK_END - 0.05) / 0.35));
+
+    // orb
+    c.ring.style.transform = 'rotate(' + (t / LOOP * 360).toFixed(2) + 'deg)';
+    c.halo.style.opacity = (0.5 + 0.5 * a).toFixed(3);
+    c.halo.style.transform = 'scale(' + (0.9 + 0.18 * a).toFixed(3) + ')';
+    c.core.style.transform = 'scale(' + (1 + 0.055 * a).toFixed(3) + ')';
+    for (var r = 0; r < c.rips.length; r++) {
+      var p = ((t / 2.5) + r / 3) % 1;
+      c.rips[r].style.transform = 'scale(' + (1 + p * 1.15).toFixed(3) + ')';
+      c.rips[r].style.opacity = (Math.pow(1 - p, 2) * (0.12 + 0.7 * a)).toFixed(3);
+    }
+    for (var e = 0; e < c.eq.length; e++) {
+      var mid = 1 - Math.abs(e - 2) * 0.22;
+      var idle = 0.5 + 0.5 * Math.sin(TAU * t / 2.5 - e * 0.9);
+      var h = 10 + 6 * idle + 30 * a * mid * (0.6 + 0.4 * Math.abs(Math.sin(t * 17 + e * 1.9)));
+      c.eq[e].style.height = h.toFixed(1) + 'px';
+    }
+
+    // waveform
+    var cIdx = (BARS - 1) / 2;
+    for (var i = 0; i < BARS; i++) {
+      var d = Math.abs(i - cIdx) / cIdx;
+      var env = 1 - 0.62 * d * d;
+      var la = amp(t - d * 0.16);
+      var jit = 0.5 + 0.5 * Math.abs(Math.sin(i * 1.73 + t * 12.5));
+      var idleW = 0.5 + 0.5 * Math.sin(TAU * t / 2.5 - i * 0.32);
+      var hh = 6 + 7 * idleW + 97 * env * la * jit;
+      c.bars[i].style.height = hh.toFixed(1) + 'px';
+      c.bars[i].style.opacity = (0.55 + 0.45 * Math.min(1, env * (0.4 + la * 1.2))).toFixed(3);
+    }
+
+    // words
+    var capFade = 1 - smooth((t - LISTEN_END) / (CLEAR_END - LISTEN_END));
+    for (var w = 0; w < slots.length; w++) {
+      var s = slots[w];
+      var o = smooth((t - s.s) / 0.16);
+      var el = c.words[w];
+      el.style.opacity = (o * capFade).toFixed(3);
+      el.style.transform = 'translateY(' + ((1 - o) * 6).toFixed(2) + 'px)';
+      var next = w + 1 < slots.length ? slots[w + 1].s : SPEAK_END + 0.25;
+      el.style.color = (t >= s.s && t < next) ? 'var(--ice)' : 'var(--white)';
+    }
+
+    // status + live dot
+    var listenOn = 1 - speaking;
+    c.sSpeak.style.opacity = speaking.toFixed(3);
+    c.sListen.style.opacity = listenOn.toFixed(3);
+    for (var dd = 0; dd < c.sDots.length; dd++) {
+      var ph = ((t / 1.25) - dd * 0.2) % 1;
+      c.sDots[dd].style.opacity = (0.25 + 0.75 * (ph < 0.5 ? 1 - ph * 2 : 0)).toFixed(3);
+    }
+    var pulse = 0.5 + 0.5 * Math.cos(TAU * t / 1.25);
+    c.live.style.opacity = (0.45 + 0.55 * pulse).toFixed(3);
+    c.live.style.boxShadow = '0 0 ' + (4 + 10 * pulse).toFixed(1) + 'px rgba(255,84,112,' + (0.4 + 0.5 * pulse).toFixed(2) + ')';
+  }
+
+  // instances
+  var heroCard = document.getElementById('card');
+  var instances = [buildCard(heroCard)];
+  var fits = [document.getElementById('heroFit')];
+  ['mockV', 'mockH'].forEach(function (id) {
+    var fit = document.querySelector('#' + id + ' .fit');
+    var clone = heroCard.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.setAttribute('aria-hidden', 'true');
+    fit.appendChild(clone);
+    instances.push(buildCard(clone));
+    fits.push(fit);
+  });
+
+  function layout() {
+    fits.forEach(function (fit) {
+      var s = fit.clientWidth / 960;
+      fit.style.height = (560 * s) + 'px';
+      fit.querySelector('.card').style.transform = 'scale(' + s + ')';
+    });
+  }
+
+  function renderAt(t) {
+    t = ((t % LOOP) + LOOP) % LOOP;
+    instances.forEach(function (c) { draw(c, t); });
+    var ph = document.getElementById('playhead');
+    if (ph) ph.style.left = (t / LOOP * 100) + '%';
+    var ck = document.getElementById('clock');
+    if (ck) ck.textContent = t.toFixed(1) + ' s / 10.0 s';
+  }
+
+  // export hook (used to render the video files frame by frame)
+  var hash = location.hash.replace('#', '');
+  if (hash === 'export' || hash === 'export-green') {
+    document.documentElement.classList.add('export');
+    if (hash === 'export-green') document.documentElement.classList.add('green');
+    var wrap = document.getElementById('exportWrap');
+    var ec = heroCard.cloneNode(true);
+    ec.removeAttribute('id');
+    wrap.appendChild(ec);
+    instances = [buildCard(ec)];
+    window.__renderAt = renderAt;
+    renderAt(5.2);
+    return;
+  }
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playing = !reduce, t0 = performance.now(), tPaused = reduce ? 5.2 : 0;
+  var playBtn = document.getElementById('playBtn');
+  function setBtn() { playBtn.textContent = playing ? 'Pause' : 'Play'; playBtn.setAttribute('aria-pressed', String(!playing)); }
+  setBtn();
+  playBtn.addEventListener('click', function () {
+    if (playing) { tPaused = (performance.now() - t0) / 1000; playing = false; }
+    else { t0 = performance.now() - tPaused * 1000; playing = true; requestAnimationFrame(tick); }
+    setBtn();
+  });
+  document.getElementById('restartBtn').addEventListener('click', function () {
+    t0 = performance.now(); tPaused = 0; renderAt(0);
+  });
+  var stageBtn = document.getElementById('stageBtn');
+  stageBtn.addEventListener('click', function () {
+    var on = document.getElementById('stage').classList.toggle('dark');
+    stageBtn.setAttribute('aria-pressed', String(on));
+  });
+
+  function tick(now) {
+    if (!playing) return;
+    renderAt((now - t0) / 1000);
+    requestAnimationFrame(tick);
+  }
+
+  layout();
+  window.addEventListener('resize', layout);
+  if (window.ResizeObserver) new ResizeObserver(layout).observe(document.querySelector('.page'));
+  renderAt(tPaused || 5.2);
+  if (playing) requestAnimationFrame(tick);
+})();
+</script>

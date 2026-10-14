@@ -1,0 +1,56 @@
+1
+00:00:13,960 --> 00:00:17,594
+Aarushi (AI): Hello Sumit ji, main Aarushi bol rahi hoon Highvance Overseas se.
+
+2
+00:00:17,594 --> 00:00:20,910
+Aarushi (AI): Aapne abhi Germany mein study ke liye enquiry ki hai,
+
+3
+00:00:20,910 --> 00:00:22,550
+Aarushi (AI): Do minute baat kar sakte hain?
+
+4
+00:00:22,600 --> 00:00:24,310
+Student: Haan ji, batao, kya baat karni hai?
+
+5
+00:00:24,360 --> 00:00:27,590
+Aarushi (AI): Samajh gayi, aapka graduation year 2026 hai.
+
+6
+00:00:27,590 --> 00:00:30,490
+Aarushi (AI): Ab aapka graduation percentage kya hai?
+
+7
+00:00:30,760 --> 00:00:32,180
+Student: 94%.
+
+8
+00:00:32,260 --> 00:00:34,668
+Aarushi (AI): 94 pratishat, bahut achha!
+
+9
+00:00:34,668 --> 00:00:37,281
+Aarushi (AI): Ab aapne English proficiency test diya hai?
+
+10
+00:00:37,281 --> 00:00:38,650
+Aarushi (AI): Jaise IELTS ya TOEFL?
+
+11
+00:00:39,040 --> 00:00:40,430
+Student: IELTS diya hai.
+
+12
+00:00:40,430 --> 00:00:42,060
+Aarushi (AI): IELTS koi problem nahi.
+
+13
+00:00:42,060 --> 00:00:43,865
+Aarushi (AI): Kya aap senior counsellor Priya ke saath
+
+14
+00:00:43,865 --> 00:00:46,150
+Aarushi (AI): ek free video call book karna chahenge?
+

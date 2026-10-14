@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Highvance · Meera study abroad ad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap">
+<style>
+/* Highvance motion ad. Every frame is a pure function of time t (seconds), so the
+   page can be previewed live or rendered frame by frame. ?fmt=v (9:16) or ?fmt=s (1:1). */
+:root {
+  --navy: #0A2A66;
+  --navy-d: #061D4D;
+  --blue: #1E5EFF;
+  --blue-hi: #5C8DFF;
+  --ice: #C3D5FF;
+  --white: #FFFFFF;
+  --ink: #0A2A66;
+  --mute: #6A7898;
+  --mist: #EAF0FF;
+  --sora: "Sora", "Segoe UI", system-ui, sans-serif;
+  --inter: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #030c22; overflow: hidden; }
+body.preview { height: 100vh; display: grid; place-items: center; }
+#wrap { position: relative; }
+#stage {
+  position: relative; width: 1080px; height: 1920px; overflow: hidden;
+  background: var(--navy); color: var(--white); font-family: var(--inter);
+  transform-origin: 0 0;
+}
+#stage.s { height: 1080px; }
+#hud { position: fixed; left: 12px; bottom: 10px; font: 500 12px/1.4 var(--inter); color: #8fa3cf; }
+
+.scene { position: absolute; inset: 0; overflow: hidden; display: none; }
+.navybg {
+  background:
+    radial-gradient(70% 45% at 22% 26%, rgba(30,94,255,.30) 0%, rgba(30,94,255,0) 70%),
+    radial-gradient(60% 40% at 96% 96%, rgba(30,94,255,.20) 0%, rgba(30,94,255,0) 70%),
+    linear-gradient(180deg, #0B2D6D 0%, #0A2A66 45%, #071F50 100%);
+}
+.dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.10) 1.7px, transparent 2.2px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, rgba(0,0,0,.25) 70%, transparent 100%);
+          mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, rgba(0,0,0,.25) 70%, transparent 100%);
+}
+.grain { position: absolute; inset: 0; pointer-events: none; z-index: 60; opacity: .06; background-size: 256px 256px; }
+
+/* words */
+.w { display: inline-block; white-space: nowrap; }
+.mk { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .03em .14em; margin: 0 -.03em -.14em; }
+.mk > span { display: inline-block; }
+.hi { color: var(--blue-hi); }
+.btxt {
+  background: linear-gradient(180deg, #86AAFF 0%, #3D74FF 48%, #1E5EFF 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- 1 · hook ---------- */
+#sHook .cam { position: absolute; left: 90px; right: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 46px; padding-bottom: 30px; }
+.ringb { position: relative; width: 112px; height: 112px; flex: none; }
+.ringb .disc { position: absolute; inset: 0; border-radius: 50%; background: var(--blue); display: grid; place-items: center; box-shadow: 0 0 0 12px rgba(30,94,255,.16), 0 18px 40px rgba(2,10,36,.55); }
+.ringb svg { width: 50px; height: 50px; }
+.ringb .rp { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--blue-hi); opacity: 0; }
+.h-l1 { font: 700 86px/1.06 var(--sora); letter-spacing: -.035em; max-width: 900px; }
+.h-l1 .w { transform-origin: 50% 85%; }
+.h-l2 { position: relative; filter: drop-shadow(0 0 34px rgba(30,94,255,.55)); }
+.h-lakh { font: 800 250px/.86 var(--sora); letter-spacing: -.055em; white-space: nowrap; transform-origin: 30% 60%; }
+.h-week { font: 800 90px/1 var(--sora); letter-spacing: -.035em; margin-top: 22px; white-space: nowrap; }
+.h-week .w { transform-origin: 50% 70%; }
+.h-bar { height: 10px; width: 780px; max-width: 100%; background: var(--blue); border-radius: 6px; transform-origin: 0 50%; margin-top: 26px; }
+.h-l3 { font: 600 66px/1.12 var(--sora); letter-spacing: -.025em; max-width: 860px; text-wrap: balance; }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+
+/* ---------- 2 · pain ---------- */
+.p-col { position: absolute; left: 60px; top: 290px; width: 560px; height: 860px; }
+.p-head { display: flex; align-items: center; gap: 14px; height: 46px; font: 600 25px/1 var(--inter); letter-spacing: .14em; text-transform: uppercase; color: var(--ice); }
+.p-count { font: 700 26px/1 var(--inter); color: #fff; background: var(--blue); border-radius: 999px; padding: 10px 16px; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.p-list { position: absolute; left: -10px; top: 70px; width: 580px; height: 790px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%); mask-image: linear-gradient(180deg, #000 72%, transparent 100%); }
+.nc { position: absolute; left: 10px; top: 14px; width: 540px; height: 128px; border-radius: 30px; background: #fff; color: var(--ink);
+  display: flex; align-items: center; gap: 20px; padding: 0 26px 0 22px; box-shadow: 0 14px 34px rgba(2,10,36,.35); transform-origin: 50% 0; }
+.nc .ic { width: 78px; height: 78px; border-radius: 22px; background: var(--blue); display: grid; place-items: center; flex: none; }
+.nc .ic svg { width: 40px; height: 40px; }
+.nc .tx { flex: 1; min-width: 0; display: grid; gap: 7px; }
+.nc .r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.nc b { font: 700 30px/1.1 var(--inter); letter-spacing: -.01em; }
+.nc .ago { font: 500 22px/1 var(--inter); color: var(--mute); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nc .r2 { font: 500 28px/1.15 var(--inter); color: #2B4478; white-space: nowrap; }
+.nc.hl .ago { color: var(--blue); font-weight: 700; }
+.nc.hl { box-shadow: 0 0 0 5px var(--blue), 0 0 70px rgba(30,94,255,.75), 0 14px 34px rgba(2,10,36,.35); }
+.p-div { position: absolute; left: 652px; top: 320px; width: 2px; height: 800px; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.24), rgba(255,255,255,0)); }
+.clock { position: absolute; left: 690px; top: 360px; width: 310px; height: 310px; overflow: visible; }
+.cal { position: absolute; left: 730px; top: 760px; width: 230px; height: 262px; perspective: 900px; }
+.cal .pg { position: absolute; inset: 0; border-radius: 26px; background: #fff; color: var(--ink); overflow: hidden; box-shadow: 0 14px 34px rgba(2,10,36,.4); transform-origin: 50% 0; backface-visibility: hidden; }
+.cal .top { height: 66px; background: var(--blue); color: #fff; display: grid; place-items: center; font: 700 26px/1 var(--inter); letter-spacing: .2em; }
+.cal .num { font: 800 118px/1 var(--sora); letter-spacing: -.045em; text-align: center; margin-top: 22px; }
+.cal .dow { font: 600 24px/1 var(--inter); letter-spacing: .18em; color: var(--mute); text-align: center; margin-top: 12px; }
+.p-text { position: absolute; left: 90px; right: 90px; top: 1215px; display: grid; gap: 30px; }
+.p-l1, .p-l2 { font: 700 68px/1.1 var(--sora); letter-spacing: -.03em; text-wrap: balance; }
+
+/* ---------- transition wipe ---------- */
+.wipe { position: absolute; left: -5%; width: 110%; height: 160%; top: 0; z-index: 40; display: none;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%); }
+.wipe.a { background: var(--blue); }
+.wipe.b { background: #072052; }
+
+/* ---------- 3+4 · demo intro and live call ---------- */
+.c-head { position: absolute; left: 90px; top: 290px; width: 900px; font: 700 84px/1.06 var(--sora); letter-spacing: -.035em; text-wrap: balance; }
+.ccard { position: absolute; left: 60px; top: 0; width: 960px; height: 800px; border-radius: 52px;
+  background:
+    radial-gradient(70% 55% at 50% 42%, rgba(30,94,255,.26) 0%, rgba(30,94,255,0) 70%),
+    linear-gradient(160deg, #0C2F74 0%, #061D4D 58%, #04163C 100%);
+  box-shadow: 0 40px 90px -20px rgba(1,8,28,.8), inset 0 0 0 2px rgba(255,255,255,.08), inset 0 2px 0 rgba(255,255,255,.16); }
+.cc-top { position: absolute; left: 48px; right: 44px; top: 44px; display: flex; justify-content: space-between; align-items: center; }
+.wm { font: 700 42px/1 var(--sora); letter-spacing: -.035em; }
+.pill-live { display: flex; align-items: center; gap: 12px; background: var(--blue); border-radius: 999px; padding: 17px 26px; font: 700 26px/1 var(--inter); letter-spacing: .1em; white-space: nowrap; box-shadow: 0 8px 24px rgba(30,94,255,.45); }
+.pill-live i { width: 12px; height: 12px; border-radius: 50%; background: #fff; display: block; }
+.orb { position: absolute; left: 220px; top: 98px; width: 520px; height: 520px; }
+.cc-status { position: absolute; left: 0; right: 0; top: 632px; height: 40px; font: 500 28px/40px var(--inter); color: var(--ice); text-align: center; }
+.cc-status > span { position: absolute; left: 0; right: 0; top: 0; white-space: nowrap; }
+.cc-status b { font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+.cc-status em { font-style: normal; }
+.cc-status .dots3 { display: inline-block; width: 1.3em; text-align: left; }
+.cc-status .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--blue-hi); box-shadow: 0 0 12px var(--blue-hi); margin-right: 12px; vertical-align: 2px; }
+.cc-tags { position: absolute; left: 0; right: 0; top: 694px; height: 78px; display: flex; justify-content: center; }
+.tagslot { position: relative; height: 78px; }
+.tag { position: absolute; top: 0; left: 50%; height: 78px; display: flex; align-items: center; gap: 14px; padding: 0 34px 0 20px; border-radius: 999px;
+  background: var(--blue); font: 700 32px/1 var(--inter); letter-spacing: -.005em; white-space: nowrap; box-shadow: 0 10px 30px rgba(30,94,255,.45); }
+.tag svg { width: 42px; height: 42px; flex: none; }
+.c-panel { position: absolute; left: 0; right: 0; top: 1060px; height: 900px; background: #fff; border-radius: 56px 56px 0 0; color: var(--ink); }
+.spk { position: absolute; left: 90px; top: 58px; height: 56px; width: 400px; }
+.spk > div { position: absolute; left: 0; top: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 22px; border-radius: 999px; font: 700 22px/1 var(--inter); letter-spacing: .14em; white-space: nowrap; }
+.spk-m { background: var(--blue); color: #fff; }
+.spk-s { background: var(--mist); color: var(--ink); }
+.eq { display: flex; align-items: center; gap: 4px; height: 26px; }
+.eq u { display: block; width: 5px; height: 8px; border-radius: 3px; background: currentColor; }
+.caps { position: absolute; left: 90px; top: 140px; width: 900px; height: 350px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 64px); mask-image: linear-gradient(180deg, transparent 0, #000 64px); }
+.chunk { position: absolute; left: 0; top: 0; width: 100%; font: 700 60px/1.22 var(--inter); letter-spacing: -.018em; transform-origin: 0 0; }
+.chunk .w { opacity: 0; position: relative; }
+.chunk .w.kw { color: var(--blue); font-weight: 800; }
+.chunk .w.kw::before { content: ""; position: absolute; left: -.1em; right: -.1em; top: .1em; bottom: .02em; background: rgba(30,94,255,.13);
+  border-radius: .16em; transform: scaleX(var(--m, 0)); transform-origin: 0 50%; z-index: -1; }
+.chunk .ph { border: 3px dashed rgba(30,94,255,.6); border-radius: .28em; padding: 0 .16em; color: var(--blue); }
+
+/* ---------- 5 · stat ---------- */
+.whitebg { background: #fff; color: var(--ink); }
+.st-wrap { position: absolute; left: 90px; right: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; padding-bottom: 60px; }
+.st-l1 { font: 700 88px/1.08 var(--sora); letter-spacing: -.035em; }
+.st-num { position: relative; margin-top: 18px; }
+.st-8 { position: relative; overflow: hidden; width: max-content; transform-origin: 50% 0; }
+.st-8 .col { display: flex; flex-direction: column; font: 800 680px/.84 var(--sora); letter-spacing: -.06em; color: var(--blue); }
+.st-sec { font: 800 172px/.9 var(--sora); letter-spacing: -.045em; color: var(--blue); margin-top: 10px; }
+.st-l3 { font: 600 74px/1.1 var(--sora); letter-spacing: -.03em; margin-top: 34px; }
+.shock { position: absolute; border-radius: 50%; border: 8px solid var(--blue); opacity: 0; pointer-events: none; }
+
+/* ---------- 6 · reframe + CTA ---------- */
+#sCta { z-index: 30; }
+.cta-wave { position: absolute; left: 0; width: 1080px; height: 340px; }
+.cta-stack { position: absolute; left: 90px; right: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-bottom: 70px; }
+.cta-logo { font: 700 84px/1 var(--sora); letter-spacing: -.04em; }
+.cta-l1 { font: 700 72px/1.1 var(--sora); letter-spacing: -.032em; margin-top: 130px; max-width: 900px; text-wrap: balance; }
+.cta-l2 { font: 700 72px/1.1 var(--sora); letter-spacing: -.032em; margin-top: 36px; max-width: 900px; text-wrap: balance; }
+.cta-btn { margin-top: 96px; display: inline-flex; align-items: center; gap: 18px; background: var(--blue); color: #fff; border-radius: 999px; padding: 34px 58px; font: 700 48px/1 var(--inter); letter-spacing: -.01em; box-shadow: 0 18px 50px rgba(30,94,255,.55), inset 0 2px 0 rgba(255,255,255,.25); }
+.cta-btn .arr { display: inline-block; }
+.cta-tag { margin-top: 36px; font: 500 30px/1.2 var(--inter); color: rgba(255,255,255,.88); }
+.cta-url { position: absolute; left: 90px; top: 1490px; font: 600 32px/1 var(--inter); letter-spacing: .01em; display: flex; align-items: center; gap: 12px; }
+.cta-url i { width: 10px; height: 10px; border-radius: 50%; background: var(--blue-hi); display: block; }
+
+/* =================== 1:1 layout =================== */
+.s #sHook .cam { left: 80px; right: 80px; gap: 30px; padding-bottom: 0; }
+.s .ringb { width: 84px; height: 84px; }
+.s .ringb svg { width: 38px; height: 38px; }
+.s .h-l1 { font-size: 64px; max-width: 920px; }
+.s .h-lakh { font-size: 178px; }
+.s .h-week { font-size: 64px; margin-top: 14px; }
+.s .h-bar { height: 8px; width: 560px; margin-top: 18px; }
+.s .h-l3 { font-size: 50px; max-width: 920px; }
+
+.s .p-col { left: 40px; top: 50px; width: 520px; height: 610px; }
+.s .p-list { width: 540px; height: 540px; top: 64px; }
+.s .nc { width: 500px; height: 112px; border-radius: 26px; gap: 16px; padding: 0 22px 0 18px; }
+.s .nc .ic { width: 66px; height: 66px; border-radius: 18px; }
+.s .nc .ic svg { width: 34px; height: 34px; }
+.s .nc b { font-size: 27px; }
+.s .nc .r2 { font-size: 25px; }
+.s .nc .ago { font-size: 20px; }
+.s .p-div { left: 588px; top: 70px; height: 560px; }
+.s .clock { left: 690px; top: 66px; width: 260px; height: 260px; }
+.s .cal { left: 720px; top: 380px; width: 200px; height: 226px; }
+.s .cal .top { height: 56px; font-size: 22px; }
+.s .cal .num { font-size: 98px; margin-top: 18px; }
+.s .cal .dow { font-size: 20px; }
+.s .p-text { left: 80px; right: 80px; top: 700px; gap: 22px; }
+.s .p-l1, .s .p-l2 { font-size: 56px; }
+
+.s .c-head { left: 80px; top: 74px; width: 920px; font-size: 66px; }
+.s .ccard { left: 40px; width: 1000px; height: 520px; border-radius: 44px; }
+.s .cc-top { left: 40px; right: 36px; top: 36px; }
+.s .wm { font-size: 36px; }
+.s .pill-live { padding: 13px 20px; font-size: 21px; }
+.s .orb { left: 34px; top: 92px; width: 410px; height: 410px; }
+.s .cc-status { left: 476px; right: 30px; top: 186px; height: 90px; font-size: 28px; line-height: 40px; text-align: left; }
+.s .cc-status .sep { display: none; }
+.s .cc-status .lead { display: block; }
+.s .cc-tags { left: 476px; right: 30px; top: 318px; justify-content: flex-start; }
+.s .tag { left: 0; font-size: 25px; height: 66px; gap: 12px; padding: 0 28px 0 16px; }
+.s .tag svg { width: 36px; height: 36px; }
+.s .tagslot, .s .cc-tags { height: 66px; }
+.s .c-panel { top: 578px; height: 600px; border-radius: 44px 44px 0 0; }
+.s .spk { left: 80px; top: 42px; }
+.s .caps { left: 80px; top: 118px; width: 920px; height: 370px; }
+.s .chunk { font-size: 52px; }
+
+.s .st-wrap { left: 80px; right: 80px; padding-bottom: 20px; }
+.s .st-l1 { font-size: 62px; }
+.s .st-num { margin-top: 12px; }
+.s .st-8 .col { font-size: 450px; }
+.s .st-sec { font-size: 120px; margin-top: 6px; }
+.s .st-l3 { font-size: 52px; margin-top: 22px; }
+
+.s .cta-wave { height: 260px; }
+.s .cta-stack { left: 80px; right: 80px; padding-bottom: 40px; }
+.s .cta-logo { font-size: 58px; }
+.s .cta-l1 { font-size: 56px; margin-top: 70px; }
+.s .cta-l2 { font-size: 56px; margin-top: 22px; }
+.s .cta-btn { margin-top: 56px; font-size: 40px; padding: 28px 48px; }
+.s .cta-tag { margin-top: 26px; font-size: 25px; }
+.s .cta-url { left: 80px; top: auto; bottom: 46px; font-size: 27px; }
+</style>
+</head>
+<body>
+<div id="wrap">
+<div id="stage">
+
+  <section class="scene navybg" id="sHook">
+    <div class="dots"></div>
+    <div class="cam">
+      <div class="ringb">
+        <div class="rp"></div><div class="rp"></div>
+        <div class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3.2l1.6 4-2 1.3a11 11 0 0 0 6.9 6.9l1.3-2 4 1.6V19a1.8 1.8 0 0 1-1.9 1.8A15.8 15.8 0 0 1 3.2 5.9 1.8 1.8 0 0 1 5 4Z" fill="#fff"/></svg></div>
+      </div>
+      <div class="h-l1" id="hL1"></div>
+      <div class="h-l2">
+        <div class="h-lakh btxt" id="hLakh">1 LAKH</div>
+        <div class="h-week" id="hWeek"></div>
+        <div class="h-bar" id="hBar"></div>
+      </div>
+      <div class="h-l3" id="hL3"></div>
+    </div>
+    <div class="flash" id="hFlash"></div>
+  </section>
+
+  <section class="scene navybg" id="sPain">
+    <div class="dots"></div>
+    <div class="p-col">
+      <div class="p-head">New leads <span class="p-count" id="pCount">0</span></div>
+      <div class="p-list" id="pList"></div>
+    </div>
+    <div class="p-div"></div>
+    <svg class="clock" id="clock" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <div class="cal" id="cal">
+      <div class="pg" id="calA"><div class="top">OCT</div><div class="num">14</div><div class="dow">WED</div></div>
+      <div class="pg" id="calB"><div class="top">OCT</div><div class="num">14</div><div class="dow">WED</div></div>
+    </div>
+    <div class="p-text">
+      <div class="p-l1" id="pL1"></div>
+      <div class="p-l2" id="pL2">Whoever <span class="hi">calls first</span> wins the student.</div>
+    </div>
+  </section>
+
+  <section class="scene navybg" id="sCall">
+    <div class="dots"></div>
+    <div class="c-head" id="cHead"></div>
+    <div class="ccard" id="cCard">
+      <div class="cc-top">
+        <div class="wm" id="cWm">Highvance</div>
+        <div class="pill-live" id="cLive"><i id="cLiveDot"></i><span id="cLiveTxt">AI — LIVE CALL</span></div>
+      </div>
+      <canvas class="orb" id="orb"></canvas>
+      <div class="cc-status">
+        <span id="stCalling">Calling<em class="dots3">...</em><em class="sep"> · </em><em class="lead"></em></span>
+        <span id="stOn"><i class="dot"></i>On call · <b id="cTimer">00:00</b><em class="sep"> · </em><em class="lead"></em></span>
+      </div>
+      <div class="cc-tags"><div class="tagslot" id="tagSlot"></div></div>
+    </div>
+    <div class="c-panel" id="cPanel">
+      <div class="spk">
+        <div class="spk-m" id="spkM"><span id="spkMTxt">AI</span> <span class="eq" id="eqM"><u></u><u></u><u></u><u></u></span></div>
+        <div class="spk-s" id="spkS">STUDENT <span class="eq" id="eqS"><u></u><u></u><u></u><u></u></span></div>
+      </div>
+      <div class="caps" id="caps"></div>
+    </div>
+  </section>
+
+  <section class="scene whitebg" id="sStat">
+    <div class="st-wrap" id="stWrap">
+      <div class="st-l1" id="stL1">That call happened</div>
+      <div class="st-num">
+        <div class="st-8" id="st8"><div class="col" id="st8col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div></div>
+        <div class="st-sec" id="stSec"><span class="mk"><span>SECONDS</span></span></div>
+      </div>
+      <div class="st-l3" id="stL3">after the lead came in.</div>
+    </div>
+    <div class="shock" id="shock"></div>
+  </section>
+
+  <section class="scene navybg" id="sCta">
+    <div class="dots"></div>
+    <canvas class="cta-wave" id="ctaWave"></canvas>
+    <div class="cta-stack">
+      <div class="cta-logo" id="ctaLogo">Highvance</div>
+      <div class="cta-l1" id="ctaL1"></div>
+      <div class="cta-l2 hi" id="ctaL2">You’re losing to a faster one.</div>
+      <div class="cta-btn" id="ctaBtn">Book a Demo <span class="arr" id="ctaArr">→</span></div>
+      <div class="cta-tag" id="ctaTag">Built Exclusively for 10K+ Calls/Month</div>
+    </div>
+    <div class="cta-url" id="ctaUrl"><i></i>highvance.in</div>
+  </section>
+
+  <div class="wipe a" id="wipeA"></div>
+  <div class="wipe b" id="wipeB"></div>
+  <div class="grain" id="grain"></div>
+</div>
+</div>
+<div id="hud"></div>
+
+<script>
+  // call data (real recording: words, speaker turns, loudness) is generated by make_call.py
+  document.write('<script src="call-data-' + (new URLSearchParams(location.search).get('cut') || 'ad') + '.js"><\/script>');
+</script>
+<script>
+(function () {
+  var Q = new URLSearchParams(location.search);
+  var FMT = Q.get('fmt') === 's' ? 's' : 'v';
+  var RENDER = Q.has('render');
+  var W = 1080, H = FMT === 's' ? 1080 : 1920, FPS = 30, DUR;
+  var CD = window.CALL_DATA;
+  var stage = document.getElementById('stage');
+  stage.classList.add(FMT);
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---------- helpers ----------
+  function clamp(x, a, b) { a = a === undefined ? 0 : a; b = b === undefined ? 1 : b; return x < a ? a : x > b ? b : x; }
+  function P(t, t0, d) { return clamp((t - t0) / d); }
+  function lerp(a, b, x) { return a + (b - a) * x; }
+  var E = {
+    oC: function (x) { return 1 - Math.pow(1 - x, 3); },
+    oQ: function (x) { return 1 - Math.pow(1 - x, 4); },
+    oX: function (x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); },
+    ioC: function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; },
+    oB: function (x, s) { s = s || 1.70158; var c3 = s + 1; return 1 + c3 * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); }
+  };
+  function shake(t, t0, amp, decay) { if (t < t0) return 0; var d = t - t0; return amp * Math.exp(-d * (decay || 13)) * Math.sin(d * 92); }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  // split text into word spans. mode 'mask' wraps each word in a clipping span.
+  function words(el, text, mode) {
+    el.textContent = '';
+    var out = [];
+    text.split(' ').forEach(function (raw, i) {
+      if (i) el.appendChild(document.createTextNode(' '));
+      var cls = '';
+      var m = raw.match(/^\[(.+)\]([.,!?]*)$/);
+      if (m) { raw = m[1] + m[2]; cls = 'hi'; }
+      var inner = document.createElement('span');
+      inner.textContent = raw;
+      if (cls) inner.className = cls;
+      if (mode === 'mask') {
+        var outer = document.createElement('span'); outer.className = 'mk';
+        outer.appendChild(inner); el.appendChild(outer); out.push(inner);
+      } else {
+        inner.className = 'w' + (cls ? ' ' + cls : ''); el.appendChild(inner); out.push(inner);
+      }
+    });
+    return out;
+  }
+
+  // ---------- timeline (seconds) ----------
+  var T = {
+    hookL1: 0.02, hookStag: 0.115, lakh: 1.30, week: 1.56, weekStag: 0.085, bar: 1.92, l3: 2.42, l3Stag: 0.06,
+    pain: 4.0, painL1: 4.30, painL2: 6.45, pick: 8.50,
+    wipeA: 8.82, wipeB: 8.90, call: 9.125, head: 9.50, live: 9.75, calling: 10.15, connect: 14.0, panel: 14.05
+  };
+  T.stat = T.connect + CD.dur + 0.3;
+  T.statL1 = T.stat + 0.12; T.roll = T.stat + 0.55; T.slam = T.stat + 1.05; T.sec = T.stat + 1.14; T.statL3 = T.stat + 1.55;
+  T.iris = T.stat + 4.75; T.ctaLogo = T.stat + 5.35; T.ctaL1 = T.stat + 5.75; T.ctaL2 = T.stat + 7.0; T.btn = T.stat + 8.0; T.tagl = T.stat + 8.35; T.url = T.stat + 8.6;
+  DUR = T.stat + 10;
+  var RINGTONE = [[0.55, 1.55], [1.95, 2.95], [3.35, 4.0]];
+  var RINGBACK = [[10.2, 10.6], [10.8, 11.2], [13.2, 13.6]];
+  function inBursts(t, list) { for (var i = 0; i < list.length; i++) if (t >= list[i][0] && t <= list[i][1]) return true; return false; }
+
+  // ---------- 1 · hook build ----------
+  var hL1 = words($('hL1'), 'This is how study abroad businesses are calling', 'pop');
+  var hWeek = words($('hWeek'), 'LEADS IN A WEEK', 'pop');
+  hWeek.forEach(function (w) { w.classList.add('btxt'); });
+  var hL3 = words($('hL3'), 'What’s taking your team months.', 'mask');
+  var ringRips = document.querySelectorAll('#sHook .rp');
+
+  // ---------- 2 · pain build ----------
+  var DEST = [['Canada', 'Fall 2027'], ['UK', 'Sept 2027'], ['Australia', 'Feb 2027'], ['Germany', 'Winter 2027'], ['USA', 'Fall 2027'],
+    ['Ireland', 'Sept 2027'], ['Canada', 'Winter 2027'], ['New Zealand', 'July 2027'], ['UK', 'Jan 2027'], ['Australia', 'July 2027'],
+    ['USA', 'Spring 2027'], ['France', 'Sept 2027'], ['Dubai', 'Sept 2027']];
+  var spawns = [];
+  (function () { var st = 4.06, dt = 0.42, i = 0; while (st < 8.42) { spawns.push({ t: st, d: DEST[i % DEST.length] }); i++; st += dt; dt = Math.max(0.09, dt * 0.86); } })();
+  spawns[0].d = spawns[spawns.length - 1].d = [CD.lead.dest, CD.lead.intake];
+  var ICON_FORM = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5" stroke="#fff" stroke-width="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>';
+  var pList = $('pList');
+  var STEP = FMT === 's' ? 124 : 142, LISTH = FMT === 's' ? 540 : 790;
+  spawns.forEach(function (s) {
+    var d = document.createElement('div'); d.className = 'nc'; d.style.display = 'none';
+    d.innerHTML = '<div class="ic">' + ICON_FORM + '</div><div class="tx"><div class="r1"><b>New Lead</b><span class="ago">now</span></div><div class="r2">' + s.d[0] + ' — ' + s.d[1] + '</div></div>';
+    pList.appendChild(d); s.el = d; s.ago = d.querySelector('.ago'); s.agoTxt = 'now';
+  });
+  var FREEZE = spawns[spawns.length - 1].t;
+  function VH(t) { return 95 * Math.pow(P(Math.min(t, FREEZE), 4.1, 4.75), 1.7); } // fast-forwarded hours, frozen when Meera picks the lead
+  var flips = [1, 2, 3].map(function (k) { return 4.1 + 4.75 * Math.pow(24 * k / 95, 1 / 1.7); });
+  var DAYS = [['14', 'WED'], ['15', 'THU'], ['16', 'FRI'], ['17', 'SAT']];
+  function ageTxt(h) { if (h < 1 / 60) return 'now'; if (h < 1) return Math.floor(h * 60) + 'm ago'; if (h < 24) return Math.floor(h) + 'h ago'; return Math.floor(h / 24) + 'd ago'; }
+
+  // clock
+  var NS = 'http://www.w3.org/2000/svg', clock = $('clock');
+  function sv(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); (parent || clock).appendChild(e); return e; }
+  sv('circle', { cx: 150, cy: 150, r: 142, fill: 'rgba(255,255,255,.05)', stroke: '#fff', 'stroke-width': 5 });
+  for (var i = 0; i < 60; i++) {
+    var a = i / 60 * Math.PI * 2, major = i % 5 === 0, r0 = major ? 112 : 124;
+    sv('line', { x1: 150 + Math.sin(a) * r0, y1: 150 - Math.cos(a) * r0, x2: 150 + Math.sin(a) * 132, y2: 150 - Math.cos(a) * 132,
+      stroke: major ? '#fff' : 'rgba(255,255,255,.35)', 'stroke-width': major ? 6 : 2.5, 'stroke-linecap': 'round' });
+  }
+  var minH = [], hrH = [];
+  for (i = 0; i < 14; i++) minH.push(sv('line', { x1: 150, y1: 162, x2: 150, y2: 38, stroke: '#fff', 'stroke-width': 7, 'stroke-linecap': 'round' }));
+  for (i = 0; i < 6; i++) hrH.push(sv('line', { x1: 150, y1: 160, x2: 150, y2: 78, stroke: '#C3D5FF', 'stroke-width': 12, 'stroke-linecap': 'round' }));
+  sv('circle', { cx: 150, cy: 150, r: 13, fill: '#1E5EFF', stroke: '#fff', 'stroke-width': 4 });
+  function setHand(list, deg, spanDeg) {
+    var n = list.length, span = Math.min(140, Math.abs(spanDeg));
+    list.forEach(function (h, k) {
+      var f = k / Math.max(1, n - 1);
+      var ang = deg - span * f;
+      h.setAttribute('transform', 'rotate(' + ang.toFixed(2) + ' 150 150)');
+      var o = k === 0 ? 1 : (span < 3 ? 0 : 0.42 * (1 - f));
+      h.setAttribute('opacity', o.toFixed(3));
+    });
+  }
+  var pL1 = words($('pL1'), 'Every lead goes to 5 consultancies at once.', 'mask');
+
+  // ---------- 3+4 · call build ----------
+  var cHead = words($('cHead'), 'Listen to our AI calling that lead. [Live.]', 'mask');
+  var CARD = FMT === 's' ? { intro: 318, call: 30 } : { intro: 650, call: 190 };
+  var CAP = FMT === 's' ? { cur: 136, gap: 16, sp: 0.6 } : { cur: 128, gap: 18, sp: 0.6 };
+  var orb = $('orb'), octx = orb.getContext('2d');
+  var ORB = FMT === 's' ? 410 : 520;
+  orb.width = ORB; orb.height = ORB;
+
+  // ---- the real call: words, speakers and loudness come from call-data-*.js (make_call.py) ----
+  $('cLiveTxt').textContent = CD.agent.toUpperCase() + ' AI — LIVE CALL';
+  $('spkMTxt').textContent = CD.agent.toUpperCase() + ' · AI';
+  document.querySelectorAll('.cc-status .lead').forEach(function (e) { e.textContent = 'Lead: ' + CD.lead.dest + ' — ' + CD.lead.intake; });
+  var tokens = [], chunks = [], capsEl = $('caps');
+  CD.chunks.forEach(function (c) {
+    var ch = { sp: c.sp === 'a' ? 'm' : 's', toks: [], el: document.createElement('div') };
+    ch.el.className = 'chunk';
+    c.words.forEach(function (wd, i) {
+      if (i) ch.el.appendChild(document.createTextNode(' '));
+      var sp = document.createElement('span');
+      sp.className = 'w' + (wd.kw ? ' kw' : '');
+      sp.textContent = wd.w;
+      ch.el.appendChild(sp);
+      var tk = { el: sp, sp: ch.sp, kw: !!wd.kw, txt: wd.w, a: T.connect + wd.a, b: T.connect + wd.b, spoken: true };
+      ch.toks.push(tk); tokens.push(tk);
+    });
+    capsEl.appendChild(ch.el); chunks.push(ch);
+  });
+  chunks.forEach(function (ch) { ch.start = ch.toks[0].a - 0.06; });
+  var TAGS = CD.tags.map(function (g) { return { txt: g.txt, t: T.connect + g.t }; });
+  var CHECK = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#fff"/><path d="M12.5 20.5l5 5 10-11" stroke="#1E5EFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var tagSlot = $('tagSlot');
+  TAGS.forEach(function (tg) { var d = document.createElement('div'); d.className = 'tag'; d.innerHTML = CHECK + tg.txt; d.style.opacity = 0; tagSlot.appendChild(d); tg.el = d; });
+
+  // loudness of the recording, gated by who is speaking (a = agent, s = student)
+  function amp(t, sp) {
+    var x = (t - T.connect) * CD.envRate, n = CD.env.length;
+    if (x < 0 || x > n - 1) return 0;
+    var code = sp === 'm' ? 'a' : 's', v = 0, wsum = 0, c = Math.round(x);
+    for (var k = -2; k <= 2; k++) {
+      var j = c + k; if (j < 0 || j >= n) continue;
+      var wgt = 3 - Math.abs(k); wsum += wgt;
+      if (CD.spk.charAt(j) === code) v += CD.env[j] * wgt;
+    }
+    return wsum ? Math.min(1, v / wsum) : 0;
+  }
+
+  function drawOrb(t, o) {
+    var S = ORB, c = octx, R = S * 0.2, a = o.a, TAU = Math.PI * 2;
+    c.clearRect(0, 0, S, S);
+    c.save(); c.translate(S / 2, S / 2); c.scale(o.pres, o.pres);
+    var g = c.createRadialGradient(0, 0, R * 0.6, 0, 0, R * 2.45);
+    g.addColorStop(0, 'rgba(30,94,255,' + (0.5 + 0.4 * a + 0.2 * o.ring).toFixed(3) + ')');
+    g.addColorStop(0.45, 'rgba(30,94,255,' + (0.15 + 0.15 * a).toFixed(3) + ')');
+    g.addColorStop(1, 'rgba(30,94,255,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(0, 0, R * 2.45, 0, TAU); c.fill();
+    for (var k = 0; k < 3; k++) {
+      var p = ((t / 2.4) + k / 3) % 1;
+      var al = Math.pow(1 - p, 2) * (0.08 + 0.55 * a) * o.live;
+      if (al > 0.004) { c.strokeStyle = 'rgba(195,213,255,' + al.toFixed(3) + ')'; c.lineWidth = 2.5; c.beginPath(); c.arc(0, 0, R * (1.1 + p * 1.25), 0, TAU); c.stroke(); }
+    }
+    o.rips.forEach(function (p) {
+      if (p <= 0 || p >= 1) return;
+      c.strokeStyle = 'rgba(195,213,255,' + (Math.pow(1 - p, 1.6) * 0.9).toFixed(3) + ')';
+      c.lineWidth = 4; c.beginPath(); c.arc(0, 0, R * (1.05 + p * 1.35), 0, TAU); c.stroke();
+    });
+    var N = 84, r1 = R * 1.2;
+    c.lineCap = 'round'; c.lineWidth = R * 0.05;
+    for (var i = 0; i < N; i++) {
+      var th = i / N * TAU - Math.PI / 2;
+      var m = i <= N / 2 ? i : N - i;
+      var n = 0.5 + 0.5 * Math.sin(m * 0.9 + t * 11) * Math.cos(m * 0.37 - t * 6.3);
+      var env = 0.7 + 0.3 * Math.cos((m / (N / 2)) * TAU);
+      var la = a * (0.3 + 0.7 * Math.abs(n)) * env;
+      var idle = 0.5 + 0.5 * Math.sin(t * 2.6 + m * 0.5);
+      var len = R * (0.05 + 0.6 * la + 0.07 * idle * (1 - a) + 0.12 * o.ring * idle);
+      var cs = Math.cos(th), sn = Math.sin(th);
+      c.strokeStyle = 'rgba(255,255,255,' + (0.3 + 0.65 * Math.min(1, la * 1.6 + 0.1)).toFixed(3) + ')';
+      c.beginPath(); c.moveTo(cs * r1, sn * r1); c.lineTo(cs * (r1 + len), sn * (r1 + len)); c.stroke();
+    }
+    if (o.flash > 0 && o.flash < 1) {
+      c.strokeStyle = 'rgba(255,255,255,' + (Math.pow(1 - o.flash, 1.5)).toFixed(3) + ')';
+      c.lineWidth = 6; c.beginPath(); c.arc(0, 0, R * (1.0 + o.flash * 1.6), 0, TAU); c.stroke();
+    }
+    var cr = R * (1 + 0.05 * a + 0.03 * o.ring);
+    g = c.createRadialGradient(-cr * 0.32, -cr * 0.38, cr * 0.05, 0, 0, cr);
+    g.addColorStop(0, '#FFFFFF'); g.addColorStop(0.16, '#DDE7FF'); g.addColorStop(0.42, '#7FA6FF'); g.addColorStop(0.72, '#1E5EFF'); g.addColorStop(1, '#0B39A6');
+    c.shadowColor = 'rgba(30,94,255,.95)'; c.shadowBlur = R * 0.55;
+    c.fillStyle = g; c.beginPath(); c.arc(0, 0, cr, 0, TAU); c.fill(); c.shadowBlur = 0;
+    c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = 2; c.stroke();
+    c.rotate(t * 0.7);
+    c.strokeStyle = 'rgba(255,255,255,.5)'; c.lineWidth = R * 0.05;
+    c.beginPath(); c.arc(0, 0, cr * 0.8, -0.6, 0.35); c.stroke();
+    c.restore();
+  }
+
+  // ---------- 6 · CTA build ----------
+  var ctaL1 = words($('ctaL1'), 'You’re not losing to a better consultancy.', 'mask');
+  var wave = $('ctaWave'), wctx = wave.getContext('2d');
+  wave.width = 1080; wave.height = FMT === 's' ? 260 : 340;
+
+  // grain (seeded so every render worker draws the same texture)
+  (function () {
+    var cv = document.createElement('canvas'); cv.width = cv.height = 256;
+    var cx = cv.getContext('2d'), img = cx.createImageData(256, 256), r = rng(7);
+    for (var i = 0; i < img.data.length; i += 4) { var v = r() < .5 ? 0 : 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = Math.floor(r() * 90); }
+    cx.putImageData(img, 0, 0); $('grain').style.backgroundImage = 'url(' + cv.toDataURL() + ')';
+  })();
+
+  // layout-dependent values, measured after fonts load
+  var M = {};
+  function measure() {
+    var sr = stage.getBoundingClientRect(), sc = sr.width / W;
+    $('sStat').style.display = 'block';
+    var col = $('st8col'), fs = parseFloat(getComputedStyle(col).fontSize);
+    M.digitH = fs * 0.84; $('st8').style.height = M.digitH + 'px';
+    var r8 = $('st8').getBoundingClientRect();
+    M.c8 = { x: (r8.left - sr.left) / sc + r8.width / sc / 2, y: (r8.top - sr.top) / sc + r8.height / sc / 2, r: r8.height / sc / 2 };
+    var sh = $('shock'); sh.style.left = (M.c8.x - M.c8.r) + 'px'; sh.style.top = (M.c8.y - M.c8.r) + 'px'; sh.style.width = sh.style.height = (2 * M.c8.r) + 'px';
+    $('sStat').style.display = 'none';
+    $('sCall').style.display = 'block'; $('cPanel').style.display = 'block';
+    chunks.forEach(function (ch) { ch.el.style.display = 'block'; ch.h = ch.el.offsetHeight; ch.el.style.display = 'none'; });
+    $('sCall').style.display = 'none';
+    $('sCta').style.display = 'block';
+    var lr = $('ctaLogo').getBoundingClientRect();
+    M.logoY = (lr.top - sr.top) / sc + lr.height / sc / 2;
+    wave.style.top = (M.logoY - wave.height / 2) + 'px';
+    $('sCta').style.display = 'none';
+    M.irisR = Math.hypot(Math.max(M.c8.x, W - M.c8.x), Math.max(M.c8.y, H - M.c8.y)) + 20;
+  }
+
+  // ---------- render ----------
+  var scenes = { hook: $('sHook'), pain: $('sPain'), call: $('sCall'), stat: $('sStat'), cta: $('sCta') };
+  function show(el, on, disp) { var v = on ? (disp || 'block') : 'none'; if (el.style.display !== v) el.style.display = v; }
+  function op(el, v) { el.style.opacity = v.toFixed(3); }
+
+  function rHook(t) {
+    var cam = $('sHook').querySelector('.cam');
+    var punch = t >= T.lakh ? 1 + 0.05 * (1 - E.oC(P(t, T.lakh, 0.35))) : 1;
+    var drift = 1 + 0.03 * (t / 4);
+    var sx = shake(t, T.lakh + 0.08, 14), sy = shake(t + 0.013, T.lakh + 0.08, 10);
+    cam.style.transform = 'translate(' + sx.toFixed(2) + 'px,' + sy.toFixed(2) + 'px) scale(' + (punch * drift).toFixed(4) + ')';
+    var ringb = $('sHook').querySelector('.ringb');
+    var bp = P(t, -0.22, 0.35);
+    var wig = inBursts(t, RINGTONE) ? 9 * Math.sin(t * Math.PI * 2 * 13) : 0;
+    ringb.style.transform = 'scale(' + E.oB(bp).toFixed(3) + ') rotate(' + wig.toFixed(2) + 'deg)';
+    op(ringb, clamp(bp * 3));
+    ringRips.forEach(function (rp, k) {
+      var best = 0, sc = 1;
+      RINGTONE.forEach(function (b) { var p = (t - b[0] - k * 0.35) / 1.1; if (p > 0 && p < 1) { best = Math.pow(1 - p, 1.5) * 0.85; sc = 1 + p * 1.1; } });
+      rp.style.opacity = best.toFixed(3); rp.style.transform = 'scale(' + sc.toFixed(3) + ')';
+    });
+    hL1.forEach(function (w, i) {
+      var p = P(t, T.hookL1 + i * T.hookStag, 0.16), e = E.oX(p);
+      op(w, clamp(p * 3)); w.style.transform = 'translateY(' + ((1 - e) * 26).toFixed(2) + 'px) scale(' + (1 + (1 - e) * 0.34).toFixed(3) + ')';
+    });
+    var lk = $('hLakh'), pl = P(t, T.lakh, 0.2);
+    op(lk, clamp(pl * 4)); lk.style.transform = 'scale(' + (1 + (1 - E.oX(pl)) * 1.3).toFixed(3) + ')';
+    hWeek.forEach(function (w, i) {
+      var p = P(t, T.week + i * T.weekStag, 0.15), e = E.oX(p);
+      op(w, clamp(p * 4)); w.style.transform = 'scale(' + (1 + (1 - e) * 0.6).toFixed(3) + ')';
+    });
+    $('hBar').style.transform = 'scaleX(' + E.oC(P(t, T.bar, 0.35)).toFixed(3) + ')';
+    hL3.forEach(function (w, i) { var e = E.oX(P(t, T.l3 + i * T.l3Stag, 0.4)); w.style.transform = 'translateY(' + ((1 - e) * 145).toFixed(1) + '%)'; });
+    op($('hFlash'), 0.22 * (1 - P(t, T.lakh, 0.14)) * (t >= T.lakh ? 1 : 0));
+  }
+
+  function rPain(t) {
+    var vh = VH(t), n = 0;
+    for (var k = 0; k < spawns.length; k++) {
+      var s = spawns[k];
+      if (t < s.t) { show(s.el, false); continue; }
+      n++;
+      var y = 0;
+      for (var j = k + 1; j < spawns.length && spawns[j].t <= t; j++) y += E.oC(P(t, spawns[j].t, 0.24)) * STEP;
+      if (y > LISTH + 20) { show(s.el, false); continue; }
+      show(s.el, true, 'flex');
+      var e = E.oB(P(t, s.t, 0.28), 1.4);
+      var dim = 1;
+      if (t >= T.pick) dim = k === spawns.length - 1 ? 1 : 1 - 0.65 * E.oC(P(t, T.pick, 0.3));
+      s.el.style.transform = 'translateY(' + (y + (1 - e) * -70).toFixed(1) + 'px) scale(' + (0.9 + 0.1 * e + (k === spawns.length - 1 ? 0.03 * E.oC(P(t, T.pick, 0.3)) : 0)).toFixed(4) + ')';
+      op(s.el, clamp(P(t, s.t, 0.12)) * dim);
+      var txt = ageTxt(vh - VH(s.t));
+      if (txt !== s.agoTxt) { s.ago.textContent = txt; s.agoTxt = txt; }
+      var hl = k === spawns.length - 1 && t >= T.pick;
+      if (hl !== s.el.classList.contains('hl')) s.el.classList.toggle('hl', hl);
+    }
+    var pc = $('pCount'); if (pc.textContent !== String(n)) pc.textContent = n;
+    // clock: hands sweep with frame-length motion blur
+    var dv = (VH(t + 1 / FPS) - vh);
+    setHand(minH, vh * 360, dv * 360);
+    setHand(hrH, vh * 30, dv * 30);
+    var cin = E.oB(P(t, T.pain, 0.35));
+    clock.style.transform = 'scale(' + cin.toFixed(3) + ')';
+    $('cal').style.transform = 'scale(' + E.oB(P(t, T.pain + 0.08, 0.35)).toFixed(3) + ')';
+    // calendar: page A shows the current day, page B is the page tearing away
+    var day = 0; flips.forEach(function (ft) { if (t >= ft) day++; });
+    var A = $('calA'), B = $('calB');
+    if (A.dataset.d !== String(day)) { A.dataset.d = day; A.querySelector('.num').textContent = DAYS[day][0]; A.querySelector('.dow').textContent = DAYS[day][1]; }
+    var flipping = false;
+    flips.forEach(function (ft, k) {
+      var f = P(t, ft, 0.26);
+      if (f > 0 && f < 1) {
+        flipping = true;
+        if (B.dataset.d !== String(k)) { B.dataset.d = k; B.querySelector('.num').textContent = DAYS[k][0]; B.querySelector('.dow').textContent = DAYS[k][1]; }
+        B.style.transform = 'rotateX(' + (E.oC(f) * 100).toFixed(1) + 'deg)'; op(B, 1 - f * 0.4);
+      }
+    });
+    show(B, flipping);
+    pL1.forEach(function (w, i) { var e = E.oX(P(t, T.painL1 + i * 0.05, 0.42)); w.style.transform = 'translateY(' + ((1 - e) * 145).toFixed(1) + '%)'; });
+    var p2 = P(t, T.painL2, 0.5);
+    op($('pL2'), E.oC(p2)); $('pL2').style.transform = 'translateY(' + ((1 - E.oC(p2)) * 22).toFixed(1) + 'px)';
+  }
+
+  function rWipe(t) {
+    [[ $('wipeA'), T.wipeA, 0.42 ], [ $('wipeB'), T.wipeB, 0.45 ]].forEach(function (x) {
+      var p = P(t, x[1], x[2]);
+      var on = t >= x[1] && p < 1;
+      show(x[0], on);
+      if (on) { var top = lerp(H, -1.6 * H, E.ioC(p)); x[0].style.transform = 'translateY(' + top.toFixed(1) + 'px)'; }
+    });
+  }
+
+  function rCall(t) {
+    // headline in, then out when the call connects
+    cHead.forEach(function (w, i) { var e = E.oX(P(t, T.head + i * 0.055, 0.42)); w.style.transform = 'translateY(' + ((1 - e) * 145).toFixed(1) + '%)'; });
+    var live = cHead[cHead.length - 1], lp = P(t, T.head + (cHead.length - 1) * 0.055 + 0.18, 0.3);
+    live.parentNode.style.transform = 'scale(' + (1 + 0.12 * Math.sin(Math.PI * lp)).toFixed(3) + ')';
+    var ho = E.oC(P(t, T.connect, 0.35));
+    $('cHead').style.opacity = (1 - ho).toFixed(3);
+    $('cHead').style.transform = 'translateY(' + (-50 * ho).toFixed(1) + 'px)';
+    // card: scale in, then rise to the top when the call connects
+    var card = $('cCard'), ci = E.oC(P(t, T.call + 0.02, 0.5));
+    var y = lerp(CARD.intro, CARD.call, E.ioC(P(t, T.connect, 0.75)));
+    card.style.transform = 'translateY(' + (y + (1 - ci) * 60).toFixed(1) + 'px) scale(' + (0.94 + 0.06 * ci).toFixed(4) + ')';
+    op(card, clamp(P(t, T.call, 0.25)));
+    op($('cWm'), E.oC(P(t, T.call + 0.35, 0.4)));
+    var lpp = P(t, T.live, 0.35);
+    $('cLive').style.transform = 'scale(' + E.oB(lpp).toFixed(3) + ')'; op($('cLive'), clamp(lpp * 3));
+    op($('cLiveDot'), 0.45 + 0.55 * (0.5 + 0.5 * Math.cos(Math.PI * 2 * t / 1.1)));
+    // status line
+    var calling = $('stCalling'), on = $('stOn');
+    var cp = E.oC(P(t, T.calling, 0.4)), conn = E.oC(P(t, T.connect + 0.1, 0.3));
+    op(calling, cp * (1 - conn)); op(on, conn);
+    var dots = Math.floor((t - T.calling) / 0.4) % 4; calling.querySelector('.dots3').textContent = '...'.slice(0, Math.max(0, dots));
+    var secs = Math.max(0, Math.floor(t - T.connect)), ts = pad(Math.floor(secs / 60)) + ':' + pad(secs % 60);
+    if ($('cTimer').textContent !== ts) $('cTimer').textContent = ts;
+    // orb
+    var am = t >= T.connect ? amp(t, 'm') : 0;
+    var ringing = 0, rips = [];
+    RINGBACK.forEach(function (b) { if (t >= b[0] && t <= b[1] + 0.15) ringing = 1; rips.push((t - b[0]) / 1.3); });
+    drawOrb(t, { a: am, ring: ringing * (t < T.connect ? 1 : 0), rips: t < T.connect + 0.6 ? rips : [], pres: 0.85 + 0.15 * E.oB(P(t, T.call + 0.1, 0.5)),
+      live: t >= T.connect ? 1 : 0.4, flash: P(t, T.connect, 0.7) });
+    // capability tags
+    var cur = -1; TAGS.forEach(function (tg, i) { if (t >= tg.t) cur = i; });
+    TAGS.forEach(function (tg, i) {
+      var el = tg.el, base = FMT === 's' ? '' : 'translateX(-50%) ';
+      if (i === cur) { var e = E.oB(P(t, tg.t, 0.42), 1.3); el.style.transform = base + 'translateY(' + ((1 - e) * 46).toFixed(1) + 'px) scale(' + (0.9 + 0.1 * e).toFixed(3) + ')'; op(el, clamp(P(t, tg.t, 0.2))); }
+      else if (i === cur - 1) { var x = E.oC(P(t, TAGS[cur].t, 0.3)); el.style.transform = base + 'translateY(' + (-40 * x).toFixed(1) + 'px)'; op(el, 1 - x); }
+      else op(el, 0);
+    });
+    // white caption panel
+    var pp = E.oQ(P(t, T.panel, 0.7)), panel = $('cPanel');
+    var ptop = FMT === 's' ? 578 : 1060;
+    panel.style.transform = 'translateY(' + ((1 - pp) * (H - ptop + 60)).toFixed(1) + 'px)';
+    show(panel, t >= T.panel);
+    // captions
+    var cc = -1; chunks.forEach(function (ch, i) { if (t >= ch.start) cc = i; });
+    // the transcript scrolls up just before each new line is spoken, so lines never overlap
+    var LEAD = 0.26, cl = -1; chunks.forEach(function (ch, i) { if (t >= ch.start - LEAD) cl = i; });
+    var sh = cl >= 0 ? E.oC(P(t, chunks[cl].start - LEAD, 0.3)) : 0;
+    function prevY(i) { return CAP.cur - CAP.gap - chunks[i].h * CAP.sp; }
+    chunks.forEach(function (ch, i) {
+      var y, s = 1, o = 1;
+      if (i === cl) { y = CAP.cur; }
+      else if (i === cl - 1) { y = lerp(CAP.cur, prevY(i), sh); s = lerp(1, CAP.sp, sh); o = lerp(1, 0.4, sh); }
+      else if (i === cl - 2 && sh < 1) { y = prevY(i) - (chunks[i + 1].h * CAP.sp + CAP.gap) * sh; s = CAP.sp; o = 0.4 * (1 - sh); }
+      else { show(ch.el, false); return; }
+      show(ch.el, true); op(ch.el, o);
+      ch.el.style.transform = 'translateY(' + y.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')';
+      ch.toks.forEach(function (tk) {
+        var p = P(t, tk.a - 0.03, 0.12), e = E.oC(p);
+        op(tk.el, p); tk.el.style.transform = 'translateY(' + ((1 - e) * 14).toFixed(1) + 'px)';
+        if (tk.kw) tk.el.style.setProperty('--m', E.oC(P(t, tk.a, 0.3)).toFixed(3));
+      });
+    });
+    var spNow = cc >= 0 ? chunks[cc].sp : 'm', spPrev = cc > 0 ? chunks[cc - 1].sp : 'm';
+    var mix = spNow !== spPrev ? E.oC(P(t, chunks[cc].start, 0.22)) : 1;
+    var mOp = spNow === 'm' ? mix : 1 - mix;
+    op($('spkM'), mOp); op($('spkS'), 1 - mOp);
+    var as = t >= T.connect ? amp(t, 's') : 0;
+    [['eqM', am], ['eqS', as]].forEach(function (q) {
+      var bars = $(q[0]).children;
+      for (var b = 0; b < bars.length; b++) bars[b].style.height = (6 + 20 * q[1] * (0.55 + 0.45 * Math.abs(Math.sin(t * 17 + b * 1.9)))).toFixed(1) + 'px';
+    });
+  }
+
+  function rStat(t) {
+    var p1 = P(t, T.statL1, 0.32), e1 = E.oX(p1);
+    $('stL1').style.transform = 'translateX(' + ((1 - e1) * -90).toFixed(1) + 'px)'; op($('stL1'), clamp(p1 * 3));
+    var pr = P(t, T.roll, T.slam - T.roll), er = E.oC(pr);
+    $('st8col').style.transform = 'translateY(' + (-er * 8 * M.digitH).toFixed(1) + 'px)';
+    op($('st8'), clamp(pr * 5));
+    var sl = P(t, T.slam, 0.22);
+    var sc = t >= T.slam ? 1 + 0.12 * (1 - E.oX(sl)) : 1;
+    var sx = shake(t, T.slam, 12), sy = shake(t + 0.011, T.slam, 9);
+    $('st8').style.transform = 'translate(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ')';
+    var secIn = $('stSec').querySelector('.mk > span'), es = E.oX(P(t, T.sec, 0.4));
+    secIn.style.transform = 'translateY(' + ((1 - es) * 145).toFixed(1) + '%)';
+    var p3 = P(t, T.statL3, 0.38), e3 = E.oX(p3);
+    $('stL3').style.transform = 'translateX(' + ((1 - e3) * -70).toFixed(1) + 'px)'; op($('stL3'), clamp(p3 * 3));
+    var sk = P(t, T.slam, 0.8);
+    $('shock').style.transform = 'scale(' + (0.7 + 1.6 * E.oC(sk)).toFixed(3) + ')'; op($('shock'), sk > 0 && sk < 1 ? 0.45 * (1 - sk) : 0);
+    $('stWrap').style.transform = 'scale(' + (1 + 0.018 * P(t, T.slam, 3.9)).toFixed(4) + ')';
+  }
+
+  function rCta(t) {
+    var r = E.ioC(P(t, T.iris, 0.7)) * M.irisR;
+    $('sCta').style.clipPath = r >= M.irisR - 1 ? 'none' : 'circle(' + r.toFixed(1) + 'px at ' + M.c8.x.toFixed(1) + 'px ' + M.c8.y.toFixed(1) + 'px)';
+    var lp = E.oC(P(t, T.ctaLogo, 0.55));
+    op($('ctaLogo'), lp); $('ctaLogo').style.transform = 'translateY(' + ((1 - lp) * 24).toFixed(1) + 'px)';
+    // waveform behind the logo
+    var c = wctx, WW = wave.width, WH = wave.height, N = 56, bw = 9, gap = (WW - 120 - N * bw) / (N - 1), pres = E.oC(P(t, T.ctaLogo - 0.1, 0.9));
+    c.clearRect(0, 0, WW, WH); c.lineCap = 'round'; c.lineWidth = bw;
+    for (var i = 0; i < N; i++) {
+      var d = Math.abs(i - (N - 1) / 2) / ((N - 1) / 2);
+      var env = 1 - 0.75 * d * d;
+      var v = 0.5 + 0.5 * Math.sin(t * 2.2 + i * 0.42) * Math.sin(t * 1.3 - i * 0.17);
+      var h = (14 + (WH * 0.42) * env * (0.25 + 0.75 * v)) * pres;
+      var x = 60 + i * (bw + gap);
+      c.strokeStyle = 'rgba(92,141,255,' + (0.16 + 0.22 * env).toFixed(3) + ')';
+      c.beginPath(); c.moveTo(x, WH / 2 - h / 2); c.lineTo(x, WH / 2 + h / 2); c.stroke();
+    }
+    ctaL1.forEach(function (w, i) { var e = E.oX(P(t, T.ctaL1 + i * 0.05, 0.42)); w.style.transform = 'translateY(' + ((1 - e) * 145).toFixed(1) + '%)'; });
+    var p2 = E.oC(P(t, T.ctaL2, 0.55)); op($('ctaL2'), p2); $('ctaL2').style.transform = 'translateY(' + ((1 - p2) * 18).toFixed(1) + 'px)';
+    var bp = P(t, T.btn, 0.45);
+    $('ctaBtn').style.transform = 'scale(' + (0.6 + 0.4 * E.oB(bp, 2.2)).toFixed(3) + ')'; op($('ctaBtn'), clamp(bp * 4));
+    var nud = t > T.btn + 0.5 ? 7 * Math.max(0, Math.sin(Math.PI * 2 * (t - T.btn - 0.5) / 1.0)) : 0;
+    $('ctaArr').style.transform = 'translateX(' + nud.toFixed(1) + 'px)';
+    var tp = E.oC(P(t, T.tagl, 0.4)); op($('ctaTag'), tp);
+    var up = E.oC(P(t, T.url, 0.4)); op($('ctaUrl'), up); $('ctaUrl').style.transform = 'translateY(' + ((1 - up) * 12).toFixed(1) + 'px)';
+  }
+
+  function renderAt(t) {
+    t = clamp(t, 0, DUR - 1e-6);
+    show(scenes.hook, t < T.pain); if (t < T.pain) rHook(t);
+    show(scenes.pain, t >= T.pain && t < T.call); if (t >= T.pain && t < T.call) rPain(t);
+    rWipe(t);
+    show(scenes.call, t >= T.call && t < T.stat); if (t >= T.call && t < T.stat) rCall(t);
+    show(scenes.stat, t >= T.stat && t < T.iris + 0.75); if (t >= T.stat && t < T.iris + 0.75) rStat(t);
+    show(scenes.cta, t >= T.iris); if (t >= T.iris) rCta(t);
+  }
+
+  // timeline export for the sound design script
+  function timeline() {
+    return {
+      fps: FPS, dur: DUR, T: T, ringtone: RINGTONE, ringback: RINGBACK, agent: CD.agent, cut: CD.cut,
+      hookWords: hL1.map(function (w, i) { return T.hookL1 + i * T.hookStag; }),
+      weekWords: hWeek.map(function (w, i) { return T.week + i * T.weekStag; }),
+      spawns: spawns.map(function (s) { return s.t; }), flips: flips,
+      tokens: tokens.map(function (k) { return { sp: k.sp, a: k.a, b: k.b, txt: k.txt, spoken: k.spoken }; }),
+      chunks: chunks.map(function (c) { return { sp: c.sp, start: c.start, text: c.toks.map(function (k) { return k.txt; }).join(' ') }; }),
+      tags: TAGS.map(function (g) { return { t: g.t, txt: g.txt }; })
+    };
+  }
+
+  var fontsReady = Promise.all(['800 100px Sora', '700 100px Sora', '600 100px Sora', '500 100px Inter', '600 100px Inter', '700 100px Inter', '800 100px Inter']
+    .map(function (f) { return document.fonts.load(f); })).then(function () { return document.fonts.ready; });
+
+  window.__ready = fontsReady.then(function () {
+    measure();
+    window.__renderAt = renderAt;
+    window.__timeline = timeline();
+    renderAt(Number(Q.get('t') || 0));
+    return true;
+  });
+
+  if (!RENDER) {
+    document.body.classList.add('preview');
+    var playing = true, t0 = performance.now(), tp = 0;
+    function fit() { var s = Math.min(innerWidth / W, innerHeight / H) * 0.96; stage.style.transform = 'scale(' + s + ')'; $('wrap').style.width = W * s + 'px'; $('wrap').style.height = H * s + 'px'; }
+    fit(); addEventListener('resize', fit);
+    addEventListener('keydown', function (e) {
+      if (e.code === 'Space') { if (playing) tp = (performance.now() - t0) / 1000; else t0 = performance.now() - tp * 1000; playing = !playing; }
+      if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { var cur = playing ? (performance.now() - t0) / 1000 : tp; cur = clamp(cur + (e.code === 'ArrowRight' ? 2 : -2), 0, DUR); t0 = performance.now() - cur * 1000; tp = cur; if (!playing) renderAt(cur); }
+    });
+    window.__ready.then(function () {
+      (function tick(now) {
+        var t = playing ? ((now - t0) / 1000) % DUR : tp;
+        renderAt(t); $('hud').textContent = t.toFixed(2) + ' s · space to pause · arrows to seek';
+        requestAnimationFrame(tick);
+      })(performance.now());
+    });
+  }
+})();
+</script>
+</body>
+</html>
