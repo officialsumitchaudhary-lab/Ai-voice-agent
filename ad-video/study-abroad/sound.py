@@ -1,9 +1,10 @@
 """Sound design for the Highvance study-abroad ad.
 
-Builds a 54-second music + SFX stem from the timeline the animation exports, so every
-hit lands on its frame. 0:14-0:44 stays empty: that slot is for the real call recording.
+Builds the music + SFX bed from the timeline the animation exports, so every hit lands
+on its frame. The call slot (from 0:14 for the length of the recording) stays clear of
+music; pass the processed call audio to get the full mix as well.
 
-    python3 sound.py timeline_v.json out.wav
+    python3 sound.py timeline_v.json bed.wav [call.wav full_mix.wav]
 """
 import json
 import sys
@@ -15,6 +16,8 @@ from scipy.signal import butter, fftconvolve, sosfilt
 SR = 48000
 tl = json.load(open(sys.argv[1]))
 OUT = sys.argv[2]
+CALL = sys.argv[3] if len(sys.argv) > 4 else None
+FULL = sys.argv[4] if len(sys.argv) > 4 else None
 T = tl['T']
 DUR = tl['dur']
 N = int(DUR * SR)
@@ -231,8 +234,8 @@ hook_env[f0:f1] = np.linspace(1, 0, f1 - f0) ** 1.5
 hook_env[f1:] = 0
 
 CLOSE = [
-    (49.20, 2.10, [53, 57, 60, 64, 67], 41, [65, 69, 72, 76]),   # Fmaj9
-    (51.30, 2.70, [48, 55, 60, 64, 74], 48, [67, 72, 74, 79]),   # Cadd9, resolves
+    (T['iris'] + 0.45, 2.10, [53, 57, 60, 64, 67], 41, [65, 69, 72, 76]),   # Fmaj9
+    (T['iris'] + 2.55, 2.70, [48, 55, 60, 64, 74], 48, [67, 72, 74, 79]),   # Cadd9, resolves
 ]
 close = np.zeros((N, 2))
 for i, (st, du, v, b, arp) in enumerate(CLOSE):
@@ -244,7 +247,7 @@ for i, (st, du, v, b, arp) in enumerate(CLOSE):
         a += 0.5
         k += 1
 close_env = np.zeros(N)
-c0, c1, c2 = int(49.05 * SR), int(49.75 * SR), int(53.35 * SR)
+c0, c1, c2 = int((T['iris'] + 0.30) * SR), int((T['iris'] + 1.0) * SR), int((DUR - 0.65) * SR)
 close_env[c0:c1] = np.linspace(0, 1, c1 - c0)
 close_env[c1:c2] = 1
 close_env[c2:] = np.linspace(1, 0, N - c2) ** 1.3
@@ -300,9 +303,9 @@ drone = (np.sin(2 * np.pi * mtof(33) * dt) + 0.5 * np.sin(2 * np.pi * mtof(40) *
 drone += lp(rng.standard_normal(len(dt)), 900) * 0.18
 denv = np.minimum(1, dt / 0.9) * np.clip((4.9 - dt) / 0.45, 0, 1)
 put(music, drone * denv, 9.1, 0.07)
-put(dry, tone(1046.5, 0.07), T['connect'], 0.10)
-put(dry, tone(1568.0, 0.10), T['connect'] + 0.08, 0.10)
-# 0:14-0:44 is left empty for the real call recording
+put(dry, tone(1046.5, 0.07), T['connect'] - 0.30, 0.10)
+put(dry, tone(1568.0, 0.10), T['connect'] - 0.22, 0.10)
+# from T['connect'] the call recording plays; no music or effects under it
 
 # stat: count-up ticks, slam, then silence
 roll, slam = T['roll'], T['slam']
@@ -341,4 +344,18 @@ mix = verb(music, 0.28) * 0.9 + verb(sfx, 0.14) + dry
 peak = np.max(np.abs(mix))
 mix = np.tanh(mix / peak * 1.1) / np.tanh(1.1) * 0.89
 wavfile.write(OUT, SR, mix.astype(np.float32))
-print(f'wrote {OUT}: {DUR}s, peak {20 * np.log10(np.max(np.abs(mix))):.1f} dBFS')
+print(f'wrote {OUT}: {DUR:.2f}s, peak {20 * np.log10(np.max(np.abs(mix))):.1f} dBFS')
+
+if CALL:
+    csr, call = wavfile.read(CALL)
+    assert csr == SR, 'call audio must be 48 kHz'
+    call = call.astype(np.float64)
+    if call.ndim > 1:
+        call = call.mean(axis=1)
+    full = mix.copy()
+    put(full, call, T['connect'], 1.0)
+    pk = np.max(np.abs(full))
+    if pk > 0.97:
+        full = np.tanh(full / pk * 1.2) / np.tanh(1.2) * 0.95
+    wavfile.write(FULL, SR, full.astype(np.float32))
+    print(f'wrote {FULL} with the call at {T["connect"]:.2f}s ({len(call) / SR:.2f}s)')

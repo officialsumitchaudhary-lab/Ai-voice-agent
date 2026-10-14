@@ -4,7 +4,7 @@ When working in this repo, act as HighVance's CMO: own the marketing strategy, g
 
 ## Company facts (confirmed by the founder)
 - Company: **Highvance** (the founder's scripts spell it "Highvance"; earlier notes used "HighVance" — confirm against the logo). Website **highvance.in**, based in India (+91 market).
-- Product: an **AI voice agent** that calls leads. Demo persona: **Meera**, an AI counsellor that calls new leads, checks eligibility, books counselling and sends a WhatsApp confirmation.
+- Product: an **AI voice agent** that calls leads in Hinglish. In the real demo call the agent is **Aarushi**, calling for "Highvance Overseas": she checks eligibility (graduation year, percentage, IELTS), answers questions on universities, the admission process and costs, and offers a free video call with a senior counsellor (Priya). The founder's script called the agent "Meera"; the ad now uses Aarushi to match the recording.
 - Brand colours: dark navy **#0A2A66**, white, electric blue **#1E5EFF**.
 - Brand fonts: **Sora** (headlines) and **Inter** (body, captions).
 - Current target market: **study-abroad consultancies** in India. Positioning line: "Built Exclusively for 10K+ Calls/Month". CTA: "Book a Demo".
@@ -14,7 +14,8 @@ When working in this repo, act as HighVance's CMO: own the marketing strategy, g
 - Other target industries beyond study abroad, company size, who signs off.
 - Pricing, and the offer behind "Book a Demo" (free demo, trial, setup fee).
 - Proof for the claims in the study-abroad ad: "1 lakh leads in a week", "8 seconds after the lead came in", "10K+ calls/month". Keep call logs or CRM timestamps on file.
-- The real Meera call recording, the consultancy name it uses, and the student's consent to use it in an ad.
+- Whether the agent can book the counselling slot and send a WhatsApp confirmation. The demo call shows neither (the student did not book), so the ad doesn't claim them.
+- The ⚠ lines in `ad-video/study-abroad/call/transcript.md` (the student's short replies were hard to hear).
 - Monthly ad budget and target cost per lead.
 - Competitors and how HighVance is different.
 - Languages the agent supports (English only, or Hindi/Hinglish too).
@@ -33,8 +34,8 @@ When working in this repo, act as HighVance's CMO: own the marketing strategy, g
 
 ## Campaign in progress: study-abroad motion graphic ad (54 s)
 - Source and exports in `ad-video/study-abroad/` (`build.sh` rebuilds everything; `README.md` explains the files).
-- Script beats: hook (1 lakh leads a week) → pain (every lead goes to 5 consultancies) → Meera live call (0:14–0:44, a 30 s slot for the real recording) → "8 SECONDS" stat with a silent beat → reframe + "Book a Demo".
-- The call captions are timed to an estimated pace. When the real recording arrives, re-time them in `meera-ad.html` (the `CALL` segments) and rebuild.
+- Script beats: hook (1 lakh leads a week) → pain (every lead goes to 5 consultancies) → the real call (from 0:14) → "8 SECONDS" stat with a silent beat → reframe + "Book a Demo".
+- The call is the founder's real recording (Aarushi calling Sumit about a Master's in Germany, 2:40, Hinglish). The ad uses a 32 s in-order cut (greeting → eligibility → IELTS → free counselling offer); a full-call version also exists. Transcript, cut list and tags live in `ad-video/study-abroad/call/transcript.json`.
 - The founder's script listed the URL as "hiighvance.com"; the ad uses highvance.in. Confirm.
 - The older `ad-card/` card uses Plus Jakarta Sans, #071A45 and #2F7BFF. Update it to the brand fonts and colours above before reusing it.
 
