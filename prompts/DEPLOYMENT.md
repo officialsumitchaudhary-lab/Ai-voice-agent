@@ -94,3 +94,12 @@
 4. **Calendar:** one calendar per branch (Dehu Road, Mukai Chowk) for visit booking.
 5. **Languages:** Marathi in Marathi script (English words in Roman), Hindi as Romanized Hinglish, English. If Hindi comes out in Devanagari, check the platform Hindi mode.
 6. **Hangup message:** empty or one short line; the prompt already closes.
+
+## Aditi (Admivo, outbound; files admivo-*)
+
+1. **Files:** system prompt `admivo-aditi.md`, knowledge base `admivo-kb.md`.
+2. **Variables:** `{lead_name}`, `{lead_source}`, `{country_interest}`, `{course_interest}`, `{target_intake}`, `{lead_history}` (short approved summary, no internal notes). Blank is fine.
+3. **Welcome message:** `Hi {lead_name}, I'm Aditi from Admivo International Admissions, calling about your study abroad plans. Is this a good time to talk for two minutes?`
+4. **Hangup message:** empty; the prompt closes.
+5. **Languages:** English and Hindi; Hindi as Romanized Hinglish.
+6. **Before launch (client pending):** approved price list, EMI terms, refund route, consultation mode and duration, verified company figures, deadline owner. Until then the agent states none of these.
