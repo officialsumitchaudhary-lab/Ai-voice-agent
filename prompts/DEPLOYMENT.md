@@ -99,7 +99,7 @@
 
 1. **Files:** system prompt `admivo-aditi.md`, knowledge base `admivo-kb.md`.
 2. **Variables:** `{lead_name}`, `{lead_source}`, `{country_interest}`, `{course_interest}`, `{target_intake}`, `{lead_history}` (short approved summary, no internal notes). Blank is fine.
-3. **Welcome message:** `Hi {lead_name}, I'm Aditi from Admivo International Admissions, calling about your study abroad plans. Is this a good time to talk for two minutes?`
+3. **Welcome message:** `Hi {lead_name}, this is Aditi from Admivo. You'd enquired with us about studying abroad, so I thought I'd give you a quick call. Is this a good time to talk for two minutes?` With `{country_interest}` always filled: `…You'd enquired about studying in {country_interest}…`.
 4. **Hangup message:** empty; the prompt closes.
 5. **Languages:** English and Hindi; Hindi as Romanized Hinglish.
 6. **Before launch (client pending):** approved price list, EMI terms, refund route, consultation mode and duration, verified company figures, deadline owner. Until then the agent states none of these.
