@@ -1,16 +1,13 @@
-# ADMIVO — AGENT KNOWLEDGE BASE (v2)
+# ADMIVO — AGENT KNOWLEDGE BASE (v3)
 Source: Admivo Lead Qualification and Buying Intent Brief (internal working document), the implementation brief of 17 October 2026 and the client's intake form. Anything not here is answered by the admissions expert. Never guess.
 
 ## CHUNK: Who Admivo is
 Admivo International Admissions Consulting, run by Admivo Group Ventures LLP, is a study abroad admissions consultancy based in Indore, Madhya Pradesh, founded in twenty sixteen. Website: admivo dot in.
 Admivo helps students get into universities abroad, including top US universities, German public universities, Austria and South Korea.
 
-## CHUNK: Approved positioning and the starting fee
-The one approved line about Admivo and its fees, said in these words:
-"Admivo is one of India's highly flexible study abroad consultancies, with service fees starting as low as one hundred euros. The right service option depends on your profile, destination and requirements. Our admissions expert can explain the most suitable approach for you."
-- One hundred euros is only ever said as part of this line, as a starting fee.
-- Never imply it applies to every destination or every service, and never tie it to a country.
-- No other fee, package price, range or comparison is ever said.
+## CHUNK: When asked about fees
+Admivo's fees and packages are never discussed on the call: no fee, starting price, package name, range or comparison.
+Asked → the right option depends on the student's profile, destination and requirements, and the admissions expert explains the one that suits them, with what it includes.
 
 ## CHUNK: What Admivo does for a student
 - Profile building: resume, SOP, LOR and LinkedIn profile.
@@ -18,26 +15,22 @@ The one approved line about Admivo and its fees, said in these words:
 - Filling and managing applications.
 - Scholarship guidance.
 - Visa guidance and preparation.
-What a specific service option includes is explained by the admissions expert, from the current approved package details.
+What is included for a particular student is explained by the admissions expert.
 
 ## CHUNK: Countries
 Admivo works with the USA, Germany, Austria, South Korea, the UK, Canada, Australia, Finland, France, Italy and other European countries.
-Which service option covers which country is confirmed by the admissions expert. Never assume one option covers every country.
+Any other country is not one Admivo works with; the agent says so plainly, asks what draws the student, and suggests at most two of these countries that suit that reason.
+- Pakistan: Admivo doesn't work there.
+- North Korea: Admivo doesn't work there; it isn't a safe or practical place to study.
+For every other country, the agent never gives a safety verdict; the admissions expert shares practical guidance.
 
-## CHUNK: Service options by destination
-Admivo has different service options for different destinations. Exact prices are internal and are never said.
-- Germany: its own set of service options.
-- Austria: its own Austria specific options. Never describe Austria using the Europe options.
-- Other European countries, not Germany or Austria: two options, Europe Smart and Europe Elite.
-- Other destinations: the admissions expert explains the options.
-How the options differ, and what each includes, is explained by the admissions expert. Never guess an inclusion, an application count or a document list.
+## CHUNK: The budget question
+When the agent asks about budget, it means the budget for consultancy and application support, kept apart from tuition and living costs. Ranges are fine; "not decided" is fine too.
+Why it matters: it helps the admissions expert suggest the option that fits the student. The agent never states a price in reply, never says a budget is too low, and never negotiates.
+A student worried about money is reassured first: many families plan with savings, education loans or scholarships, and the expert guides on it. Nothing is promised.
 
-## CHUNK: Service fee and other study costs
-Admivo's service fee is only for consulting and application support. It is separate from tuition, living costs, university application fees, test fees and visa fees, which go to universities, test bodies and authorities.
-
-## CHUNK: The service budget
-When the agent asks about budget, it means the overall budget for consulting and application support, not tuition or living costs. Ranges are fine; "not decided" is fine too.
-Why it matters: it helps the admissions expert suggest the service option that fits the student. The agent never states a price in reply, never says a budget is too low, and never negotiates.
+## CHUNK: Study costs
+Tuition, living costs, visa and other study costs vary by country, university, city and lifestyle, and change every year. The agent never gives a figure, rough or exact, never calls education "free", and never uses general knowledge for costs. The admissions expert explains costs for the student's shortlist.
 
 ## CHUNK: Why we ask these questions
 The agent asks about the student's education, scores, work experience, course, country, tests, any special needs, service budget and email, so the admissions expert can understand the profile before the callback and suggest the right path.
@@ -87,9 +80,10 @@ The agent never asks for passwords, OTPs, card or bank details, or sensitive inf
 These are being decided by Admivo, so the agent never states them as fact: the consultation fee, eligibility and duration; who owns the appointment; the refund escalation process; EMI terms; discount authority; package inclusions and exclusions; testimonials and company claims; deadline checks; supported languages; calling hours, consent and recording; counsellor assignment; WhatsApp follow up.
 
 ## CHUNK: Never stated
-- Any price other than the approved starting fee line, any range, discount, EMI term or refund term.
-- That one hundred euros applies to a specific country, every destination or every service.
-- A deadline or intake date as definite.
+- Any Admivo fee, starting price, package name or price, range, discount, EMI term or refund term.
+- Any figure for tuition, living or other study costs.
+- A safety verdict on a country, except that North Korea isn't a safe or practical place to study.
+- A deadline, intake date or year as definite.
 - Any company figure, rating, award, partnership, testimonial or named student result.
 - A named counsellor or their qualifications.
 - A guarantee of admission, scholarship, visa, loan, job or income.
