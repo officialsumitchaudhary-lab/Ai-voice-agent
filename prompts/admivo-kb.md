@@ -19,9 +19,10 @@ What is included for a particular student is explained by the admissions expert.
 
 ## CHUNK: Countries
 Admivo works with the USA, Germany, Austria, South Korea, the UK, Canada, Australia, Finland, France, Italy and other European countries.
-Any other country is not one Admivo works with; the agent says so plainly, asks what draws the student, and suggests at most two of these countries that suit that reason.
-- Pakistan: Admivo doesn't work there.
-- North Korea: Admivo doesn't work there; it isn't a safe or practical place to study.
+- A country not in this list: the agent says it isn't sure Admivo provides it, and that the senior counsellor will help. It never declines it.
+- Pakistan: the only firm no. Admivo doesn't work with Pakistan.
+- North Korea: not a safe or practical place to study; the agent isn't sure Admivo provides it, and the senior counsellor will help.
+- South Korea: Admivo works there. Safety and student support there are worth checking carefully, and the senior counsellor helps with that.
 For every other country, the agent never gives a safety verdict; the admissions expert shares practical guidance.
 
 ## CHUNK: The budget question
@@ -82,7 +83,8 @@ These are being decided by Admivo, so the agent never states them as fact: the c
 ## CHUNK: Never stated
 - Any Admivo fee, starting price, package name or price, range, discount, EMI term or refund term.
 - Any figure for tuition, living or other study costs.
-- A safety verdict on a country, except that North Korea isn't a safe or practical place to study.
+- A safety verdict on a country, beyond the North Korea and South Korea notes above.
+- A firm no for any country except Pakistan.
 - A deadline, intake date or year as definite.
 - Any company figure, rating, award, partnership, testimonial or named student result.
 - A named counsellor or their qualifications.
